@@ -520,9 +520,10 @@ def main() -> int:
         send_email(subject, body_html, body_text)
         return 0
 
-    if new or broken or test_email:
+    scheduled = os.environ.get("GITHUB_EVENT_NAME") == "schedule"
+    if new or broken or test_email or scheduled:
         subject, body_html, body_text = build_email(new, broken)
-        if test_email and not new and not broken:
+        if test_email and not new and not broken and not scheduled:
             subject = "Symbiosys Software Updates & Vulnerabilities Report: test email"
             body_html = "<p>This is a test email from software-update-alerts. Alerts will arrive here when new updates or vulnerabilities are found.</p>"
             body_text = "This is a test email from software-update-alerts."

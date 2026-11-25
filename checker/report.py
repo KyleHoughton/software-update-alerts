@@ -287,7 +287,7 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
         parts.append(f"{len(updates)} update{'s' if len(updates) != 1 else ''}")
     prefix = "[SAMPLE] " if sample else ("[URGENT] " if urgent else "")
     subject = (f"{prefix}Symbiosys Software Updates & Vulnerabilities Report | {local.strftime('%d %b %Y %H:%M')} | "
-               + (", ".join(parts) if parts else "source health"))
+               + (", ".join(parts) if parts else ("source health" if broken else "no new items")))
 
     # Executive summary
     if urgent:
@@ -299,9 +299,11 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
         summary = "No actively exploited or critical issues were identified. New security advisories are listed for review."
     else:
         status = _tag("All OK", "green")
-        summary = "No new security issues were identified. New product releases and service changes are listed below."
-    summary += (f" This report covers {len(new)} new item{'s' if len(new) != 1 else ''} across "
-                f"{len(vendors)} vendor{'s' if len(vendors) != 1 else ''}.")
+        summary = ("No new security issues were identified. New product releases and service changes are listed below."
+                   if updates else "No new updates or vulnerabilities were found since the previous report.")
+    if new:
+        summary += (f" This report covers {len(new)} new item{'s' if len(new) != 1 else ''} across "
+                    f"{len(vendors)} vendor{'s' if len(vendors) != 1 else ''}.")
 
     highlights = ""
     top = (urgent + security)[:3]
@@ -360,7 +362,7 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
   <!-- Cover header: Deep Navy, white logo top right -->
   <tr><td style="background:{NAVY};padding:30px 40px 34px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-      <td valign="top">{_label("Security intelligence &middot; Hourly brief", SILVER)}</td>
+      <td valign="top">{_label("Security intelligence &middot; Daily brief", SILVER)}</td>
       <td valign="top" align="right" width="190"><img src="{img(LOGO_CID)}" width="170" alt="Symbiosys" style="display:block;width:170px;height:auto;border:0"></td>
     </tr>
     <tr><td colspan="2" style="padding-top:18px">
@@ -381,7 +383,7 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
   <tr><td style="padding:30px 40px 6px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
       <td valign="bottom">{_section_number(1)}{_label("Executive summary")}
-        <div style="font-family:{HEAD_FONT};font-size:26px;font-weight:700;color:{NAVY};text-transform:uppercase;line-height:1.1;margin-top:6px">This hour <span style="color:{BLUE}">at a glance</span></div></td>
+        <div style="font-family:{HEAD_FONT};font-size:26px;font-weight:700;color:{NAVY};text-transform:uppercase;line-height:1.1;margin-top:6px">Since the last <span style="color:{BLUE}">report</span></div></td>
       <td valign="bottom" align="right">{status}</td>
     </tr></table>
     <div style="font-family:{TEXT_FONT};font-size:15px;color:{NAVY};line-height:1.5;margin-top:10px">{summary}</div>
@@ -403,9 +405,9 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
   <tr><td style="padding:34px 40px 0">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid {LINE}"><tr>
       <td style="padding-top:14px;font-family:{TEXT_FONT};font-size:12px;color:{TEXT_2};line-height:1.6">
-        <b style="color:{NAVY}">About this report.</b> {sources_checked} sources are monitored every hour, including the CISA Known Exploited
+        <b style="color:{NAVY}">About this report.</b> {sources_checked} sources are checked twice daily (07:00 and 18:00 SAST), including the CISA Known Exploited
         Vulnerabilities catalogue, the US National Vulnerability Database, the Microsoft Security Update Guide, Azure Updates,
-        the Microsoft 365 Roadmap and vendor release and advisory pages. A report is issued only when new items are found.
+        the Microsoft 365 Roadmap and vendor release and advisory pages. Each report lists what is new since the previous one.
         Severity ratings come from the source (CVSS); confirm applicability against vendor guidance before acting.
       </td></tr></table>
   </td></tr>
