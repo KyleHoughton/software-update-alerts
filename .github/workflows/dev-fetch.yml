@@ -1,33 +1,25 @@
-name: Temporary page fetch (dev)
+name: Temporary monthly report preview (dev)
 on:
   push:
     branches: ["claude/project-thread-9r2ekb"]
-    paths: [".github/workflows/dev-fetch.yml"]
+    paths: [".github/workflows/dev-fetch.yml", "checker/monthly.py"]
 permissions:
   contents: write
 jobs:
-  fetch:
+  preview:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -r requirements.txt
       - run: |
-          mkdir -p devfetch && cd devfetch
-          UA="Mozilla/5.0 (compatible; software-update-alerts/1.0; +https://github.com)"
-          f() { curl -sSL -A "$UA" -H "Accept: $3" -o "$1" "$2" || echo "FAILED $2"; ls -la "$1"; }
-          L=https://learn.microsoft.com/en-us
-          f rh-info.html $L/windows/release-health/windows-server-release-info text/html
-          f rh-index.html $L/windows/release-health/ text/html
-          f rh-2025.html $L/windows/release-health/status-windows-server-2025 text/html
-          f rh-2022.html $L/windows/release-health/status-windows-server-2022 text/html
-          f rh-2019.html $L/windows/release-health/status-windows-10-1809-and-windows-server-2019 text/html
-          f rh-2016.html $L/windows/release-health/status-windows-10-1607-and-windows-server-2016 text/html
-          f sql-latest.html $L/troubleshoot/sql/releases/download-and-install-latest-updates text/html
-          f sql-2022.html $L/troubleshoot/sql/releases/sqlserver-2022/build-versions text/html
-          f sql-2025.html $L/troubleshoot/sql/releases/sqlserver-2025/build-versions text/html
-          f msrc-updates.json https://api.msrc.microsoft.com/cvrf/v3.0/updates application/json
-          f msrc-nov.json https://api.msrc.microsoft.com/cvrf/v3.0/cvrf/2026-Nov application/json
-          gzip -9 msrc-nov.json
+          mkdir -p devfetch
+          curl -sSL -A "Mozilla/5.0" -o devfetch/sql-cu28.html https://learn.microsoft.com/en-us/help/5125472
+          curl -sSL -A "Mozilla/5.0" -o devfetch/sql-cu11.html https://learn.microsoft.com/en-us/help/5129223
+          REPORT_MODE=patch PREVIEW_ONLY=true python checker/monthly.py
+          mv monthly-report.html devfetch/preview-patch.html
       - run: |
           git config user.name "update-alerts-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add devfetch && git commit -q -m "Dev: fetched pages [skip ci]" && git push
+          git add devfetch && git commit -q -m "Dev: monthly preview [skip ci]" && git push

@@ -1,0 +1,77 @@
+name: Monthly Windows Server & SQL report
+
+on:
+  schedule:
+    # 06:00 UTC = 08:00 SAST. Runs on the 1st and on days 9-15; the script only sends
+    # on the 1st (month-end follow-up) and on the Wednesday after Patch Tuesday.
+    - cron: "0 6 1,9-15 * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Which report"
+        type: choice
+        options: [patch, followup]
+        default: patch
+      month:
+        description: "Month to report on, as YYYY-MM (blank = current month for patch, last month for follow-up)"
+        type: string
+        default: ""
+      preview_only:
+        description: "Build the preview only, don't email it"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  id-token: write   # lets the job sign in to Microsoft Entra without a secret
+
+concurrency:
+  group: monthly-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Build and send the monthly report
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO: ${{ secrets.MAIL_TO_MONTHLY || secrets.MAIL_TO }}
+          GRAPH_TENANT_ID: ${{ secrets.GRAPH_TENANT_ID }}
+          GRAPH_CLIENT_ID: ${{ secrets.GRAPH_CLIENT_ID }}
+          GRAPH_CLIENT_SECRET: ${{ secrets.GRAPH_CLIENT_SECRET }}
+          REPORT_MODE: ${{ inputs.mode || 'auto' }}
+          REPORT_MONTH: ${{ inputs.month }}
+          PREVIEW_ONLY: ${{ inputs.preview_only }}
+        run: python checker/monthly.py
+
+      - name: Keep the report as a downloadable file
+        if: ${{ always() && hashFiles('monthly-report.html') != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: monthly-report
+          path: monthly-report.html
+
+      - name: Save the Patch Tuesday snapshot (for the follow-up)
+        run: |
+          git config user.name "update-alerts-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/monthly 2>/dev/null || true
+          if git diff --cached --quiet; then echo "No snapshot to save"; exit 0; fi
+          git commit -m "Save monthly report snapshot [skip ci]"
+          for i in 1 2 3 4; do git pull --rebase -q && git push && exit 0; sleep $((i * 5)); done
+          exit 1
