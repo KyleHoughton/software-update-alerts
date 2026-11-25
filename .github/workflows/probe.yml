@@ -1,0 +1,14 @@
+name: probe (temporary)
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          UA="Mozilla/5.0 (compatible; software-update-alerts/1.0)"
+          for u in https://support.oneidentity.com/active-roles https://support.oneidentity.com/one-identity-safeguard-for-privileged-passwords https://support.oneidentity.com/defender https://support.quest.com/change-auditor; do
+            echo "== $u"; curl -sL -A "$UA" -o p.html -w '%{http_code} %{url_effective}\n' "$u"
+            grep -oiE 'href="[^"]*rss[^"]*"' p.html | sort -u | head
+            grep -oiE 'href="/[a-z0-9-]+/(release-notes|product-notification|download)[^"]*"' p.html | sort -u | head -5
+          done
+          curl -sL -A "$UA" https://support.oneidentity.com/ | grep -oE 'href="/[a-z0-9-]+"' | sort -u | head -80
