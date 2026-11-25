@@ -511,7 +511,7 @@ def main() -> int:
     if new or broken or test_email:
         subject, body_html, body_text = build_email(new, broken)
         if test_email and not new and not broken:
-            subject = "Software Update & Vulnerability Report: test email"
+            subject = "Symbiosys Software Updates & Vulnerabilities Report: test email"
             body_html = "<p>This is a test email from software-update-alerts. Alerts will arrive here when new updates or vulnerabilities are found.</p>"
             body_text = "This is a test email from software-update-alerts."
         send_email(subject, body_html, body_text)

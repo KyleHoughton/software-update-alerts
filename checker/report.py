@@ -13,7 +13,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 REPORT_TZ = ZoneInfo("Africa/Johannesburg")
-TITLE = "Symbiosys Software Updates &amp; Vulnerability Report"
+TITLE = "Symbiosys Software Updates &amp; Vulnerabilities Report"
 LOGO_FILE = Path(__file__).resolve().parent.parent / "assets" / "logo-email.png"
 LOGO_CID = "symbiosys-logo"
 
@@ -226,7 +226,7 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
     if updates:
         parts.append(f"{len(updates)} update{'s' if len(updates) != 1 else ''}")
     prefix = "[SAMPLE] " if sample else ("[URGENT] " if urgent else "")
-    subject = (f"{prefix}Symbiosys Software Updates & Vulnerability Report | {local.strftime('%d %b %Y %H:%M')} | "
+    subject = (f"{prefix}Symbiosys Software Updates & Vulnerabilities Report | {local.strftime('%d %b %Y %H:%M')} | "
                + (", ".join(parts) if parts else "source health"))
 
     # Executive summary
@@ -302,7 +302,7 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
       <td valign="middle" style="font-family:{FONT}">
         <div style="font-size:10px;font-weight:700;color:{ORANGE};letter-spacing:1.6px;text-transform:uppercase">Security Intelligence &middot; Hourly Brief</div>
-        <div style="font-size:21px;font-weight:700;color:#ffffff;margin-top:6px;line-height:1.25">Symbiosys Software Updates<br>&amp; Vulnerability Report</div>
+        <div style="font-size:21px;font-weight:700;color:#ffffff;margin-top:6px;line-height:1.25">Symbiosys Software Updates<br>&amp; Vulnerabilities Report</div>
       </td>
       <td valign="middle" align="right" width="200" style="padding-left:16px">
         <img src="{logo_src}" width="180" alt="Symbiosys" style="display:block;width:180px;height:auto;border:0;outline:none">
