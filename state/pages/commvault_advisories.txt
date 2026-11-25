@@ -48,6 +48,7 @@ Cvlaunchd Code Execution
 QAPI stack-based buffer overflow
 Network messaging layer decompression resource exhaustion
 Node.js Security Update
+eMudhra CA Certificate Compromise
 Red Hat Enterprise Linux (RHEL) Malicious Injection Vulnerability
 Apache Struts 2 Vulnerability
 Heap Based Buffer Overflow Vulnerability in cURL

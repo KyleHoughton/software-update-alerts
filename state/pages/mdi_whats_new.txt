@@ -15,6 +15,10 @@ What's new in Microsoft Defender for Cloud Apps
 For updates about versions and features released six months ago or earlier, see the What's new archive for Microsoft Defender for Identity.
 Sensor v3.x activation without Defender for Endpoint is now supported in government clouds
 The known limitation announced in the October 2026 update is now resolved for government cloud environments. For more information, see Activate the Defender for Identity sensor.
+Retirement of two security alerts
+The following Defender for Identity alerts will be retired at the end of November 2026:
+Suspected identity theft (pass-the-hash): You can continue monitoring this activity on onboarded devices with Microsoft Defender for Endpoint. For more information, see Behavioral blocking and containment.
+Remote code execution attempt: You can continue monitoring this activity by creating custom detections in Advanced hunting. The query will be published in the Microsoft Defender XDR Community hub soon. For more information, see Microsoft Defender for Identity classic alerts.
 Automatic sensor v3.x activation and Windows auditing for existing customers
 This rollout applies only to organizations that are licensed for Defender for Identity and have an active workspace. Eligible organizations included in the rollout see a banner on the Sensor management tab of the On-premises settings page for 30 days.
 After the 30-day notice period, Automatic sensor v3.x activation and Automatic Windows auditing configuration are enabled by default through a very gradual rollout, including settings currently set to Off. To keep your current settings, select Opt out in the banner during the notice period.
