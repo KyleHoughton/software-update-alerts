@@ -4,7 +4,7 @@ Follows the Symbiosys Presentation Guide 2026:
   * Palette: Deep Navy #071320, Warm Off-White #F4F2EA, Symbiosys Blue #0B6EDC,
     Orange #FE9026, Silver #ACB1B6 (option A). No red, no sand/gold.
   * Fonts: Franklin Gothic Demi Cond (headlines, capitals), Aptos Narrow (text).
-  * Content on off-white with the blue sidebar; navy text on off-white, off-white or
+  * Content on off-white (no blue sidebar, per the "no bar" option); navy text on off-white, off-white or
     orange text on navy; never orange text on off-white or white text on orange.
   * Section number in orange with a short orange bar, label in spaced capitals,
     headline in condensed bold capitals, footer in small spaced capitals.
@@ -345,7 +345,7 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
 <meta name="x-apple-disable-message-reformatting"><title>{TITLE}</title></head>
 <body style="margin:0;padding:0;background:#dcd9d0">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#dcd9d0"><tr><td align="center" style="padding:24px 10px">
-<table role="presentation" width="820" cellpadding="0" cellspacing="0" style="max-width:820px;width:100%;background:{OFFWHITE};border-left:6px solid {BLUE}">
+<table role="presentation" width="820" cellpadding="0" cellspacing="0" style="max-width:820px;width:100%;background:{OFFWHITE}">
 
   <!-- Cover header: Deep Navy, white logo top right -->
   <tr><td style="background:{NAVY};padding:30px 40px 34px">
