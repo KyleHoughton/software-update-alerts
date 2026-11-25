@@ -1,0 +1,14 @@
+name: probe (temporary)
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          UA="Mozilla/5.0 (compatible; software-update-alerts/1.0)"
+          for u in https://docs.progress.com/bundle/loadmaster-vulnerabilities-ga/page/Vulnerabilities.html https://kemptechnologies.com/blog/feed https://kemptechnologies.com/feed https://kemptechnologies.com/loadmaster-documentation https://kemptechnologies.com/documentation https://support.kemptechnologies.com/hc/en-us https://support.kemptechnologies.com/hc/en-us/articles.atom https://www.progress.com/security https://www.progress.com/trust-center/vulnerability-alerts https://docs.progress.com/bundle/flowmon-release-notes https://www.flowmon.com/en/support https://kemptechnologies.com/files/assets/documentation/kemp360/central/Release_Notes-KEMP_360_Central.pdf https://kemptechnologies.com/files/assets/documentation/7.2/release-notes/Release_Notes-LoadMaster.pdf; do
+            r=$(curl -sL -A "$UA" -o f.out -w '%{http_code} %{content_type} %{url_effective} %{size_download}' "$u")
+            echo "RES $u -> $r | $(grep -oE '<title>[^<]{0,90}' f.out | head -2 | tr '\n' ' ')"
+            sed -e 's/<[^>]*>/ /g' f.out | grep -oiE '(release notes|LoadMaster|Flowmon|360 Central|Connection Manager|CVE-20[0-9]{2}-[0-9]+)[^|]{0,60}' | sort -u | head -8 | sed 's/^/  TXT /'
+            grep -oiE 'href="[^"]*(release|feed|rss|atom|security|vulnerab)[^"]*"' f.out | sort -u | head -10 | sed 's/^/  LINK /'
+          done
