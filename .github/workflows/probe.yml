@@ -1,16 +1,17 @@
 name: probe (temporary)
 on: workflow_dispatch
+permissions:
+  contents: write
 jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130 Safari/537.36"
-          curl -sL -A "$UA" https://symbiosys.it/ -o home.html || true
-          echo "SIZE $(wc -c < home.html)"
-          grep -oiE '<img[^>]+>' home.html | grep -iE 'logo|symbiosys' | head -10 | sed 's/^/IMG /' || true
-          grep -oiE '<link[^>]+(icon|stylesheet)[^>]*>' home.html | head -10 | sed 's/^/LNK /' || true
-          grep -oiE '#[0-9a-f]{6}\b' home.html | sort | uniq -c | sort -rn | head -15 | sed 's/^/COL /' || true
-          grep -oiE '<svg[^>]*class="[^"]*logo[^"]*"' home.html | head -3 | sed 's/^/SVG /' || true
-          grep -oiE 'og:image" content="[^"]+"' home.html | sed 's/^/OG /' || true
-          exit 0
+          mkdir -p assets
+          curl -sfL -A "$UA" https://symbiosys.it/brand/Symbiosys-Transparent-Logo_wht-2.png -o assets/symbiosys-logo-white.png
+          curl -sfL -A "$UA" https://symbiosys.it/brand/Sym_logo_landscape.png -o assets/symbiosys-logo.png
+          ls -la assets; file assets/*
+          git config user.name "update-alerts-bot"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets && git commit -m "Add Symbiosys logo files [skip ci]" && git push
