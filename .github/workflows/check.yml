@@ -18,6 +18,10 @@ on:
         description: "Send a SAMPLE of the quiet 'All OK' report"
         type: boolean
         default: false
+      send_image_test:
+        description: "Send one short email that tests how the logo is displayed"
+        type: boolean
+        default: false
       preview_only:
         description: "With the sample option: build the preview only, don't email it"
         type: boolean
@@ -62,6 +66,7 @@ jobs:
           SEND_SAMPLE_EMAIL: ${{ inputs.send_sample_email }}
           PREVIEW_ONLY: ${{ inputs.preview_only }}
           SEND_ALL_OK_SAMPLE: ${{ inputs.send_all_ok_sample }}
+          SEND_IMAGE_TEST: ${{ inputs.send_image_test }}
         run: python checker/main.py
 
       - name: Publish the sample report to the sample-preview branch
@@ -76,7 +81,7 @@ jobs:
           git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" sample-preview
 
       - name: Save what has been seen
-        if: ${{ inputs.send_sample_email != true && inputs.send_all_ok_sample != true }}
+        if: ${{ inputs.send_sample_email != true && inputs.send_all_ok_sample != true && inputs.send_image_test != true }}
         run: |
           git config user.name "update-alerts-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

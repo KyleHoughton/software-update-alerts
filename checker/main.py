@@ -414,6 +414,19 @@ def send_email(subject: str, body_html: str, body_text: str) -> None:
     print(f"Email sent to {len(to)} recipient(s): {subject}")
 
 
+def send_image_test() -> None:
+    """One short email showing the logo two ways, to find which one a mail app displays."""
+    raw = "https://raw.githubusercontent.com/" + os.environ.get("GITHUB_REPOSITORY", "") + "/main/assets/logo-email-navy.png"
+    cell = 'style="padding:14px;font-family:Arial,sans-serif;font-size:14px;color:#071320;border-bottom:1px solid #dedad0"'
+    body = f"""<html><body style="margin:0;padding:20px;background:#F4F2EA">
+<p style="font-family:Arial,sans-serif;font-size:15px;color:#071320">Image test. Which logos below can you see?</p>
+<table cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+<tr><td {cell}><b>A.</b> Attached to the email</td><td {cell}><img src="cid:symbiosys-logo" width="170" height="45" alt="[A missing]" style="display:block;border:0"></td></tr>
+<tr><td {cell}><b>B.</b> Loaded from the web</td><td {cell}><img src="{raw}" width="170" height="45" alt="[B missing]" style="display:block;border:0"></td></tr>
+</table></body></html>"""
+    send_email("Symbiosys report image test (A and B)", body, "Image test: open the HTML version.")
+
+
 # --------------------------------------------------------------------------- main
 
 def main() -> int:
@@ -433,6 +446,9 @@ def main() -> int:
     state = json.loads(STATE_FILE.read_text(encoding="utf-8")) if STATE_FILE.exists() else {}
     state.setdefault("sources", {})
     test_email = os.environ.get("SEND_TEST_EMAIL") == "true"
+    if os.environ.get("SEND_IMAGE_TEST") == "true":
+        send_image_test()
+        return
 
     new: list[tuple[dict, dict]] = []
     broken: list[tuple[str, dict, str]] = []
