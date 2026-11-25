@@ -1,6 +1,6 @@
 # Software update alerts
 
-Checks every hour for new software releases, release notes and security vulnerabilities, and emails a group when something new appears. It runs free on GitHub Actions.
+Checks twice a day (07:00 and 18:00 SAST) for new software releases, release notes and security vulnerabilities, and emails a group when something new appears. It runs free on GitHub Actions.
 
 ## What it watches
 
@@ -14,7 +14,7 @@ Everything is listed in [`sources.yaml`](sources.yaml):
 ## How it behaves
 
 - On its first run a source is only recorded, so the group doesn't get thousands of old items.
-- After that, one email goes out per hour **only if something is new**. It has three sections: Urgent (actively exploited, or CVSS 9.0 or higher), Security advisories, and Product updates.
+- After that, a report goes out at 07:00 and 18:00 SAST listing everything new since the previous report (it says "no new items" when nothing changed). It has three sections: Urgent (actively exploited, or CVSS 9.0 or higher), Security advisories, and Product updates.
 - If a source fails three runs in a row, the next email lists it under "Sources that need attention".
 - What has already been seen is saved in `state/`, and the job commits it back after each run.
 
@@ -61,7 +61,7 @@ In the repository go to **Settings → Secrets and variables → Actions → New
 | `MAIL_TO` | the group address (several addresses can be separated by commas) | same |
 | `NVD_API_KEY` | optional, free from https://nvd.nist.gov/developers/request-an-api-key | same |
 
-Then go to **Actions → Hourly update check → Run workflow**, tick **Send a test email**, and run it.
+Then go to **Actions → Twice-daily update report → Run workflow**, tick **Send a test email**, and run it.
 
 Until the email secrets are set, results are written to the run's summary page instead of being emailed.
 
