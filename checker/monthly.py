@@ -217,6 +217,27 @@ def cve_stats(cvrf: dict | None, product_pattern: str, kbs: set[str] | None = No
     return out
 
 
+def link_issues(data: dict) -> None:
+    """For each Windows update this month, the known issues that affect it and the ones it fixes.
+    An issue affects every update from its originating update until the update that fixes it."""
+    dates = {u["kb"]: u["date"] for rows in data["windows"].values() for u in rows}
+    for version, rows in data["windows"].items():
+        for u in rows:
+            u["issues"], u["fixes"] = [], []
+            for i in data["issues"]:
+                orig = next((v for v in i["versions"] if v["version"] == version), None)
+                if not orig:
+                    continue
+                if i["fixed_kb"] == u["kb"]:
+                    u["fixes"].append(i["title"])
+                    continue
+                started = not orig["date"] or orig["date"] <= u["date"]
+                fixed_date = dates.get(i["fixed_kb"], "") if i["fixed_kb"] else ""
+                open_then = i["status"].lower() != "resolved" or (fixed_date and fixed_date > u["date"])
+                if started and open_then:
+                    u["issues"].append(i)
+
+
 # --------------------------------------------------------------------------- SQL Server
 
 def _kb_article_links(page: str, base: str) -> dict[str, str]:
@@ -274,18 +295,22 @@ def sql_updates(ym: str) -> list[dict]:
                 print(f"[WARN] {v['version']} build versions page: {e}")
         for r in v["releases"]:
             r["notes"] = r["notes"] or articles.get(r["kb"]) or f"https://support.microsoft.com/help/{r['kb']}"
-            if r["new"] and r["kind"] != "GDR":
+            if r["new"]:
                 r["issues"] = sql_known_issues(r["notes"])
     return out
 
 
-def sql_known_issues(url: str) -> list[str]:
-    """The 'Known issues in this update' section of a SQL Server CU article."""
+def sql_known_issues(url: str) -> list[str] | None:
+    """The 'Known issues in this update' section of a SQL Server update article.
+    Returns [] when Microsoft lists none, or None when the article couldn't be read."""
     try:
         h = get(url).text
     except Exception as e:  # noqa: BLE001
         print(f"[WARN] SQL KB article {url}: {e}")
-        return []
+        return None
+    if len(h) < 2000 or "404 - Content not found" in h:
+        print(f"[WARN] SQL KB article {url}: page not found")
+        return None
     m = re.search(r'<h2[^>]*>\s*Known issues in this update\s*</h2>(.*?)<h2', h, re.S | re.I)
     if not m:
         return []
@@ -295,7 +320,7 @@ def sql_known_issues(url: str) -> list[str]:
         return heads[:6]
     paras = [text(p) for p in re.findall(r"<p>(.*?)</p>", body, re.S)]
     paras = [p for p in paras if p]
-    if paras and re.search(r"no known issues|there are no", paras[0], re.I):
+    if paras and re.search(r"no known issues|there are no|not (currently )?aware of any", paras[0], re.I):
         return []
     return [R._clip(p, 220) for p in paras[:2]]
 
@@ -399,6 +424,27 @@ def _links(*pairs) -> str:
         for t, u in pairs if u) + "</div>")
 
 
+def _issue_box(issues, fixes=()) -> str:
+    """Green 'No known issues' or orange list of the known issues affecting an update."""
+    fixed = (f'<div style="margin-top:4px;font-size:12px;color:{R.TEXT_2}">Fixes: ' + "; ".join(R._e(x) for x in fixes) + "</div>"
+             if fixes else "")
+    if issues is None:
+        return (f'<div style="margin-top:6px;padding:6px 8px;background:{R.OFFWHITE};border-left:3px solid {R.SILVER};'
+                f'font-size:12px;color:{R.NAVY};line-height:1.45"><b>Known issues:</b> could not be checked. '
+                f'See the release notes before deploying.</div>{fixed}')
+    if not issues:
+        return (f'<div style="margin-top:6px;padding:6px 8px;background:#e7f4ec;border-left:3px solid {R.SEV_GREEN};'
+                f'font-size:12px;color:{R.NAVY};line-height:1.45"><b style="color:{R.SEV_GREEN}">&#10003; No known issues</b>'
+                f' listed by Microsoft for this update.</div>{fixed}')
+    items = "; ".join(
+        (f'<a href="{R._e(x["link"])}" style="color:{R.NAVY};text-decoration:underline">{R._e(x["title"])}</a>'
+         + (f' ({R._e(x["status"].lower())})' if x.get("status") else "")) if isinstance(x, dict) else R._e(x)
+        for x in issues)
+    return (f'<div style="margin-top:6px;padding:6px 8px;background:#fdf1e6;border-left:3px solid {R.ORANGE};'
+            f'font-size:12px;color:{R.NAVY};line-height:1.45"><b>&#9888; {len(issues)} known issue{"s" if len(issues) != 1 else ""}:</b> '
+            f'{items}</div>{fixed}')
+
+
 def _empty(msg: str) -> str:
     return (f'<tr><td colspan="4" style="padding:14px 12px;font-family:{R.TEXT_FONT};font-size:13px;color:{R.TEXT_2}">'
             f'{msg}</td></tr>')
@@ -438,6 +484,28 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                  f"Patch Tuesday report on {since} and {'are' if changes != 1 else 'is'} marked below. ") if snap else
                 "Month-end follow-up. ") + lead
 
+    # Known-issues check: one line per update released this month
+    def _ki_tag(iss):
+        if iss is None:
+            return R._tag("Not checked", "silver")
+        return R._tag("No known issues", "green") if not iss else R._tag(f"{len(iss)} known issue{'s' if len(iss) != 1 else ''}", "yellow")
+    check = [(v, f"KB{u['kb']} &middot; {R._e(u['type'])}", u.get("issues", []))
+             for v in WINDOWS for u in win.get(v, [])]
+    check += [(v, f"{R._e(r['label'])} &middot; KB{r['kb']}", r["issues"]) for v, r in sql_new]
+    clear = sum(1 for *_, iss in check if iss == [])
+    ki_rows = "".join(
+        f'<tr><td style="padding:7px 12px;border-bottom:1px solid {R.LINE};font-family:{R.TEXT_FONT};font-size:13px;'
+        f'font-weight:700;color:{R.NAVY};white-space:nowrap">{R._e(v)}</td>'
+        f'<td style="padding:7px 12px;border-bottom:1px solid {R.LINE};font-family:{R.TEXT_FONT};font-size:13px;color:{R.TEXT_2}">{d}</td>'
+        f'<td align="right" style="padding:7px 12px;border-bottom:1px solid {R.LINE}">{_ki_tag(iss)}</td></tr>'
+        for v, d, iss in check)
+    ki_check = (f'<div style="margin-top:18px">{R._label("Known issues check before deploying")}</div>'
+                f'<div style="font-family:{R.TEXT_FONT};font-size:13px;color:{R.TEXT_2};margin-top:4px">'
+                f'{clear} of {len(check)} update{"s" if len(check) != 1 else ""} released in {month} '
+                f'{"have" if clear != 1 else "has"} no known issues listed by Microsoft. Details are in the sections below.</div>'
+                f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;'
+                f'border-collapse:collapse;background:{R.WHITE};border:1px solid {R.LINE}">{ki_rows}</table>') if check else ""
+
     sample_banner = (f'<tr><td style="padding:12px 40px 0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
                      f'style="background:{R.NAVY};border-radius:4px"><tr><td style="padding:9px 14px;font-family:{R.TEXT_FONT};'
                      f'font-size:12px;color:{R.OFFWHITE}"><b style="color:{R.ORANGE};letter-spacing:2px">PREVIEW</b> &nbsp; '
@@ -463,6 +531,7 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                 f'<div style="font-size:12px;color:{R.TEXT_2};margin-top:3px">OS build {R._e(u["build"])}</div></td>'
                 f'<td {TD};font-size:13px;line-height:1.45"><b>{R._e(u["type"])}</b>'
                 f'<span style="color:{R.TEXT_2}"> &nbsp;({R._e(u["code"])})</span>'
+                f'{_issue_box(u.get("issues", []), u.get("fixes", []))}'
                 f'{_links(("Release notes", u["notes"]), ("Download", u["download"]))}</td>'
                 f'<td {TD}">{cv}</td>'
                 f'<td {TD};font-size:12px;color:{R.TEXT_2};white-space:nowrap">{R._fmt_date(u["date"])}</td></tr>')
@@ -504,11 +573,7 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
         for r in v["releases"]:
             kind = {"GDR": "Security update (GDR)", "CU": "Cumulative update",
                     "CU + security": "Cumulative update with security fixes"}[r["kind"]]
-            known = ""
-            if r["issues"]:
-                known = (f'<div style="margin-top:6px;padding:6px 8px;background:{R.OFFWHITE};border-left:3px solid {R.ORANGE};'
-                         f'font-size:12px;color:{R.NAVY};line-height:1.45"><b>Known issues:</b> '
-                         + "; ".join(R._e(x) for x in r["issues"]) + "</div>")
+            known = _issue_box(r["issues"]) if r["new"] else ""
             tag = R._tag("New this month", "blue") if r["new"] else R._tag("Current", "green")
             srows.append(
                 f'<tr><td {TD};font-size:14px"><b>{R._e(r["label"])}</b>{_change(r)}'
@@ -590,6 +655,7 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
       <td valign="bottom" align="right">{status}</td>
     </tr></table>
     <div style="font-family:{R.TEXT_FONT};font-size:15px;color:{R.NAVY};line-height:1.5;margin-top:10px">{R._e(lead)}</div>
+    {ki_check}
   </td></tr>
   <tr><td style="padding:18px 34px 4px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
@@ -621,7 +687,9 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
     for version in WINDOWS:
         lines.append(f"== {version} ==")
         for u in win.get(version, []):
-            lines.append(f"- KB{u['kb']} {u['type']} ({u['date']}), build {u['build']}: {u['notes']}")
+            ki = u.get("issues", [])
+            lines.append(f"- KB{u['kb']} {u['type']} ({u['date']}), build {u['build']}: {u['notes']}"
+                         f"  [{'No known issues' if not ki else str(len(ki)) + ' known issue(s)'}]")
     lines += ["", "== Known issues =="] + [f"- [{i['status']}] {i['title']}: {i['link']}" for i in issues]
     lines += ["", "== SQL Server =="] + [f"- {v} {r['label']} KB{r['kb']} ({r['month']}): {r['notes']}" for v, r in sql_new]
     return subject, body, "\n".join(lines)
@@ -664,6 +732,7 @@ def main() -> int:
             u["cves"] = cve_stats(cvrf, rf"^{re.escape(version)}\b", {u["kb"]})
     cves = cve_stats(cvrf, r"^Windows Server (2016|2019|2022|2025)\b|^Microsoft SQL Server (2016|2017|2019|2022|2025)\b")
     data = {"windows": win, "issues": known_issues(ym), "sql": sql_updates(ym), "cves": cves}
+    link_issues(data)
 
     snap_file = SNAP_DIR / f"{ym}.json"
     snap = json.loads(snap_file.read_text(encoding="utf-8")) if snap_file.exists() else None
