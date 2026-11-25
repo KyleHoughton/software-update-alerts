@@ -1,16 +1,16 @@
 {
- "last_run": "2026-11-25T09:53:57.515436+00:00",
+ "last_run": "2026-11-25T10:05:00.017947+00:00",
  "sources": {
   "azure_status": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "azure_updates": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "582171",
     "581483",
@@ -217,7 +217,7 @@
   "bloodhound": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "451919506",
     "450573170",
@@ -234,7 +234,7 @@
   "cisa_kev": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "CVE-2026-132224",
     "CVE-2026-131914",
@@ -2036,31 +2036,31 @@
   "commvault_advisories": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "crowdstrike_advisories": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "entra_whats_new": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "exchange_builds": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "fortinet_psirt": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "https://fortiguard.fortinet.com/psirt/FG-IR-26-247",
     "https://fortiguard.fortinet.com/psirt/FG-IR-26-225",
@@ -2122,13 +2122,100 @@
   "intune_whats_new": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
+  },
+  "kemp_all_release_notes": {
+   "fails": 0,
+   "initialised": true,
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
+   "seen": []
+  },
+  "kemp_release_notes": {
+   "fails": 0,
+   "initialised": true,
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
+   "seen": [
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-63-3/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-63-2/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-63-1/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-19/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-48-12/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-62-2/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-62-0/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-61-1/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-61-0/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-60-1/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-60-0/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-59-4/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-59-3/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-59-2/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-hotfix-7-2-59-1/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-59-0/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-58-0/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-57-0/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-56-2/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-56-0/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-55-0/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-18/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-17/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-16/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-15/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-14/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-13/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-12/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-11/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-10/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-9/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-8/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-7/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-6/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-5/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-4/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-3/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-2/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-hotfix-7-2-54-2-21253/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-1/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-54-0/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-48-11/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-48-10/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-hotfix-7-2-48-9/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-hotfix-7-2-48-8/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-hotfix-7-2-48-7/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-48-6/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-48-5/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-48-4/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-48-3/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-48-2/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-48-1/page/Introduction.html",
+    "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-48-0/page/Introduction.html"
+   ]
+  },
+  "kemp_vulnerabilities": {
+   "fails": 0,
+   "initialised": true,
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
+   "seen": [
+    "https://community.progress.com/s/article/LoadMaster-Critical-Security-Bulletin-July-2026-CVE-2026-59686-CVE-2026-59687-CVE-2026-59688-CVE-2026-59689-CVE-2026-59690",
+    "https://community.progress.com/s/article/LoadMaster-Critical-Security-Bulletin-June-2026-CVE-2026-8037-CVE-2026-33691",
+    "https://community.progress.com/s/article/LoadMaster-Security-Vulnerabilites-CVE-2026-3517-CVE-2026-3518-CVE-2026-3519-CVE-2026-4048-CVE-2026-21876",
+    "https://community.progress.com/s/article/LoadMaster-Vulnerabilities-CVE-2025-13444-CVE-2025-13447",
+    "https://community.progress.com/s/article/LoadMaster-Security-Vulnerability-CVE-2024-8755",
+    "https://community.progress.com/s/article/Loadmaster-Security-Vulnerability-CVE-2024-7591",
+    "https://community.progress.com/s/article/LoadMaster-Security-Vulnerability-CVE-2024-6658",
+    "https://community.progress.com/s/article/LoadMaster-Security-Vulnerabilities-CVE-2024-3544-and-CVE-2024-3543",
+    "https://community.progress.com/s/article/LoadMaster-Security-Vulnerabilities-CVE-2024-2448-and-CVE-2024-2449",
+    "https://community.progress.com/s/article/CVE-2024-1212-Vulnerability",
+    "https://community.progress.com/s/article/Zero-day-RCE-vulnerability-on-Microsoft-Exchange-Servers-CVE-2022-41040-CVE-2022-41082",
+    "https://community.progress.com/s/article/Are-the-Datadirect-Connect-for-ODBC-drivers-affected-by-OpenSSL-vulnerabilities-CVE-2022-3602-and-CVE-2022-3786",
+    "https://community.progress.com/s/article/Custom-Rule-for-CVE-2021-41823",
+    "https://community.progress.com/s/article/CVE-2021-3449-NULL-pointer-deref-in-signature-algorithms-processing"
+   ]
   },
   "m365_roadmap": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "582052",
     "582050",
@@ -4546,19 +4633,19 @@
   "mde_whats_new": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "mdi_whats_new": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "msrc": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "CVE-2026-112732",
     "CVE-2026-69291",
@@ -10341,13 +10428,13 @@
   "netwrix_advisories": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "nvd": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "CVE-2026-133448"
    ]
@@ -10360,7 +10447,7 @@
   "oi_cloud_status": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "https://status.cloud.oneidentity.com/incidents/bcdfq2ftrkmt",
     "https://status.cloud.oneidentity.com/incidents/5wxvqc6hq3py",
@@ -10407,7 +10494,7 @@
   "pingcastle": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "435041773",
     "428202904",
@@ -10424,25 +10511,25 @@
   "proofpoint_advisories": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "quest_change_auditor": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "quest_gpoadmin": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "quest_identity_defense": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "https://support.quest.com/download/downloads?id=6145114",
     "https://support.quest.com/download/downloads?id=6145104",
@@ -10461,13 +10548,13 @@
   "quest_migrator_pro_ad": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "quest_odm": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "https://support.quest.com/product-notification/noti-00001759",
     "https://support.quest.com/download/downloads?id=6145116",
@@ -10503,7 +10590,7 @@
   "quest_rmad": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "https://support.quest.com/download-install-detail/6128047",
     "https://support.quest.com/download-install-detail/6137648",
@@ -10514,7 +10601,7 @@
   "quest_rmad_dre": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "https://support.quest.com/download-install-detail/6128045",
     "https://support.quest.com/download-install-detail/6148785",
@@ -10530,7 +10617,7 @@
   "quest_rmad_fe": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": [
     "https://support.quest.com/download-install-detail/6148786",
     "https://support.quest.com/download-install-detail/6148789",
@@ -10546,7 +10633,7 @@
   "sentinel_whats_new": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "sonicwall_advisories": {
@@ -10557,25 +10644,25 @@
   "sql_server": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "veeam_vbr_builds": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "windows_server": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   },
   "yubico_advisories": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-25T09:53:57.515436+00:00",
+   "last_ok": "2026-11-25T10:05:00.017947+00:00",
    "seen": []
   }
  }
