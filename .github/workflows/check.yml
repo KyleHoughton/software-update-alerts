@@ -9,6 +9,10 @@ on:
         description: "Send a test email even if nothing is new"
         type: boolean
         default: false
+      send_sample_email:
+        description: "Send a SAMPLE email with the latest real items from every source"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -46,9 +50,11 @@ jobs:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SEND_TEST_EMAIL: ${{ inputs.send_test_email }}
+          SEND_SAMPLE_EMAIL: ${{ inputs.send_sample_email }}
         run: python checker/main.py
 
       - name: Save what has been seen
+        if: ${{ inputs.send_sample_email != true }}
         run: |
           git config user.name "update-alerts-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

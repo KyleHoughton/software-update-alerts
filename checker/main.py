@@ -449,6 +449,8 @@ def main() -> int:
 
     new: list[tuple[dict, dict]] = []
     broken: list[tuple[str, dict, str]] = []
+    sample_mode = os.environ.get("SEND_SAMPLE_EMAIL") == "true"
+    sample: list[tuple[dict, dict]] = []
 
     for sid, src in sources.items():
         st = state["sources"].setdefault(sid, {"seen": [], "fails": 0})
@@ -478,6 +480,17 @@ def main() -> int:
                 broken.append((sid, src, err))
             continue
 
+        if sample_mode and t == "page_watch":
+            lines = (PAGES_DIR / f"{sid}.txt").read_text(encoding="utf-8").splitlines()
+            body = [x for x in lines if len(x) > 40][:4]
+            items = [item(f"sample:{sid}", f"{src['name']}: page updated ({len(body)} new lines)", src["url"],
+                          "\n".join(f"• {short(x, 220)}" for x in body), now.strftime("%Y-%m-%d"))]
+        if sample_mode and items:
+            picks = items
+            if t == "cisa_kev":
+                picks = sorted(items, key=lambda i: i["date"], reverse=True)
+            sample.extend((src, i) for i in picks[:2])
+
         seen = set(st["seen"])
         fresh = [i for i in items if i["id"] not in seen]
         if not first:
@@ -495,9 +508,10 @@ def main() -> int:
         st["last_ok"] = now.isoformat()
         print(f"[OK] {sid}: {len(items)} items, {len(fresh)} new{' (baseline, no alert)' if first else ''}")
 
-    state["last_run"] = now.isoformat()
-    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    STATE_FILE.write_text(json.dumps(state, indent=1, sort_keys=True), encoding="utf-8")
+    if not sample_mode:
+        state["last_run"] = now.isoformat()
+        STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        STATE_FILE.write_text(json.dumps(state, indent=1, sort_keys=True), encoding="utf-8")
 
     # The same CVE can come from several sources (CISA, NVD, Microsoft). Show it once, urgent first.
     new.sort(key=lambda si: not si[1]["urgent"])
@@ -509,6 +523,13 @@ def main() -> int:
             ids.add(key)
             dedup.append((s, i))
     new = dedup
+
+    if sample_mode:
+        # Preview: the latest real items from each source, without changing what has been seen.
+        subject, body_html, body_text = build_email(sample, [])
+        subject = subject.replace("[Update alerts]", "[Update alerts] SAMPLE:")
+        send_email(subject, body_html, body_text)
+        return 0
 
     if new or broken or test_email:
         subject, body_html, body_text = build_email(new, broken)
