@@ -6,9 +6,12 @@ jobs:
     steps:
       - run: |
           UA="Mozilla/5.0 (compatible; software-update-alerts/1.0)"
-          for u in https://support.oneidentity.com/active-roles https://support.oneidentity.com/one-identity-safeguard-for-privileged-passwords https://support.oneidentity.com/defender https://support.quest.com/change-auditor; do
-            echo "== $u"; curl -sL -A "$UA" -o p.html -w '%{http_code} %{url_effective}\n' "$u"
-            grep -oiE 'href="[^"]*rss[^"]*"' p.html | sort -u | head
-            grep -oiE 'href="/[a-z0-9-]+/(release-notes|product-notification|download)[^"]*"' p.html | sort -u | head -5
-          done
-          curl -sL -A "$UA" https://support.oneidentity.com/ | grep -oE 'href="/[a-z0-9-]+"' | sort -u | head -80
+          for h in support.quest.com support.oneidentity.com; do
+          for s in active-roles one-identity-safeguard-for-privileged-passwords safeguard-for-privileged-passwords one-identity-safeguard-for-privileged-sessions safeguard-for-privileged-sessions defender one-identity-defender identity-manager cloud-pam-essentials security-guardian identity-defense on-demand-recovery recovery-manager-for-active-directory migrator-pro-for-active-directory; do
+            u="https://$h/$s/rss"
+            r=$(curl -sL -A "$UA" -o f.xml -w '%{http_code} %{content_type} %{url_effective}' "$u")
+            t=$(grep -oE '<title>[^<]{0,80}' f.xml | sed -n 2p)
+            echo "RES $u -> $r | $t"
+          done; done
+          curl -sL -A "$UA" -c c.txt -b c.txt https://support.oneidentity.com/ -o home.html; grep -oiE 'support.oneidentity.com/[a-z0-9-]+' home.html | sort -u | head -40 | sed 's/^/LINK /'
+          grep -oiE '"/[a-z0-9-]+/(rss|technical-documents)[^"]*"' home.html | sort -u | head | sed 's/^/LINK /'
