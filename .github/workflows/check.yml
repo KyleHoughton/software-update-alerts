@@ -2,8 +2,8 @@ name: Twice-daily update report
 
 on:
   schedule:
-    - cron: "0 5 * * *"    # 07:00 SAST (UTC+2)
-    - cron: "0 16 * * *"   # 18:00 SAST (UTC+2)
+    - cron: "0 5 * * *"    # 07:00 SAST
+    - cron: "0 16 * * *"   # 18:00 SAST
   workflow_dispatch:
     inputs:
       send_report:
