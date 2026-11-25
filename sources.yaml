@@ -76,6 +76,7 @@ updates:
   # ---------- Microsoft ----------
   azure_updates:
     name: Azure Updates
+    product: Azure
     type: rss
     category: update
     url: https://www.microsoft.com/releasecommunications/api/v2/azure/rss
@@ -86,6 +87,7 @@ updates:
     url: https://www.microsoft.com/releasecommunications/api/v1/m365/rss
   azure_status:
     name: Azure Status (incidents)
+    product: Azure service health
     type: rss
     category: update
     url: https://rssfeed.azure.status.microsoft/en-us/status/feed/
@@ -214,6 +216,7 @@ updates:
   # vulnerabilities are caught by the Kemp bulletins page below and by NVD/CISA.
   kemp_release_notes:
     name: Kemp LoadMaster release notes
+    product: LoadMaster
     type: link_watch
     category: update
     url: https://docs.progress.com/category/loadmaster-documentation

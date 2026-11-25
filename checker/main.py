@@ -318,13 +318,13 @@ def build_email(new, broken, sample=False):
 
 
 def _inline_logo_graph() -> list[dict]:
-    from report import LOGO_CID, LOGO_FILE
-    if not LOGO_FILE.exists():
-        return []
+    """All report images (logo and Glass icons) as inline Graph attachments."""
+    from report import INLINE_IMAGES
     import base64
-    return [{"@odata.type": "#microsoft.graph.fileAttachment", "name": "symbiosys-logo.png",
-             "contentType": "image/png", "contentId": LOGO_CID, "isInline": True,
-             "contentBytes": base64.b64encode(LOGO_FILE.read_bytes()).decode()}]
+    return [{"@odata.type": "#microsoft.graph.fileAttachment", "name": f"{cid}.png",
+             "contentType": "image/png", "contentId": cid, "isInline": True,
+             "contentBytes": base64.b64encode(path.read_bytes()).decode()}
+            for cid, path in INLINE_IMAGES.items() if path.exists()]
 
 
 def send_graph(subject: str, body_html: str, to: list[str]) -> None:
@@ -389,9 +389,10 @@ def send_email(subject: str, body_html: str, body_text: str) -> None:
     msg["To"] = ", ".join(to)
     msg.set_content(body_text)
     msg.add_alternative(body_html, subtype="html")
-    from report import LOGO_CID, LOGO_FILE
-    if LOGO_FILE.exists():
-        msg.get_payload()[1].add_related(LOGO_FILE.read_bytes(), maintype="image", subtype="png", cid=f"<{LOGO_CID}>")
+    from report import INLINE_IMAGES
+    for cid, path in INLINE_IMAGES.items():
+        if path.exists():
+            msg.get_payload()[1].add_related(path.read_bytes(), maintype="image", subtype="png", cid=f"<{cid}>")
     port = int(os.environ.get("SMTP_PORT") or 587)
     if port == 465:
         server = smtplib.SMTP_SSL(host, port, timeout=60)
