@@ -487,7 +487,7 @@ def main() -> int:
         st["last_ok"] = now.isoformat()
         print(f"[OK] {sid}: {len(items)} items, {len(fresh)} new{' (baseline, no alert)' if first else ''}")
 
-    if not sample_mode:
+    if not sample_mode and os.environ.get("SEND_ALL_OK_SAMPLE") != "true":
         state["last_run"] = now.isoformat()
         STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
         STATE_FILE.write_text(json.dumps(state, indent=1, sort_keys=True), encoding="utf-8")
@@ -502,6 +502,12 @@ def main() -> int:
             ids.add(key)
             dedup.append((s, i))
     new = dedup
+
+    if os.environ.get("SEND_ALL_OK_SAMPLE") == "true":
+        # Preview of the quiet report sent when nothing has changed. Does not touch state.
+        subject, body_html, body_text = build_email([], [], sample=True)
+        send_email(subject, body_html, body_text)
+        return 0
 
     if sample_mode:
         # Preview: the latest real items from each source, without changing what has been seen.
