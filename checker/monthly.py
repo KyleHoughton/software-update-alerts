@@ -624,7 +624,8 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
     oob_line = ("Out-of-band: " + (f"Microsoft released out-of-band updates this month for {', '.join(rel)}. " if rel else
                                    "no out-of-band update has been released this month. ")
                 + (f"Microsoft says an out-of-band update is planned for {', '.join(exp)}." if exp else
-                   "None has been announced; open issues are due to be fixed in a future monthly update."
+                   ("No further out-of-band update has been announced" if rel else "None has been announced")
+                   + "; Microsoft plans to fix the open issues in a future monthly update."
                    if any(k == "future" for k, _ in oob.values()) else "None is expected."))
     summary_bits = ", ".join(f"{n} {w.lower()}" for w, n in sorted(counts.items(), key=lambda x: -x[1]))
     ki_check = (f'<div style="margin-top:18px">{R._label("Deployment advice")}</div>'

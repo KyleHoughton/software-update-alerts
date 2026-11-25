@@ -1,3 +1,0 @@
-Mode: patch, month: 2026-11, preview only: True
-Subject: [PREVIEW] Symbiosys Windows & SQL Server Patch Report | November 2026 | 19 Windows, 10 SQL, 1 open issue
-Preview only: saved monthly-report.html, no email sent.

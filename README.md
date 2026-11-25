@@ -65,13 +65,13 @@ Then go to **Actions → Twice-daily update report → Run workflow**, tick **Se
 
 Until the email secrets are set, results are written to the run's summary page instead of being emailed.
 
-## Monthly Windows Server & SQL Server report
+## Monthly Windows & SQL Server report
 
 A second, separate report ([`checker/monthly.py`](checker/monthly.py), workflow **Monthly Windows Server & SQL report**). It uses the same mailbox, secrets and Symbiosys look as the hourly alerts, and doesn't change the hourly job.
 
 **When it is sent** (08:00 South African time):
 
-- **The Wednesday after Patch Tuesday:** that month's updates for Windows Server 2025, 2022, 2019 and 2016 (KB, build, release notes and download links, and how many CVEs each fixes), the known issues Microsoft lists on Windows release health, the latest SQL Server 2025, 2022, 2019, 2017 and 2016 updates (with each new cumulative update's known issues), and the month's exploited or critical vulnerabilities.
+- **The Wednesday after Patch Tuesday:** that month's updates for Windows Server 2025, 2022, 2019 and 2016 and for workstations (Windows 11 26H2, 26H1, 25H2, 24H2, 23H2, Windows 10 22H2 and Windows 10 Enterprise LTSC 2021), with KB, build, release notes and download links, how many CVEs each fixes, a deployment recommendation (Deploy, Test first, Hold, Use the out-of-band KB, or Optional for previews) and whether an out-of-band update has been released or announced, the known issues Microsoft lists on Windows release health, the latest SQL Server 2025, 2022, 2019, 2017 and 2016 updates (with each new cumulative update's known issues), and the month's exploited or critical vulnerabilities.
 - **The 1st of the next month:** a follow-up for the month just ended. Anything added or changed since the Patch Tuesday report (out-of-band updates, preview updates, new SQL updates, new or updated known issues) is marked **New** or **Updated**.
 
 **Recipients:** `MAIL_TO`, or add a `MAIL_TO_MONTHLY` secret to send this report to a different list.
