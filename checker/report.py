@@ -59,8 +59,14 @@ SEV_YELLOW = "#FDB022"
 SEV_GREEN = "#079455"
 # Tints used for lines and secondary text (derived from navy, not new colours)
 TEXT_2 = "#3d4654"
-LINE = "#dedad0"
-TABLE_HEAD = "#e6e2d6"
+# Backgrounds are cool, navy-tinted greys rather than the warm off-white: Outlook's dark mode
+# keeps the hue and flips the lightness, so warm off-white came out brown while these come
+# out as dark navy-greys that match the navy header.
+PAGE_BG = "#E3E7ED"    # around the report
+REPORT_BG = "#F5F7FA"  # report body
+PANEL_BG = "#EBEFF4"   # vendor rows and call-out boxes
+LINE = "#D9DEE5"
+TABLE_HEAD = "#E3E8EF"
 
 HEAD_FONT = "'Franklin Gothic Demi Cond','Franklin Gothic Medium Cond','Franklin Gothic Demi','Arial Narrow',Arial,sans-serif"
 TEXT_FONT = "'Aptos Narrow','Aptos','Segoe UI',Arial,sans-serif"
@@ -236,7 +242,7 @@ def _section(n: int, label: str, headline: str, intro: str, icon_cid: str, img,
            f'<th {th} width="16%">{"Severity" if kind == "security" else "Status"}</th><th {th} width="12%">Date</th></tr>']
     for vendor in order:
         items = groups[vendor]
-        out.append(f'<tr><td colspan="4" style="padding:8px 12px;background:{OFFWHITE};border-top:2px solid {NAVY};font-family:{TEXT_FONT};'
+        out.append(f'<tr><td colspan="4" style="padding:8px 12px;background:{PANEL_BG};border-top:2px solid {NAVY};font-family:{TEXT_FONT};'
                    f'font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:{NAVY}">'
                    f'<span style="color:{ORANGE}">&#9632;</span>&nbsp; {_e(vendor)}'
                    f'<span style="font-weight:400;color:{TEXT_2}"> &nbsp;&middot;&nbsp; {len(items)} item{"s" if len(items) != 1 else ""}</span></td></tr>')
@@ -246,7 +252,7 @@ def _section(n: int, label: str, headline: str, intro: str, icon_cid: str, img,
             detail = _clip(i.get("summary", "").replace("•", " "), detail_chars)
             detail_html = (f'<div style="margin-top:3px;color:{TEXT_2};font-size:13px;line-height:1.45">{_e(detail)}</div>'
                            if detail else "")
-            action = (f'<div style="margin-top:6px;padding:6px 8px;background:{OFFWHITE};border-left:3px solid {ORANGE};'
+            action = (f'<div style="margin-top:6px;padding:6px 8px;background:{PANEL_BG};border-left:3px solid {ORANGE};'
                       f'font-size:12px;color:{NAVY};line-height:1.45"><b>Required action:</b> {_e(i["action"])}</div>'
                       if i.get("action") else "")
             link = (f'<div style="margin-top:6px"><a href="{_e(i["link"])}" style="font-size:12px;font-weight:700;color:{BLUE};'
@@ -393,9 +399,9 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
     body_html = f'''<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="x-apple-disable-message-reformatting">{DARK_MODE_HEAD}<title>{TITLE}</title></head>
-<body style="margin:0;padding:0;background:#dcd9d0">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#dcd9d0"><tr><td align="center" style="padding:24px 10px">
-<table role="presentation" width="820" cellpadding="0" cellspacing="0" style="max-width:820px;width:100%;background:{OFFWHITE}">
+<body style="margin:0;padding:0;background:{PAGE_BG}">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{PAGE_BG}"><tr><td align="center" style="padding:24px 10px">
+<table role="presentation" width="820" cellpadding="0" cellspacing="0" style="max-width:820px;width:100%;background:{REPORT_BG}">
 
   <!-- Cover header: one image (navy, title and logo), so Outlook's dark mode can't recolour it -->
   <tr><td class="sym-navy" style="background:{NAVY};padding:0;font-size:0;line-height:0">
