@@ -514,6 +514,9 @@ def main() -> int:
             if path.exists():
                 preview = preview.replace(f"cid:{cid}", "data:image/png;base64," + base64.b64encode(path.read_bytes()).decode())
         (ROOT / "sample-report.html").write_text(preview, encoding="utf-8")
+        if os.environ.get("PREVIEW_ONLY") == "true":
+            print("Preview only: sample saved, no email sent.")
+            return 0
         send_email(subject, body_html, body_text)
         return 0
 

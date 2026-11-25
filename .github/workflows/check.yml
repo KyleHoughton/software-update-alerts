@@ -13,6 +13,10 @@ on:
         description: "Send a SAMPLE email with the latest real items from every source"
         type: boolean
         default: false
+      preview_only:
+        description: "With the sample option: build the preview only, don't email it"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -51,6 +55,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SEND_TEST_EMAIL: ${{ inputs.send_test_email }}
           SEND_SAMPLE_EMAIL: ${{ inputs.send_sample_email }}
+          PREVIEW_ONLY: ${{ inputs.preview_only }}
         run: python checker/main.py
 
       - name: Publish the sample report to the sample-preview branch
