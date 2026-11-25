@@ -168,30 +168,27 @@ updates:
     url: https://support.quest.com/on-demand-migration/rss
     exclude_titles: ["^Knowledge Base"]
 
-  # ---------- One Identity (same portal as Quest; feeds to be confirmed on first run) ----------
-  oi_active_roles:
-    name: One Identity Active Roles
+  # ---------- One Identity ----------
+  # One Identity moved product support to a login-only portal (support-user.oneidentity.com),
+  # so release notices for Active Roles, Safeguard and Defender have no public feed.
+  # Their vulnerabilities are still caught through NVD and CISA (see vendors above).
+  oi_cloud_status:
+    name: One Identity cloud services status (incl. maintenance)
     type: rss
     category: update
-    url: https://support.oneidentity.com/active-roles/rss
+    url: https://status.cloud.oneidentity.com/history.rss
+
+  quest_migrator_pro_ad:
+    name: Quest Migrator Pro for Active Directory
+    type: rss
+    category: update
+    url: https://support.quest.com/migrator-pro-for-active-directory/rss
     exclude_titles: ["^Knowledge Base"]
-  oi_spp:
-    name: One Identity Safeguard for Privileged Passwords
+  quest_identity_defense:
+    name: Quest Identity Defense (Security Guardian)
     type: rss
     category: update
-    url: https://support.oneidentity.com/one-identity-safeguard-for-privileged-passwords/rss
-    exclude_titles: ["^Knowledge Base"]
-  oi_sps:
-    name: One Identity Safeguard for Privileged Sessions
-    type: rss
-    category: update
-    url: https://support.oneidentity.com/one-identity-safeguard-for-privileged-sessions/rss
-    exclude_titles: ["^Knowledge Base"]
-  oi_defender:
-    name: One Identity Defender
-    type: rss
-    category: update
-    url: https://support.oneidentity.com/defender/rss
+    url: https://support.quest.com/identity-defense/rss
     exclude_titles: ["^Knowledge Base"]
 
   # ---------- Other vendors ----------
@@ -214,7 +211,7 @@ updates:
   # ---------- Vendor security advisory pages (no feed) ----------
   # Not watched because the pages block automated readers or need JavaScript:
   # Fortra and SonicWall advisories. Their vulnerabilities are still caught through NVD and CISA.
-  # Quest Migrator Pro for AD and On Demand Recovery have no public feed.
+  # Quest On Demand Recovery has no public feed.
   crowdstrike_advisories:
     name: CrowdStrike security advisories
     type: page_watch
