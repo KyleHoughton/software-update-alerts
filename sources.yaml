@@ -6,6 +6,7 @@
 #   cisa_kev       CISA Known Exploited Vulnerabilities (any software). Always urgent.
 #   nvd            New CVEs from the US National Vulnerability Database, matched to "vendors" below.
 #   page_watch     A web page with no feed. Alerts when new text appears on it.
+#   link_watch     A web page listing documents. Alerts when a new link matching "link_pattern" appears.
 #
 # category: "security" or "update". Decides the email section.
 # To add a source, copy an entry and change it. The id must be unique.
@@ -64,7 +65,7 @@ vendors:
   - {name: ShareGate, cpe: [sharegate], keywords: ["ShareGate"]}
   - {name: Cequence, cpe: [cequence], keywords: ["Cequence"]}
   - {name: Deep Instinct, cpe: [deepinstinct], keywords: ["Deep Instinct"]}
-  - {name: Progress Kemp, cpe: [kemptechnologies, progress], keywords: ["LoadMaster", "Flowmon", "Progress Kemp"]}
+  - {name: Progress Kemp, cpe: [kemptechnologies, kemp, flowmon], keywords: ["LoadMaster", "Flowmon", "Progress Kemp", "Kemp 360", "Kemp Technologies", "ECS Connection Manager", "Connection Manager for ObjectScale"]}
   - {name: Ground Labs, cpe: [groundlabs], keywords: ["Ground Labs", "Enterprise Recon"]}
   - {name: Patch My PC, cpe: [patchmypc], keywords: ["Patch My PC"]}
   - {name: PaperCut, cpe: [papercut], keywords: ["PaperCut"]}
@@ -207,6 +208,27 @@ updates:
     type: page_watch
     category: update
     url: https://www.veeam.com/kb2680
+
+  # ---------- Progress Kemp (LoadMaster, Kemp 360 Central/Vision, ECS Connection Manager, Flowmon) ----------
+  kemp_release_notes:
+    name: Kemp LoadMaster release notes
+    type: link_watch
+    category: update
+    url: https://docs.progress.com/category/loadmaster-documentation
+    link_pattern: "/bundle/release-notes_"
+  kemp_all_release_notes:
+    name: Kemp and Flowmon release notes (all products)
+    type: link_watch
+    category: update
+    url: https://docs.progress.com/
+    link_pattern: "/bundle/[^\"]*(release-notes|releasenotes)[^\"]*(loadmaster|kemp|360|connection-manager|ecs|flowmon|geo)"
+    allow_empty: true
+  kemp_vulnerabilities:
+    name: Kemp security bulletins
+    type: link_watch
+    category: security
+    url: https://docs.progress.com/bundle/loadmaster-vulnerabilities-ga/page/Vulnerabilities.html
+    link_pattern: "community\\.progress\\.com/s/article/.*(LoadMaster|Kemp|Flowmon|360|Connection-Manager|CVE)"
 
   # ---------- Vendor security advisory pages (no feed) ----------
   # Not watched because the pages block automated readers or need JavaScript:

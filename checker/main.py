@@ -280,6 +280,28 @@ def fetch_page_watch(sid: str, src: dict, first: bool) -> list[dict]:
                  src["url"], preview + more, now.strftime("%Y-%m-%d"))]
 
 
+def fetch_link_watch(src: dict) -> list[dict]:
+    """Alert when a page gains new links matching a pattern (e.g. a new release-notes page)."""
+    r = get(src["url"])
+    text = r.text.replace("\\/", "/").replace("\\u002F", "/")
+    pat = re.compile(src["link_pattern"], re.I)
+    from urllib.parse import urljoin
+    found = {}
+    for m in re.finditer(r'(?:href=|"linkUrl":)\s*"([^"]+)"', text):
+        url = urljoin(r.url, html.unescape(m.group(1)))
+        if pat.search(url):
+            found.setdefault(url.split("#")[0], None)
+    if not found and not src.get("allow_empty"):
+        raise ValueError("no matching links found on the page (layout may have changed)")
+    out = []
+    for url in found:
+        slug = re.sub(r"\.html?$", "", url.rstrip("/").split("/s/article/")[-1])
+        slug = slug.split("/bundle/")[-1].split("/page/")[0] if "/bundle/" in slug else slug.rsplit("/", 1)[-1]
+        title = re.sub(r"[-_]+", " ", slug).strip()
+        out.append(item(url, f"{src['name']}: {title}", url, "", ""))
+    return out
+
+
 # --------------------------------------------------------------------------- email
 
 def build_email(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str]]) -> tuple[str, str, str]:
@@ -441,6 +463,8 @@ def main() -> int:
                 items = fetch_cisa_kev(src)
             elif t == "nvd":
                 items = fetch_nvd(src, vendors, st.get("last_ok"))
+            elif t == "link_watch":
+                items = fetch_link_watch(src)
             elif t == "page_watch":
                 items = fetch_page_watch(sid, src, first)
             else:
