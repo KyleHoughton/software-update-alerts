@@ -1,0 +1,16 @@
+name: probe (temporary)
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130 Safari/537.36"
+          curl -sL -A "$UA" https://symbiosys.it/ -o home.html || true
+          echo "SIZE $(wc -c < home.html)"
+          grep -oiE '<img[^>]+>' home.html | grep -iE 'logo|symbiosys' | head -10 | sed 's/^/IMG /' || true
+          grep -oiE '<link[^>]+(icon|stylesheet)[^>]*>' home.html | head -10 | sed 's/^/LNK /' || true
+          grep -oiE '#[0-9a-f]{6}\b' home.html | sort | uniq -c | sort -rn | head -15 | sed 's/^/COL /' || true
+          grep -oiE '<svg[^>]*class="[^"]*logo[^"]*"' home.html | head -3 | sed 's/^/SVG /' || true
+          grep -oiE 'og:image" content="[^"]+"' home.html | sed 's/^/OG /' || true
+          exit 0
