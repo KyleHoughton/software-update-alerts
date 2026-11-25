@@ -43,6 +43,7 @@ session = requests.Session()
 session.headers.update({"User-Agent": UA, "Accept": "*/*"})
 
 now = dt.datetime.now(dt.timezone.utc)
+SOURCES_CHECKED = 0
 
 
 # --------------------------------------------------------------------------- helpers
@@ -152,8 +153,13 @@ def fetch_cisa_kev(src: dict) -> list[dict]:
         title = f"{v['cveID']}: {v.get('vendorProject', '')} {v.get('product', '')} – {v.get('vulnerabilityName', '')}"
         summary = (f"{v.get('shortDescription', '')} Required action: {v.get('requiredAction', '')} "
                    f"Ransomware use: {v.get('knownRansomwareCampaignUse', 'Unknown')}.")
-        out.append(item(v["cveID"], title, f"https://nvd.nist.gov/vuln/detail/{v['cveID']}",
-                        short(summary, 600), v.get("dateAdded", ""), urgent=True))
+        it = item(v["cveID"], f"{v['cveID']}: {v.get('vulnerabilityName', '')}",
+                  f"https://nvd.nist.gov/vuln/detail/{v['cveID']}", short(v.get("shortDescription", ""), 500),
+                  v.get("dateAdded", ""), urgent=True)
+        it.update(vendor=v.get("vendorProject", ""), product=v.get("product", ""), exploited=True,
+                  action=short(v.get("requiredAction", ""), 250) + (
+                      " Known to be used in ransomware campaigns." if v.get("knownRansomwareCampaignUse") == "Known" else ""))
+        out.append(it)
     return out
 
 
@@ -191,9 +197,11 @@ def fetch_nvd(src: dict, vendors: list[dict], last_run: str | None) -> list[dict
             score, sev = cvss(c)
             urgent = score is not None and score >= float(src.get("urgent_cvss", 9.0))
             label = f" (CVSS {score} {sev})" if score is not None else " (not yet scored)"
-            out.append(item(c["id"], f"{c['id']}: {hit}{label}",
-                            f"https://nvd.nist.gov/vuln/detail/{c['id']}", short(desc, 600),
-                            c.get("published", ""), urgent=urgent))
+            it = item(c["id"], c["id"], f"https://nvd.nist.gov/vuln/detail/{c['id']}", short(desc, 500),
+                      c.get("published", ""), urgent=urgent)
+            it.update(vendor=hit, product="New CVE (NVD)", severity=sev or "",
+                      severity_label=f"CVSS {score} {str(sev).title()}" if score is not None else "Not yet scored")
+            out.append(it)
         total = data.get("totalResults", 0)
         params["startIndex"] += data.get("resultsPerPage", 0) or 2000
         if params["startIndex"] >= total:
@@ -304,55 +312,9 @@ def fetch_link_watch(src: dict) -> list[dict]:
 
 # --------------------------------------------------------------------------- email
 
-def build_email(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str]]) -> tuple[str, str, str]:
-    urgent = [(s, i) for s, i in new if i["urgent"]]
-    security = [(s, i) for s, i in new if not i["urgent"] and s["category"] == "security"]
-    updates = [(s, i) for s, i in new if not i["urgent"] and s["category"] != "security"]
-
-    parts = []
-    if urgent:
-        parts.append(f"{len(urgent)} URGENT")
-    if security:
-        parts.append(f"{len(security)} security")
-    if updates:
-        parts.append(f"{len(updates)} update{'s' if len(updates) != 1 else ''}")
-    subject = "[Update alerts] " + (", ".join(parts) if parts else "source health")
-
-    def section(title, rows, colour):
-        if not rows:
-            return "", ""
-        h = [f'<h2 style="color:{colour};font-family:Segoe UI,Arial;font-size:18px;margin:24px 0 8px">{title} ({len(rows)})</h2>']
-        t = [f"\n== {title} ({len(rows)}) =="]
-        rows = sorted(rows, key=lambda r: r[0]["name"])
-        for s, i in rows:
-            link = f'<a href="{html.escape(i["link"])}">{html.escape(i["title"])}</a>' if i["link"] else html.escape(i["title"])
-            summ = html.escape(i["summary"]).replace("\n", "<br>")
-            h.append(
-                '<div style="border-left:3px solid %s;padding:6px 12px;margin:8px 0;font-family:Segoe UI,Arial;font-size:14px">'
-                '<div style="color:#666;font-size:12px">%s%s</div><div style="font-weight:600">%s</div>'
-                '<div style="color:#333;margin-top:4px">%s</div></div>'
-                % (colour, html.escape(s["name"]), (" · " + html.escape(i["date"])) if i["date"] else "", link, summ))
-            t.append(f"- [{s['name']}] {i['title']}\n  {i['link']}\n  {i['summary']}")
-        return "\n".join(h), "\n".join(t)
-
-    html_parts, text_parts = [], []
-    for title, rows, colour in (("Urgent: actively exploited or critical", urgent, "#c62828"),
-                                ("Security advisories", security, "#ef6c00"),
-                                ("Product updates and release notes", updates, "#1565c0")):
-        h, t = section(title, rows, colour)
-        html_parts.append(h)
-        text_parts.append(t)
-
-    if broken:
-        html_parts.append('<h2 style="color:#555;font-family:Segoe UI,Arial;font-size:16px;margin:24px 0 8px">Sources that need attention</h2><ul style="font-family:Segoe UI,Arial;font-size:13px;color:#555">'
-                          + "".join(f"<li>{html.escape(s['name'])}: {html.escape(err)}</li>" for _, s, err in broken) + "</ul>")
-        text_parts.append("\n== Sources that need attention ==\n" + "\n".join(f"- {s['name']}: {err}" for _, s, err in broken))
-
-    stamp = now.strftime("%Y-%m-%d %H:%M UTC")
-    body_html = ('<div style="max-width:760px">' + "".join(html_parts) +
-                 f'<p style="color:#999;font-size:12px;font-family:Segoe UI,Arial;margin-top:24px">Checked {stamp}. Sent automatically by software-update-alerts.</p></div>')
-    body_text = "\n".join(text_parts) + f"\n\nChecked {stamp}."
-    return subject, body_html, body_text
+def build_email(new, broken, sample=False):
+    from report import build_report
+    return build_report(new, broken, SOURCES_CHECKED, now, sample=sample)
 
 
 def send_graph(subject: str, body_html: str, to: list[str]) -> None:
@@ -437,6 +399,8 @@ def main() -> int:
     sources.update(cfg.get("vulnerabilities") or {})
     sources.update(cfg.get("updates") or {})
     vendors = cfg.get("vendors") or []
+    global SOURCES_CHECKED
+    SOURCES_CHECKED = len(sources)
 
     only = os.environ.get("ONLY_SOURCES")  # comma separated ids, for testing
     if only:
@@ -526,15 +490,14 @@ def main() -> int:
 
     if sample_mode:
         # Preview: the latest real items from each source, without changing what has been seen.
-        subject, body_html, body_text = build_email(sample, [])
-        subject = subject.replace("[Update alerts]", "[Update alerts] SAMPLE:")
+        subject, body_html, body_text = build_email(sample, [], sample=True)
         send_email(subject, body_html, body_text)
         return 0
 
     if new or broken or test_email:
         subject, body_html, body_text = build_email(new, broken)
         if test_email and not new and not broken:
-            subject = "[Update alerts] Test email: setup works"
+            subject = "Software Update & Vulnerability Report: test email"
             body_html = "<p>This is a test email from software-update-alerts. Alerts will arrive here when new updates or vulnerabilities are found.</p>"
             body_text = "This is a test email from software-update-alerts."
         send_email(subject, body_html, body_text)
