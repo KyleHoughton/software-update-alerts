@@ -2,7 +2,8 @@
 
 Follows the Symbiosys Presentation Guide 2026:
   * Palette: Deep Navy #071320, Warm Off-White #F4F2EA, Symbiosys Blue #0B6EDC,
-    Orange #FE9026, Silver #ACB1B6 (option A). No red, no sand/gold.
+    Orange #FE9026, Silver #ACB1B6 (option A). Exception agreed with Kyle: severity tags
+    use traffic-light red, yellow and green.
   * Fonts: Franklin Gothic Demi Cond (headlines, capitals), Aptos Narrow (text).
   * Content on off-white (no blue sidebar, per the "no bar" option); navy text on off-white, off-white or
     orange text on navy; never orange text on off-white or white text on orange.
@@ -45,6 +46,11 @@ BLUE = "#0B6EDC"       # Symbiosys Blue
 ORANGE = "#FE9026"     # Orange
 SILVER = "#ACB1B6"     # Silver (option A accent)
 WHITE = "#FFFFFF"
+# Traffic-light severity colours: red = critical, yellow = warning, green = OK.
+# An agreed exception to the brand palette, used only for severity and status tags.
+SEV_RED = "#D92D20"
+SEV_YELLOW = "#FDB022"
+SEV_GREEN = "#079455"
 # Tints used for lines and secondary text (derived from navy, not new colours)
 TEXT_2 = "#3d4654"
 LINE = "#dedad0"
@@ -140,6 +146,10 @@ def _tag(text: str, style: str) -> str:
         "blue": f"background:{BLUE};color:{WHITE};border:1px solid {BLUE}",              # white on blue
         "outline": f"background:{WHITE};color:{NAVY};border:1px solid {NAVY}",           # navy on white
         "silver": f"background:{SILVER};color:{NAVY};border:1px solid {SILVER}",         # navy on silver
+        # Traffic-light severity (agreed exception to the brand palette)
+        "red": f"background:{SEV_RED};color:{WHITE};border:1px solid {SEV_RED}",
+        "yellow": f"background:{SEV_YELLOW};color:{NAVY};border:1px solid {SEV_YELLOW}",
+        "green": f"background:{SEV_GREEN};color:{WHITE};border:1px solid {SEV_GREEN}",
     }[style]
     return (f'<span style="display:inline-block;padding:3px 8px;border-radius:3px;{styles};'
             f'font-family:{TEXT_FONT};font-size:10px;font-weight:700;letter-spacing:1px;'
@@ -149,25 +159,25 @@ def _tag(text: str, style: str) -> str:
 def _status_tag(it: dict, kind: str) -> str:
     sev = (it.get("severity") or "").upper()
     if it.get("exploited"):
-        return _tag("Exploited", "orange")
+        return _tag("Exploited", "red")
     if sev.startswith("CRITICAL"):
-        return _tag(it.get("severity_label") or "Critical", "orange")
+        return _tag(it.get("severity_label") or "Critical", "red")
     if sev.startswith("HIGH"):
-        return _tag(it.get("severity_label") or "High", "blue")
+        return _tag(it.get("severity_label") or "High", "yellow")
     if sev.startswith("MEDIUM"):
-        return _tag(it.get("severity_label") or "Medium", "outline")
+        return _tag(it.get("severity_label") or "Medium", "yellow")
     if sev.startswith("LOW"):
-        return _tag(it.get("severity_label") or "Low", "silver")
+        return _tag(it.get("severity_label") or "Low", "green")
     if kind == "security":
-        return _tag("Advisory", "navy")
+        return _tag("Advisory", "yellow")
     st = (it.get("status") or "").lower()
     if "retire" in st:
         return _tag("Retirement", "navy")
     if "preview" in st:
         return _tag("Preview", "silver")
     if "launch" in st or "available" in st:
-        return _tag("Available", "blue")
-    return _tag("Update", "outline")
+        return _tag("Available", "green")
+    return _tag("Update", "green")
 
 
 # --------------------------------------------------------------------------- building blocks
@@ -281,14 +291,14 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
 
     # Executive summary
     if urgent:
-        status = _tag("Action required", "orange")
+        status = _tag("Action required", "red")
         summary = (f"{len(urgent)} vulnerabilit{'ies' if len(urgent) != 1 else 'y'} known to be actively exploited or rated "
                    f"critical {'were' if len(urgent) != 1 else 'was'} identified. Assess exposure and patch or mitigate as a priority.")
     elif security:
-        status = _tag("Review advised", "blue")
+        status = _tag("Review advised", "yellow")
         summary = "No actively exploited or critical issues were identified. New security advisories are listed for review."
     else:
-        status = _tag("Informational", "outline")
+        status = _tag("All OK", "green")
         summary = "No new security issues were identified. New product releases and service changes are listed below."
     summary += (f" This report covers {len(new)} new item{'s' if len(new) != 1 else ''} across "
                 f"{len(vendors)} vendor{'s' if len(vendors) != 1 else ''}.")
