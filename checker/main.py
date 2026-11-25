@@ -352,6 +352,9 @@ def send_graph(subject: str, body_html: str, to: list[str]) -> None:
         gh.raise_for_status()
         data["client_assertion_type"] = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
         data["client_assertion"] = gh.json()["value"]
+        import base64
+        claims = json.loads(base64.urlsafe_b64decode(data["client_assertion"].split(".")[1] + "=="))
+        print(f"GitHub identity subject: {claims.get('sub')}")  # must match the Entra federated credential
     token = requests.post(f"https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token", data=data, timeout=30)
     if token.status_code != 200:
         raise RuntimeError(f"Graph sign-in failed: {token.status_code} {token.text[:300]}")
