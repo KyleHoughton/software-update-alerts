@@ -210,19 +210,14 @@ updates:
     url: https://www.veeam.com/kb2680
 
   # ---------- Progress Kemp (LoadMaster, Kemp 360 Central/Vision, ECS Connection Manager, Flowmon) ----------
+  # Kemp 360, Connection Manager and Flowmon have no public release-notes listing; their
+  # vulnerabilities are caught by the Kemp bulletins page below and by NVD/CISA.
   kemp_release_notes:
     name: Kemp LoadMaster release notes
     type: link_watch
     category: update
     url: https://docs.progress.com/category/loadmaster-documentation
     link_pattern: "/bundle/release-notes_"
-  kemp_all_release_notes:
-    name: Kemp and Flowmon release notes (all products)
-    type: link_watch
-    category: update
-    url: https://docs.progress.com/
-    link_pattern: "/bundle/[^\"]*(release-notes|releasenotes)[^\"]*(loadmaster|kemp|360|connection-manager|ecs|flowmon|geo)"
-    allow_empty: true
   kemp_vulnerabilities:
     name: Kemp security bulletins
     type: link_watch
