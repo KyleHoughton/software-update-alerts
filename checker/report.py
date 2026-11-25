@@ -29,7 +29,9 @@ ASSETS = Path(__file__).resolve().parent.parent / "assets"
 
 # Images sent inline with the email: cid -> file
 INLINE_IMAGES = {
-    "symbiosys-logo": ASSETS / "logo-email.png",
+    # Logo with the navy background baked in: mail apps never recolour images, so it stays
+    # visible even when a dark mode recolours or strips the header background.
+    "symbiosys-logo": ASSETS / "logo-email-navy.png",
     "icon-warning": ASSETS / "icons" / "warning.png",
     "icon-cyber": ASSETS / "icons" / "cyber.png",
     "icon-update": ASSETS / "icons" / "clouddeploy.png",
@@ -230,7 +232,7 @@ def _section(n: int, label: str, headline: str, intro: str, icon_cid: str, img,
            f'<th {th} width="16%">{"Severity" if kind == "security" else "Status"}</th><th {th} width="12%">Date</th></tr>']
     for vendor in order:
         items = groups[vendor]
-        out.append(f'<tr><td colspan="4" style="padding:8px 12px;background:{NAVY};font-family:{TEXT_FONT};'
+        out.append(f'<tr><td class="sym-navy" colspan="4" style="padding:8px 12px;background:{NAVY};font-family:{TEXT_FONT};'
                    f'font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:{OFFWHITE}">'
                    f'<span style="color:{ORANGE}">&#9632;</span>&nbsp; {_e(vendor)}'
                    f'<span style="font-weight:400;color:{SILVER}"> &nbsp;&middot;&nbsp; {len(items)} item{"s" if len(items) != 1 else ""}</span></td></tr>')
@@ -255,6 +257,38 @@ def _section(n: int, label: str, headline: str, intro: str, icon_cid: str, img,
                 f'<td {td};font-size:12px;color:{TEXT_2};white-space:nowrap">{_e(_fmt_date(i.get("date", "")))}</td></tr>')
     out.append('</table></td></tr>')
     return "".join(out)
+
+
+# --------------------------------------------------------------------------- dark mode
+
+# Head block shared by the reports. "light only" tells Apple Mail, iOS Mail and Outlook for Mac
+# not to recolour the report. Gmail and the Outlook apps ignore it and apply their own dark mode,
+# so the layout also relies on bgcolor attributes (see email_safe) and images with solid backgrounds.
+DARK_MODE_HEAD = f"""<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light only">
+<style>
+  :root {{ color-scheme: light only; supported-color-schemes: light only; }}
+  /* Outlook.com and new Outlook dark mode: keep navy panels navy and their text light */
+  [data-ogsb] .sym-navy {{ background-color: {NAVY} !important; }}
+  [data-ogsc] .sym-navy, [data-ogsc] .sym-navy div, [data-ogsc] .sym-navy td {{ color: {OFFWHITE} !important; }}
+  [data-ogsc] .sym-orange {{ color: {ORANGE} !important; }}
+  img {{ -ms-interpolation-mode: bicubic; }}
+</style>"""
+
+
+def email_safe(body_html: str) -> str:
+    """Add bgcolor attributes next to inline background colours.
+
+    Outlook for Windows and several dark modes read the bgcolor attribute but drop or
+    recolour CSS backgrounds, which made navy panels turn light and hid light text.
+    """
+    def add(m: re.Match) -> str:
+        tag, attrs = m.group(1), m.group(2)
+        if "bgcolor=" in attrs:
+            return m.group(0)
+        bg = re.search(r'style="[^"]*?background(?:-color)?:\s*(#[0-9A-Fa-f]{6})', attrs)
+        return f"<{tag}{attrs}>" if not bg else f'<{tag} bgcolor="{bg.group(1)}"{attrs}>'
+    return re.sub(r"<(td|table|th|body)(\s[^>]*)>", add, body_html)
 
 
 # --------------------------------------------------------------------------- report
@@ -354,24 +388,24 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
 
     body_html = f'''<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="x-apple-disable-message-reformatting"><title>{TITLE}</title></head>
+<meta name="x-apple-disable-message-reformatting">{DARK_MODE_HEAD}<title>{TITLE}</title></head>
 <body style="margin:0;padding:0;background:#dcd9d0">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#dcd9d0"><tr><td align="center" style="padding:24px 10px">
 <table role="presentation" width="820" cellpadding="0" cellspacing="0" style="max-width:820px;width:100%;background:{OFFWHITE}">
 
   <!-- Cover header: Deep Navy, white logo top right -->
-  <tr><td style="background:{NAVY};padding:30px 40px 34px">
+  <tr><td class="sym-navy" style="background:{NAVY};padding:30px 40px 34px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
       <td valign="top">{_label("Security intelligence &middot; Daily brief", SILVER)}</td>
-      <td valign="top" align="right" width="190"><img src="{img(LOGO_CID)}" width="170" alt="Symbiosys" style="display:block;width:170px;height:auto;border:0"></td>
+      <td valign="top" align="right" width="190"><img src="{img(LOGO_CID)}" width="170" height="45" alt="SYMBIOSYS" style="display:block;width:170px;height:45px;border:0;background:{NAVY};color:{OFFWHITE};font-family:{HEAD_FONT};font-size:22px;letter-spacing:3px;line-height:45px;text-align:right"></td>
     </tr>
     <tr><td colspan="2" style="padding-top:18px">
       <div style="font-family:{HEAD_FONT};font-size:34px;font-weight:700;color:{OFFWHITE};text-transform:uppercase;line-height:1.05">
-        Software updates &amp;<br><span style="color:{ORANGE}">vulnerabilities</span> report</div>
+        Software updates &amp;<br><span class="sym-orange" style="color:{ORANGE}">vulnerabilities</span> report</div>
       <div style="font-family:{TEXT_FONT};font-size:14px;color:{OFFWHITE};margin-top:10px">New releases, advisories and exploited vulnerabilities across the platforms Symbiosys supports.</div>
     </td></tr></table>
   </td></tr>
-  <tr><td style="background:{NAVY};padding:0 40px 16px">
+  <tr><td class="sym-navy" style="background:{NAVY};padding:0 40px 16px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #1d2a3d"><tr>
       <td style="padding-top:12px;font-family:{TEXT_FONT};font-size:10px;letter-spacing:3px;color:{SILVER}">{date_long} &nbsp;&middot;&nbsp; {time_str}</td>
       <td align="right" style="padding-top:12px;font-family:{TEXT_FONT};font-size:10px;letter-spacing:3px;color:{ORANGE}">{ref}</td>
@@ -438,4 +472,4 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
                 lines.append(f"  {i['link']}")
     if broken:
         lines += ["", "== SOURCE MONITORING =="] + [f"- {s['name']}: {err}" for _, s, err in broken]
-    return subject, body_html, "\n".join(lines)
+    return subject, email_safe(body_html), "\n".join(lines)

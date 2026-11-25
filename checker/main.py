@@ -317,14 +317,24 @@ def build_email(new, broken, sample=False):
     return build_report(new, broken, SOURCES_CHECKED, now, sample=sample)
 
 
-def _inline_logo_graph() -> list[dict]:
-    """All report images (logo and Glass icons) as inline Graph attachments."""
+def _used_images(body_html: str | None) -> dict:
+    """The report images (cid -> file) that this email actually references."""
     from report import INLINE_IMAGES
+    return {cid: path for cid, path in INLINE_IMAGES.items()
+            if path.exists() and (body_html is None or f"cid:{cid}" in body_html)}
+
+
+def _inline_logo_graph(body_html: str | None = None) -> list[dict]:
+    """Report images (logo and Glass icons) as inline Graph attachments.
+
+    Only images the body references are attached: an unreferenced inline image shows up
+    as a loose attachment in some mail apps.
+    """
     import base64
     return [{"@odata.type": "#microsoft.graph.fileAttachment", "name": f"{cid}.png",
              "contentType": "image/png", "contentId": cid, "isInline": True,
              "contentBytes": base64.b64encode(path.read_bytes()).decode()}
-            for cid, path in INLINE_IMAGES.items() if path.exists()]
+            for cid, path in _used_images(body_html).items()]
 
 
 def send_graph(subject: str, body_html: str, to: list[str]) -> None:
@@ -359,7 +369,7 @@ def send_graph(subject: str, body_html: str, to: list[str]) -> None:
         json={"message": {"subject": subject,
                           "body": {"contentType": "HTML", "content": body_html},
                           "toRecipients": [{"emailAddress": {"address": a}} for a in to],
-                          "attachments": _inline_logo_graph()},
+                          "attachments": _inline_logo_graph(body_html)},
               "saveToSentItems": True},
         timeout=60)
     if r.status_code != 202:
@@ -389,10 +399,8 @@ def send_email(subject: str, body_html: str, body_text: str) -> None:
     msg["To"] = ", ".join(to)
     msg.set_content(body_text)
     msg.add_alternative(body_html, subtype="html")
-    from report import INLINE_IMAGES
-    for cid, path in INLINE_IMAGES.items():
-        if path.exists():
-            msg.get_payload()[1].add_related(path.read_bytes(), maintype="image", subtype="png", cid=f"<{cid}>")
+    for cid, path in _used_images(body_html).items():
+        msg.get_payload()[1].add_related(path.read_bytes(), maintype="image", subtype="png", cid=f"<{cid}>")
     port = int(os.environ.get("SMTP_PORT") or 587)
     if port == 465:
         server = smtplib.SMTP_SSL(host, port, timeout=60)
