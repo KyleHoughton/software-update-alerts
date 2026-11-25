@@ -516,9 +516,9 @@ TABLE = (f'<tr><td style="padding:0 40px"><table role="presentation" width="100%
 
 
 def _group(name: str, extra: str = "") -> str:
-    return (f'<tr><td colspan="4" style="padding:8px 12px;background:{R.NAVY};font-family:{R.TEXT_FONT};'
+    return (f'<tr><td class="sym-navy" colspan="4" style="padding:8px 12px;background:{R.NAVY};font-family:{R.TEXT_FONT};'
             f'font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:{R.OFFWHITE}">'
-            f'<span style="color:{R.ORANGE}">&#9632;</span>&nbsp; {R._e(name)}'
+            f'<span class="sym-orange" style="color:{R.ORANGE}">&#9632;</span>&nbsp; {R._e(name)}'
             f'<span style="font-weight:400;color:{R.SILVER}">{extra}</span></td></tr>')
 
 
@@ -660,8 +660,8 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                 f'border-collapse:collapse;background:{R.WHITE};border:1px solid {R.LINE}">{ki_rows}</table>') if check else ""
 
     sample_banner = (f'<tr><td style="padding:12px 40px 0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
-                     f'style="background:{R.NAVY};border-radius:4px"><tr><td style="padding:9px 14px;font-family:{R.TEXT_FONT};'
-                     f'font-size:12px;color:{R.OFFWHITE}"><b style="color:{R.ORANGE};letter-spacing:2px">PREVIEW</b> &nbsp; '
+                     f'style="background:{R.NAVY};border-radius:4px"><tr><td class="sym-navy" style="background:{R.NAVY};padding:9px 14px;font-family:{R.TEXT_FONT};'
+                     f'font-size:12px;color:{R.OFFWHITE}"><b class="sym-orange" style="color:{R.ORANGE};letter-spacing:2px">PREVIEW</b> &nbsp; '
                      f'Built from live Microsoft data to preview the format. Not sent by email.</td></tr></table></td></tr>'
                      if sample else "")
 
@@ -794,25 +794,25 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
 
     body = f'''<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="x-apple-disable-message-reformatting"><title>{TITLE}</title></head>
+<meta name="x-apple-disable-message-reformatting">{R.DARK_MODE_HEAD}<title>{TITLE}</title></head>
 <body style="margin:0;padding:0;background:#dcd9d0">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#dcd9d0"><tr><td align="center" style="padding:24px 10px">
 <table role="presentation" width="820" cellpadding="0" cellspacing="0" style="max-width:820px;width:100%;background:{R.OFFWHITE}">
-  <tr><td style="background:{R.NAVY};padding:30px 40px 34px">
+  <tr><td class="sym-navy" style="background:{R.NAVY};padding:30px 40px 34px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
       <td valign="top">{R._label("Patch intelligence &middot; " + ("Month-end follow-up" if followup else "Monthly brief"), R.SILVER)}</td>
       <td valign="top" align="right" width="190"><img src="{img(R.LOGO_CID)}" width="170" alt="Symbiosys" style="display:block;width:170px;height:auto;border:0"></td>
     </tr>
     <tr><td colspan="2" style="padding-top:18px">
       <div style="font-family:{R.HEAD_FONT};font-size:34px;font-weight:700;color:{R.OFFWHITE};text-transform:uppercase;line-height:1.05">
-        Operating system &amp; <span style="color:{R.ORANGE}">SQL Server</span><br>patch verification report</div>
+        Operating system &amp; <span class="sym-orange" style="color:{R.ORANGE}">SQL Server</span><br>patch verification report</div>
       <div style="font-family:{R.TEXT_FONT};font-size:14px;color:{R.OFFWHITE};margin-top:10px">{month}: server and workstation updates, known issues, deployment advice and download links.</div>
     </td></tr></table>
   </td></tr>
-  <tr><td style="background:{R.NAVY};padding:0 40px 16px">
+  <tr><td class="sym-navy" style="background:{R.NAVY};padding:0 40px 16px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #1d2a3d"><tr>
       <td style="padding-top:12px;font-family:{R.TEXT_FONT};font-size:10px;letter-spacing:3px;color:{R.SILVER}">{month.upper()} &nbsp;&middot;&nbsp; ISSUED {local.strftime("%d %b %Y %H:%M").upper()} SAST</td>
-      <td align="right" style="padding-top:12px;font-family:{R.TEXT_FONT};font-size:10px;letter-spacing:3px;color:{R.ORANGE}">{ref}</td>
+      <td align="right" style="padding-top:12px;font-family:{R.TEXT_FONT};font-size:10px;letter-spacing:3px;color:{R.ORANGE}" class="sym-orange">{ref}</td>
     </tr></table>
   </td></tr>
   {sample_banner}
@@ -861,7 +861,7 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                          f"advice: {u.get('advice', ('',))[0]}]")
     lines += ["", "== Known issues =="] + [f"- [{i['status']}] {i['title']}: {i['link']}" for i in issues]
     lines += ["", "== SQL Server =="] + [f"- {v} {r['label']} KB{r['kb']} ({r['month']}): {r['notes']}" for v, r in sql_new]
-    return subject, body, "\n".join(lines)
+    return subject, R.email_safe(body), "\n".join(lines)
 
 
 # --------------------------------------------------------------------------- main
