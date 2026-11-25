@@ -492,7 +492,7 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                 known = (f'<div style="margin-top:6px;padding:6px 8px;background:{R.OFFWHITE};border-left:3px solid {R.ORANGE};'
                          f'font-size:12px;color:{R.NAVY};line-height:1.45"><b>Known issues:</b> '
                          + "; ".join(R._e(x) for x in r["issues"]) + "</div>")
-            tag = R._tag("New this month", "yellow" if r["kind"] != "CU" else "green") if r["new"] else R._tag("Current", "silver")
+            tag = R._tag("New this month", "blue") if r["new"] else R._tag("Current", "silver")
             srows.append(
                 f'<tr><td {TD};font-size:14px"><b>{R._e(r["label"])}</b>{_change(r)}'
                 f'<div style="font-size:12px;color:{R.TEXT_2};margin-top:3px">KB{r["kb"]} &middot; build {R._e(r["build"])}</div></td>'

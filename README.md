@@ -65,6 +65,21 @@ Then go to **Actions → Hourly update check → Run workflow**, tick **Send a t
 
 Until the email secrets are set, results are written to the run's summary page instead of being emailed.
 
+## Monthly Windows Server & SQL Server report
+
+A second, separate report ([`checker/monthly.py`](checker/monthly.py), workflow **Monthly Windows Server & SQL report**). It uses the same mailbox, secrets and Symbiosys look as the hourly alerts, and doesn't change the hourly job.
+
+**When it is sent** (08:00 South African time):
+
+- **The Wednesday after Patch Tuesday:** that month's updates for Windows Server 2025, 2022, 2019 and 2016 (KB, build, release notes and download links, and how many CVEs each fixes), the known issues Microsoft lists on Windows release health, the latest SQL Server 2025, 2022, 2019, 2017 and 2016 updates (with each new cumulative update's known issues), and the month's exploited or critical vulnerabilities.
+- **The 1st of the next month:** a follow-up for the month just ended. Anything added or changed since the Patch Tuesday report (out-of-band updates, preview updates, new SQL updates, new or updated known issues) is marked **New** or **Updated**.
+
+**Recipients:** `MAIL_TO`, or add a `MAIL_TO_MONTHLY` secret to send this report to a different list.
+
+**Preview without emailing:** Actions → **Monthly Windows Server & SQL report** → Run workflow. "Build the preview only" is ticked by default. The report is attached to the run as **monthly-report** (download, unzip, open in a browser). Untick it to send the email now. You can also pick the follow-up mode and a past month (YYYY-MM).
+
+Sources: [Windows Server release information](https://learn.microsoft.com/windows/release-health/windows-server-release-info), Windows release health known-issues pages, the Microsoft Security Update Guide API, and [SQL Server latest updates](https://learn.microsoft.com/troubleshoot/sql/releases/download-and-install-latest-updates).
+
 ## Adding or removing software
 
 Edit `sources.yaml`. Copy an existing entry, give it a unique id, and set its `type`, `category` and `url`. To catch vulnerabilities for a new vendor, add it under `vendors:`.
