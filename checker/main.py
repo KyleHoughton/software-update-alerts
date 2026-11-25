@@ -5,7 +5,9 @@ the group when anything new appears. The first time a source is seen it is only
 recorded (no email), so the group isn't flooded with old items.
 
 Environment variables (set as GitHub secrets):
-  SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, MAIL_FROM, MAIL_TO (comma separated)
+  MAIL_FROM, MAIL_TO (comma separated), and either
+  GRAPH_TENANT_ID, GRAPH_CLIENT_ID, GRAPH_CLIENT_SECRET (Microsoft 365, works with a shared mailbox) or
+  SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD
   NVD_API_KEY (optional, raises the NVD rate limit)
 If SMTP settings are missing, the email is written to the GitHub job summary instead.
 """
@@ -331,9 +333,38 @@ def build_email(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str]
     return subject, body_html, body_text
 
 
+def send_graph(subject: str, body_html: str, to: list[str]) -> None:
+    """Send through Microsoft Graph as MAIL_FROM (works for shared mailboxes, no mailbox password)."""
+    tenant = os.environ["GRAPH_TENANT_ID"]
+    token = requests.post(
+        f"https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token",
+        data={"client_id": os.environ["GRAPH_CLIENT_ID"],
+              "client_secret": os.environ["GRAPH_CLIENT_SECRET"],
+              "scope": "https://graph.microsoft.com/.default",
+              "grant_type": "client_credentials"},
+        timeout=30)
+    if token.status_code != 200:
+        raise RuntimeError(f"Graph sign-in failed: {token.status_code} {token.text[:300]}")
+    sender = os.environ["MAIL_FROM"]
+    r = requests.post(
+        f"https://graph.microsoft.com/v1.0/users/{sender}/sendMail",
+        headers={"Authorization": f"Bearer {token.json()['access_token']}"},
+        json={"message": {"subject": subject,
+                          "body": {"contentType": "HTML", "content": body_html},
+                          "toRecipients": [{"emailAddress": {"address": a}} for a in to]},
+              "saveToSentItems": True},
+        timeout=60)
+    if r.status_code != 202:
+        raise RuntimeError(f"Graph sendMail failed: {r.status_code} {r.text[:300]}")
+    print(f"Email sent via Microsoft Graph from {sender} to {len(to)} recipient(s): {subject}")
+
+
 def send_email(subject: str, body_html: str, body_text: str) -> None:
     host = os.environ.get("SMTP_HOST")
     to = [a.strip() for a in os.environ.get("MAIL_TO", "").split(",") if a.strip()]
+    if os.environ.get("GRAPH_CLIENT_ID") and to:
+        send_graph(subject, body_html, to)
+        return
     if not host or not to:
         print("SMTP settings not configured; writing email to the job summary instead.")
         summary = os.environ.get("GITHUB_STEP_SUMMARY")

@@ -20,6 +20,30 @@ Everything is listed in [`sources.yaml`](sources.yaml):
 
 ## Setup (one time)
 
+### Option A: Microsoft 365 shared mailbox (recommended, no mailbox password)
+
+1. Entra admin center → **App registrations → New registration**, name it "Update alerts".
+2. **API permissions → Add → Microsoft Graph → Application permissions → Mail.Send**, then **Grant admin consent**.
+3. **Certificates & secrets → New client secret**, copy the value. Note the expiry date and renew it before then.
+4. Recommended: limit the app to the shared mailbox only. In Exchange Online PowerShell:
+   ```powershell
+   Connect-ExchangeOnline
+   New-DistributionGroup -Name "UpdateAlertsSenders" -Type Security -Members alerts@yourdomain.com
+   New-ApplicationAccessPolicy -AppId <client id> -PolicyScopeGroupId UpdateAlertsSenders -AccessRight RestrictAccess -Description "Update alerts can only send as this mailbox"
+   Test-ApplicationAccessPolicy -AppId <client id> -Identity alerts@yourdomain.com
+   ```
+5. Add these repository secrets:
+
+| Secret | Value |
+|---|---|
+| `GRAPH_TENANT_ID` | Directory (tenant) ID from the app's Overview page |
+| `GRAPH_CLIENT_ID` | Application (client) ID from the app's Overview page |
+| `GRAPH_CLIENT_SECRET` | the client secret value |
+| `MAIL_FROM` | the shared mailbox address |
+| `MAIL_TO` | the group address (several can be separated by commas) |
+
+### Option B: SMTP (Gmail or a normal mailbox)
+
 In the repository go to **Settings → Secrets and variables → Actions → New repository secret** and add:
 
 | Secret | Gmail example | Microsoft 365 example |
