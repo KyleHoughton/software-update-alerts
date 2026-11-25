@@ -6,8 +6,8 @@ jobs:
     steps:
       - run: |
           UA="Mozilla/5.0 (compatible; software-update-alerts/1.0)"
-          for u in https://support.oneidentity.com/feed https://support.oneidentity.com/comments/feed https://support.oneidentity.com/product-notification/feed https://www.oneidentity.com/feed/ https://support.oneidentity.com/wp-json/wp/v2/types https://support.oneidentity.com/sitemap.xml https://support.oneidentity.com/wp-sitemap.xml; do
-            r=$(curl -sL -A "$UA" -o f.xml -w '%{http_code} %{content_type} %{url_effective}' "$u")
-            echo "RES $u -> $r"; grep -oE '<(title|loc)>[^<]{0,120}' f.xml | head -12 | sed 's/^/  ITEM /'; head -c 300 f.xml | tr '\n' ' ' | sed 's/^/  HEAD /'; echo
+          for u in https://status.cloud.oneidentity.com/history.rss https://status.cloud.oneidentity.com/history.atom https://docs.oneidentity.com/ https://docs.oneidentity.com/bundle/active-roles https://docs.oneidentity.com/search/all?query=release%20notes; do
+            r=$(curl -sL -A "$UA" -o f.xml -w '%{http_code} %{content_type} %{url_effective} %{size_download}' "$u")
+            echo "RES $u -> $r"; grep -oE '<title>[^<]{0,120}' f.xml | head -5 | sed 's/^/  ITEM /'
+            grep -oE 'href="[^"]*(release|active-roles|safeguard|defender|bundle)[^"]*"' f.xml | sort -u | head -25 | sed 's/^/  LINK /'
           done
-          curl -sL -A "$UA" https://support.oneidentity.com/ -o home.html; grep -oE 'href="[^"]+"' home.html | sort -u | head -100 | sed 's/^/LINK /'
