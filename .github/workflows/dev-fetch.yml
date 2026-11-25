@@ -15,10 +15,20 @@ jobs:
       - run: pip install -r requirements.txt
       - run: |
           mkdir -p devfetch
-          curl -sSL -A "Mozilla/5.0" -o devfetch/sql-cu28.html https://learn.microsoft.com/en-us/help/5125472
-          curl -sSL -A "Mozilla/5.0" -o devfetch/sql-cu11.html https://learn.microsoft.com/en-us/help/5129223
-          REPORT_MODE=patch PREVIEW_ONLY=true python checker/monthly.py
+          curl -sSL -A "Mozilla/5.0" -o devfetch/sql-cu28.html https://learn.microsoft.com/en-us/troubleshoot/sql/releases/sql-server-2022/cumulative-update/kb5125472-cu28
+          REPORT_MODE=patch PREVIEW_ONLY=true python checker/monthly.py 2>&1 | tee devfetch/run-log.txt
           mv monthly-report.html devfetch/preview-patch.html
+          python - <<'PY' | tee devfetch/link-check.txt
+          import re, requests
+          h = open("devfetch/preview-patch.html").read()
+          links = sorted(set(re.findall(r'href="(https?://[^"]+)"', h)))
+          for u in links:
+              try:
+                  r = requests.get(u.replace("&amp;", "&"), timeout=30, headers={"User-Agent": "Mozilla/5.0"}, allow_redirects=True)
+                  print(r.status_code, u, "->", r.url if r.url != u else "")
+              except Exception as e:
+                  print("ERR", u, e)
+          PY
       - run: |
           git config user.name "update-alerts-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

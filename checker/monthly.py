@@ -216,9 +216,25 @@ def cve_stats(cvrf: dict | None, product_pattern: str, kbs: set[str] | None = No
 
 # --------------------------------------------------------------------------- SQL Server
 
+def _kb_article_links(page: str, base: str) -> dict[str, str]:
+    """KB number -> article URL, from the links on a SQL Server release page."""
+    from urllib.parse import urljoin
+    out = {}
+    for href in re.findall(r'href="([^"#]+)"', page):
+        m = re.search(r"/kb(\d{6,7})-[^/]*$", "/" + href)
+        if m and "build-versions" not in href:
+            out.setdefault(m.group(1), urljoin(base, href))
+    return out
+
+
 def sql_updates(ym: str) -> list[dict]:
     """Latest GDR and CU for each supported SQL Server version, marking what came out in month ym."""
-    h = get(SQL_LATEST).text
+    from urllib.parse import urljoin
+    resp = get(SQL_LATEST)
+    h = resp.text
+    articles = _kb_article_links(h, resp.url)
+    build_pages = {m.group(1): urljoin(resp.url, m.group(0)[6:-1])
+                   for m in re.finditer(r'href="sql-server-(\d{4})/kb\d+-build-versions"', h)}
     i = h.find("Latest updates available for currently supported versions")
     table = h[i:h.find("</table>", i)]
     target = month_name(ym)
@@ -238,7 +254,7 @@ def sql_updates(ym: str) -> list[dict]:
                 label = text(label)
                 rels.append({"kb": kb, "label": label, "build": build, "month": when,
                              "kind": "CU + security" if "GDR" in label and "CU" in label else kind,
-                             "new": when == target, "notes": f"https://learn.microsoft.com/en-us/help/{kb}",
+                             "new": when == target, "notes": articles.get(kb, ""),
                              "download": catalog_link(kb), "issues": []})
         # Keep what is current: anything from the last two years, and never old service-pack branches.
         cutoff = now.year - 2
@@ -247,8 +263,15 @@ def sql_updates(ym: str) -> list[dict]:
             keep += [r for r in rels if r["kind"] != "GDR" and not re.search(r"\b(SP1|SP2|RTM)\b", r["label"])][:1]
         out.append({"version": version, "releases": keep})
     for v in out:
+        if any(not r["notes"] for r in v["releases"]) and build_pages.get(v["version"][-4:]):
+            try:
+                bp = get(build_pages[v["version"][-4:]])
+                articles.update({k: u for k, u in _kb_article_links(bp.text, bp.url).items() if k not in articles})
+            except Exception as e:  # noqa: BLE001
+                print(f"[WARN] {v['version']} build versions page: {e}")
         for r in v["releases"]:
-            if r["new"] and r["kind"] == "CU":
+            r["notes"] = r["notes"] or articles.get(r["kb"]) or f"https://support.microsoft.com/help/{r['kb']}"
+            if r["new"] and r["kind"] != "GDR":
                 r["issues"] = sql_known_issues(r["notes"])
     return out
 
