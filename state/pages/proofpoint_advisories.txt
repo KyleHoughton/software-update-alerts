@@ -1,0 +1,36 @@
+Skip to main content
+Top Suggestions:
+Security Advisories
+Stay up-to-date with our latest security advisories
+Reference this page to stay informed about important security vulnerabilities that could affect specific versions of Proofpoint products or services.
+November 03, 2025
+ITM Server Unauthenticated Agent Unregistration
+CVE-2025-8558 | CVSS 5.2 (Medium)
+Type: Security Advisory
+Enterprise Protection S/MIME Opaque Signature Attachment Scanning Bypass
+CVE-2024-10635 | CVSS 6.1 (Medium)
+Enterprise Protection Backslash URL Rewrite Bypass
+CVE-2025-0431 | CVSS 5.8 (Medium)
+Proofpoint Encryption Cross-Account Creation Vulnerability
+CVE-2024-3676 | CVSS 7.5 (High)
+Proofpoint Encryption Server-Side Request Forgery
+CVE-2024-0862 | CVSS 5.0 (Medium)
+January 09, 2024
+Proofpoint Enterprise Protection HTML Injection in Email Body Through Email Subject Vulnerability
+CVE-2023-5770 | CVSS 5.3 (Medium)
+November 06, 2023
+Proofpoint Enterprise Protection Cross-Site-Scripting in AdminUI via Email Subject Vulnerability
+CVE-2023-5771 | CVSS 6.1 (Medium)
+September 13, 2023
+ITM MacOS Agent Improper Certificate Validation
+CVE-2023-4801 | CVSS 7.5 (High)
+ITM Server Multiple Cross-site Scripting Vulnerabilities
+CVE-2023-4802 | CVSS 4.8 (Medium)
+CVE-2023-4803 | CVSS 4.8 (Medium)
+ITM Server Communications Hijack
+CVE-2023-4828 | CVSS 6.4 (Medium)
+Load More Security Advisories
+Manage Preferences
+Register for updates: Please fill out the form with a business email address to be notified of changes to this page.
+Unsubscribe: Fill out this form to remove your email address from receiving updates made to this page.
+Request more information: For questions about content on this page, please complete this form.

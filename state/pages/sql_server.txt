@@ -1,0 +1,423 @@
+Skip to main content
+Sign in with Microsoft
+Sign in or create an account.
+Select a different account.
+You have multiple accounts
+Choose the account you want to sign in with.
+Latest updates and version history (KB321185)
+SQL Server 2025
+SQL Server 2025 build versions (KB5005684)
+Cumulative updates
+General distribution releases
+SQL Server 2022
+SQL Server 2022 build versions (KB5023451)
+SQL Server 2019
+SQL Server 2019 build versions (KB4518398)
+SQL Server 2017
+SQL Server 2017 build versions (KB4047329)
+Azure Connect Pack (KB5050533)
+SQL Server 2016
+SQL Server 2016 build versions (KB3177312)
+Azure Connect Pack for SP3 (KB5014242)
+SQL Server 2016 Service Pack 3 (KB5003279)
+SQL Server 2016 Service Pack 2 (KB4052908)
+SQL Server 2016 Service Pack 1 (KB3182545)
+SQL Server 2014
+SQL Server 2014 build versions (KB2936603)
+SQL Server 2014 Service Pack 3 (KB4022619)
+SQL Server 2014 Service Pack 2 (KB3171021)
+SQL Server 2014 Service Pack 1 (KB3058865)
+SQL Server 2012
+SQL Server 2012 Service Pack 4 (KB4018073)
+SQL Server 2012 Service Pack 3 (KB3072779)
+SQL Server 2012 Service Pack 2 (KB2958429)
+SQL Server 2012 Service Pack 1 (KB2674319)
+SQL Server 2008 R2
+SQL Server 2008 R2 Service Pack 3 (KB2979597)
+SQL Server 2008 R2 Service Pack 2 (KB2630458)
+SQL Server 2008 R2 Service Pack 1 (KB2528583)
+SQL Server 2008
+SQL Server 2008 Service Pack 4 (KB2979596)
+SQL Server 2008 Service Pack 3 (KB2546951)
+SQL Server 2008 Service Pack 2 (KB2285068)
+SQL Server 2005
+SQL Server 2005 Service Pack 4 (KB2463332)
+SQL Server 2005 Service Pack 3 (KB955706)
+SQL Server on Linux
+Latest updates and version history (KB5122767)
+Latest updates and version history for SQL Server
+This article lists various builds or updates that are available for different versions of SQL Server.
+Original product version: SQL Server
+Original KB number: 321185
+A downloadable version of an Excel workbook that contains all the build versions together with their current support lifecycle stage for 2005 through the current version is available. The Excel file also contains detailed fix lists for each version. Download the Excel file now.
+To learn what a specific version number of SQL Server maps to, or to find the KB article information for a specific cumulative update package or a service pack, search for the version number in the SQL Server Complete Version tables.
+To find the edition of your SQL Server instance, see Determine which version and edition of SQL Server Database Engine is running.
+The version information and edition information are in the same output string.
+For information about SQL Server Support lifecycle, see SQL Server support lifecycle information.
+Latest updates available for currently supported versions of SQL Server
+Each of the following links provides information for all of the applicable products and technologies.
+Version Latest service pack Latest GDR Latest cumulative update
+- Build information
+(17.0.1155.3 - November 2026)
+(17.0.5065.9 - November 2026)
+CU10 + GDR for 2025
+(17.0.5045.3 - November 2026)
+(16.0.1220.3 - November 2026)
+(16.0.4325.4 - November 2026)
+CU27 + GDR for 2022
+(16.0.4315.2 - November 2026)
+(15.0.2210.4 - November 2026)
+(15.0.4430.1 - February 2025)
+CU32 + GDR for 2019
+(15.0.4510.2 - November 2026)
+Azure Connect feature pack
+(14.0.3490.10 - March 2025)
+(14.0.2150.2 - November 2026)
+(14.0.3456.2 - September 2022)
+CU31 + GDR for 2017
+(14.0.3570.2 - November 2026)
+(13.0.7000.253 - May 2022)
+(13.0.6300.2 - September 2021)
+(13.0.5026.0 - April 2018)
+(13.0.4001.0 - November 2016)
+GDR for Azure Connect feature pack
+(13.0.7095.1 - July 2026)
+(13.0.6500.1 - July 2026)
+(13.0.5108.50 - June 2022)
+(13.0.4259.0 - July 2019)
+(13.0.1745.2 - January 2018)
+CU17 for 2016 SP2
+(13.0.5888.11 - March 2021)
+CU15 for 2016 SP1
+(13.0.4574.0 - May 2019)
+CU9-ADV180002 for 2016 RTM
+(13.0.2218.0 - January 2018)
+CU17 + GDR for SP2
+(13.0.5893.48 - June 2022)
+CU15 + GDR for SP1
+(13.0.4604.0 - July 2019)
+(12.0.6024.0 - October 2018)
+(12.0.5000.0 - July 2016)
+(12.0.4100.1 - May 2015)
+(12.0.6179.1 - October 2023)
+(12.0.5223.6 - July 2019)
+(12.0.4237.0 - August 2017)
+(12.0.2269.0 - July 2015)
+CU4 for 2014 SP3
+(12.0.6329.1 - July 2019)
+CU18 for 2014 SP2
+(12.0.5687.1 - July 2019)
+CU13 for 2014 SP1
+(12.0.4522.0 - August 2017)
+CU14 for 2014 RTM
+(12.0.2569.0 - June 2016)
+CU4 + GDR for SP3
+(12.0.6449.1 - October 2023)
+(12.0.5659.1 - July 2019)
+(11.0.7001.0 - October 2017)
+(11.0.6020.0 - November 2015)
+(11.0.5058.0 - June 2015)
+(11.0.3000.00 - November 2012)
+(11.0.7512.11 - February 2023)
+(11.0.6614.2 - January 2018)
+(11.0.5676.0 - November 2016)
+(11.0.3156.00 - July 2015)
+(11.0.2376.00 - October 2012)
+CU10 for 2012 SP3
+(11.0.6607.3 - August 2017)
+CU16 for 2012 SP2
+(11.0.5678.0 - January 2017)
+CU13 for 2012 SP1
+(11.0.3482.00 - November 2014)
+CU11 for 2012 RTM
+(11.0.2424.00 - December 2013)
+(10.50.6000.34 - September 2014)
+(10.50.4000.0 - July 2012)
+(10.50.2500.0 - July 2011)
+(10.50.6785.2 - February 2023)
+(10.50.4042.00 - July 2015)
+(10.50.2550.00 - October 2012)
+(10.50.1617.00 - June 2011)
+CU12 for 2008 R2 SP2
+(10.50.4305.00 - August 2014)
+CU14 for 2008 R2 SP1
+(10.50.2881.00 - August 2013)
+CU13 for 2008 R2 RTM
+(10.50.1815.00 - April 2012)
+(10.00.6000.29 - September 2014)
+(10.00.5500.00 - October 2011)
+(10.00.4000.00 - September 2010)
+(10.00.2531.00 - April 2009)
+(10.0.6814.4 - February 2023)
+(10.00.5538.00 - July 2015)
+(10.00.4067.00 - October 2012)
+(10.00.2573.00 - June 2011)
+CU17 for 2008 SP3
+(10.00.5861.00 - May 2014)
+CU11 for 2008 SP2
+(10.00.4333.00 - July 2012)
+CU16 for 2008 SP1
+(10.00.2850.0 - September 2011)
+CU10 for 2008 RTM
+(10.00.1835.00 - March 2010)
+SQL Server complete version list tables
+Build number or version Service pack Update Knowledge Base number Release date
+November 12, 2026
+November 10, 2026
+October 22, 2026
+October 13, 2026
+September 15, 2026
+September 08, 2026
+August 13, 2026
+February 12, 2026
+January 29, 2026
+January 13, 2026
+November 18, 2025
+November 13, 2025
+November 11, 2025
+September 11, 2025
+September 09, 2025
+August 12, 2025
+January 16, 2025
+November 14, 2024
+November 12, 2024
+October 08, 2024
+September 25, 2024
+September 10, 2024
+January 11, 2024
+January 09, 2024
+November 16, 2023
+October 12, 2023
+October 10, 2023
+September 14, 2023
+August 10, 2023
+February 16, 2023
+February 14, 2023
+November 16, 2022
+February 27, 2025
+February 13, 2025
+December 12, 2024
+October 31, 2024
+August 01, 2024
+February 15, 2024
+December 14, 2023
+August 14, 2023
+September 28, 2022
+August 11, 2022
+January 27, 2022
+November 22, 2021
+October 05, 2021
+August 04, 2021
+February 11, 2021
+January 12, 2021
+October 01, 2020
+September 02, 2020
+August 04, 2020
+February 13, 2020
+January 07, 2020
+November 04, 2019
+September 20, 2022
+January 13, 2022
+October 27, 2021
+September 14, 2021
+February 24, 2021
+September 10, 2020
+February 05, 2020
+December 09, 2019
+October 08, 2019
+August 01, 2019
+December 18, 2018
+October 24, 2018
+September 20, 2018
+August 27, 2018
+August 14, 2018
+February 20, 2018
+January 03, 2018
+December 05, 2017
+October 25, 2017
+September 29, 2017
+Azure Connect feature pack + GDR
+GDR for Service Pack
+September 15, 2021
+September 28, 2020
+August 06, 2020
+February 25, 2020
+February 11, 2020
+January 23, 2019
+November 13, 2018
+September 17, 2018
+August 22, 2018
+August 21, 2018
+January 16, 2018
+January 15, 2018
+November 30, 2017
+September 18, 2017
+August 08, 2017
+January 18, 2017
+December 16, 2016
+November 17, 2016
+November 15, 2016
+November 08, 2016
+September 22, 2016
+February 19, 2019
+December 12, 2018
+October 30, 2018
+October 15, 2018
+December 24, 2017
+October 16, 2017
+August 28, 2017
+February 21, 2017
+December 28, 2016
+December 27, 2016
+MS16-136: QFE Security Update
+MS16-136: GDR Security Update
+October 18, 2016
+August 25, 2016
+August 16, 2016
+February 22, 2016
+December 21, 2015
+October 19, 2015
+August 17, 2015
+MS15-058: GDR Security Update
+MS15-058: QFE Security Update
+February 16, 2015
+December 17, 2014
+October 21, 2014
+August 18, 2014
+MS14-044: QFE Security Update
+August 12, 2014
+MS14-044: GDR Security Update
+ADV180002: GDR Security Update
+October 04, 2017
+GDR Security Update
+September 21, 2016
+September 20, 2016
+January 20, 2016
+November 20, 2015
+November 16, 2015
+September 21, 2015
+January 19, 2015
+November 17, 2014
+September 15, 2014
+January 20, 2014
+December 16, 2013
+November 18, 2013
+October 21, 2013
+September 16, 2013
+August 20, 2013
+February 18, 2013
+January 21, 2013
+December 17, 2012
+November 20, 2012
+November 07, 2012
+October 15, 2012
+MS12-070: GDR Security Update
+October 09, 2012
+August 31, 2012
+January 06, 2018
+September 26, 2014
+August 21, 2014
+August 14, 2014
+February 18, 2014
+December 17, 2013
+October 28, 2013
+August 22, 2013
+August 08, 2013
+MS12-070: QFE Security Update
+September 09, 2012
+February 22, 2012
+February 21, 2012
+December 19, 2011
+October 17, 2011
+August 15, 2011
+MS11-049: QFE Security Update
+MS11-049: GDR Security Update
+February 21, 2011
+December 20, 2010
+October 18, 2010
+August 16, 2010
+January 12, 2018
+MS15-059: GDR Security Update
+MS15-060: QFE Security Update
+September 30, 2014
+November 19, 2012
+September 17, 2012
+January 16, 2012
+November 21, 2011
+October 06, 2011
+September 19, 2011
+February 17, 2011
+January 17, 2011
+November 15, 2010
+September 29, 2010
+September 20, 2010
+January 18, 2010
+November 16, 2009
+September 21, 2009
+January 19, 2009
+November 19, 2008
+September 22, 2008
+August 06, 2008
+December 23, 2010
+December 16, 2010
+February 21, 2010
+February 16, 2010
+December 21, 2009
+October 19, 2009
+MS09-062: QFE Security Update
+October 13, 2009
+MS09-062: GDR Security Update
+August 17, 2009
+February 16, 2009
+MS09-004: QFE Security Update
+February 10, 2009
+MS09-004: GDR Security Update
+December 19, 2008
+December 15, 2008
+October 21, 2008
+MS08-052: Security Update
+September 09, 2008
+MS08-052: GDR Security Update
+August 18, 2008
+MS08-040: QFE Security Update
+MS08-040: GDR Security Update
+February 18, 2008
+December 17, 2007
+October 15, 2007
+August 20, 2007
+February 19, 2007
+Older versions of SQL Server
+SQL Server 2000
+Use the version number in the following table to identify the product or service pack level.
+Version number Description
+Post-SP4 hotfix for MS09-004 (971524)
+MS09-004: KB959420 October 29, 2008
+MS08-040 - KB 948111 July 08, 2008
+Post-SP4 AWE fix (899761)
+SQL Server 2000 SP4
+Update.exe Hotfix Installer Baseline 2 (891640)
+Update.exe Hotfix Installer Baseline 1 (884856)
+821277 MS03-031: Security patch for SQL Server 2000 Service Pack 3
+Post SP3 hotfix rollup
+SQL Server 2000 SP3 or SP3a (8.00.766 ssnetlib.dll)
+Hotfix Installer v.1 released
+SQL Server 2000 SP2
+SQL Server 2000 SP1
+SQL Server 2000 RTM or MSDE 2.0
+SQL Server 7.0 Service Pack 4
+SQL Server 7.0 Service Pack 3
+SQL Server 7.0 Service Pack 2
+SQL Server 7.0 Service Pack 1
+SQL Server 7.0 RTM
+SQL Server 6.5 Service Pack 5a Update
+SQL Server 6.5 Service Pack 5a
+SQL Server 6.5 Service Pack 5
+SQL Server 6.5 Service Pack 4
+SQL Server 6.5 Service Pack 3
+SQL Server 6.5 Service Pack 2
+SQL Server 6.5 Service Pack 1
+SQL Server 6.5 RTM
+Related content
+Determine version information of SQL Server components and client tools
+Determine which version and edition of SQL Server Database Engine is running
+Thank you for your feedback!

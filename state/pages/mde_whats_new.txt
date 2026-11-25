@@ -1,0 +1,265 @@
+Table of contents Exit editor mode
+Ask Learn Ask Learn
+Reading mode Table of contents Read in English Add Add to Plans Edit Copy Markdown Print
+Access to this page requires authorization. You can try signing in or changing directories.
+Access to this page requires authorization. You can try changing directories.
+New features in Microsoft Defender for Endpoint
+Applies to: Microsoft Defender for Endpoint Plan 1, Microsoft Defender for Endpoint Plan 2
+Summarize this article for me
+This article describes Microsoft Defender for Endpoint features that are in preview or generally available (GA), released in the past six months.
+For recent releases of Microsoft Defender for Endpoint, including build numbers, improvements, and fixes, see Microsoft Defender for Endpoint release notes.
+Learn more about Preview features.
+Type Feature Preview/GA Description
+Preview features page
+Turn certain Defender for Endpoint public preview features on or off per feature. For more information, see Manage individual preview features in Microsoft Defender for Endpoint.
+Embedded offboarding with the Defender deployment tool for Windows
+As with embedded onboarding, a key is required to run the tool, you can set an expiry date for the package, and you can download the package as an .exe or .zip file. Track the offboarding packages you create on the Deployment packages page. For more information, see Offboard devices by using the Defender deployment tool.
+Release - macOS
+Build 101.26092.0012
+Release version 20.126092.12.0 released: See enhancements and features for this release.
+Local AI agent discovery on Windows and macOS
+Discover supported local AI agents and their configured MCP servers on onboarded Windows and macOS devices, and investigate them in the AI agent inventory and advanced hunting. Windows requires Microsoft Defender Antivirus platform version 4.18.26090.9 (2609) or later. macOS requires Microsoft Defender for Endpoint version 101.26072.0017 or later. Discovery in WSL remains in preview. See the discovery prerequisites and support matrix.
+Antivirus audit mode for Linux
+Provides real-time malware detection and alerting without automatically quarantining files or terminating processes. This enables organizations to evaluate Defender detection efficacy and performance on sensitive workloads before enabling enforcement.
+Available in Microsoft Defender for Endpoint on Linux version 101.26062.0007 or later.
+Build 101.26092.0009
+Release version 20.126092.9.0 released: See enhancements and features for this release.
+Build 101.26082.0012
+Release version 20.126082.12.0 released: See enhancements and features for this release.
+Vulnerability assessment for Microsoft Store applications
+Vulnerability assessment for applications installed via the Microsoft Store is now generally available. Defender Vulnerability Management detects supported Microsoft Store applications, adds them to the software inventory, and assesses them for vulnerabilities. Coverage is currently limited to a select set of commonly used applications. Use the Software evidence area on the software page to view the file path for the vulnerable application, along with a suggested query showing the vulnerable app, version, and file location.
+Microsoft Defender for Endpoint plug-in support for WSL containers (WSLc)
+Extend Microsoft Defender for Endpoint protection to workloads running in WSL containers (WSLc). Gain visibility into WSL container activity through device inventory, alerts, incidents, device timeline, and Advanced Hunting, helping security teams investigate and respond to threats across both Windows and Linux workloads. MDE plugin version 2.26.921.1.
+Microsoft Defender support for Linux Desktops
+Microsoft Defender for Endpoint now extends support to Linux desktops (Public Preview). All Linux distributions currently supported on servers are also supported on Linux desktops. Deployment methods and security capabilities remain consistent across both Linux servers and desktops. For details on licensing and supported distributions, see prerequisites for Microsoft Defender on Linux
+Build 101.26072.0017
+Release version 20.126072.17.0 released: See enhancements and features for this release.
+New Microsoft Secure Score recommendations for AI-Readiness
+Microsoft Defender now brings together six security recommendations for AI-Readiness to help organizations strengthen endpoint trust against AI-accelerated cyberattacks. Together, these recommendations provide a layered security baseline that helps reduce externally visible entry points, establish hardware-backed trust in device startup, isolate critical Windows security functions, protect kernel code integrity, and limit the reuse of local administrator credentials for lateral movement.
+In the Microsoft Defender portal, go to Exposure Management > Recommendations > Devices > Misconfigurations, and filter by the AI-Readiness tag to view the complete recommendation set, affected devices, exposed critical devices, points achieved, and potential impact on the Devices Secure Score. Use this view to prioritize remediation, assign ownership, track exceptions, and monitor adoption throughout the device estate.
+Four new recommendations are available for AI-Readiness:
+- Establish a hardware root of trust with TPM 2.0: Helps protect cryptographic keys, device identity, and boot measurements with hardware-backed security.
+- Isolate critical security functions with VBS: Helps protect critical security functions in an isolated environment that is separate from the operating system kernel.
+- Enforce kernel code integrity with HVCI: Helps validate kernel-mode code, block untrusted code, and prevent executable kernel memory from being writable.
+- Limit lateral movement with Windows LAPS: Helps prevent local administrator credentials from being reused by managing a unique password for each device.
+The AI-Readiness collection also includes two existing recommendations:
+- Reduce unnecessary internet exposure on internet-facing devices: Helps identify and remediate devices that are unnecessarily accessible from the public internet.
+- Protect the startup process with Secure Boot: Helps ensure that devices start by using trusted firmware and software.
+Memory scan for Linux
+Memory Scan extends Microsoft Defender for Endpoint protection capabilities on Linux by enabling inspection of process memory for known malicious behaviours and memory-resident threats, providing an additional layer of protection against advanced attacks. Memory-resident threats are increasingly challenging for security teams because they can execute directly in memory with little or no footprint on disk, making them more difficult to detect using traditional file-based scanning techniques. Memory Scan helps improve visibility into these threats and strengthens protection against sophisticated attack methods such as in-memory malware and malicious code injection.
+Available in Defender version 101.26071.0005 or later in Insiders-slow channel.
+Extend Microsoft Defender for Endpoint protection to workloads running in WSL containers (WSLc). Gain visibility into WSL container activity through device inventory, alerts, incidents, device timeline, and Advanced Hunting, helping security teams investigate and respond to threats across both Windows and Linux workloads.
+Available in Public Preview. To enroll, complete the registration form.
+Tamper protection in audit mode for Linux
+Detects and alerts on unauthorized modifications to Defender configurations, files, directories, processes, and services, including attempts by root users. Tampering activity is surfaced through alerts, the device timeline, and Advanced Hunting without blocking the activity.
+Available in Microsoft Defender for Endpoint on Linux version 101.26072.0004 or later in Insiders-slow channel.
+Offboarding API support for Linux
+Enables organizations to automate the offboarding of Linux servers from Microsoft Defender for Endpoint through the Offboard machine API, simplifying device lifecycle management at scale.
+Build 101.26062.0012
+Release version 20.126062.12.0 released: See enhancements and features for this release.
+Build 101.26062.0011
+Release version 20.126062.11.0 released: See enhancements and features for this release.
+Build 101.26062.0009
+Release version 20.126062.9.0 released: See enhancements and features for this release.
+Build 1.1.78290102
+Release version 1.1.78290102 released: See enhancements and features for this release.
+AI agent runtime protection updates
+AI agent runtime protection includes these enhancements:
+- Vendor-supported agent event interfaces now work with standard platform and engine update channels, so no Beta channel configuration is required. Agent-native event inspection now supports Codex CLI and the GitHub Copilot app.
+- Network inspection is now supported for agents that don't expose vendor-supported event interfaces, including OpenClaw and similar Node.js-based Claw agents.
+For more information, see AI agent runtime protection with Microsoft Defender for Endpoint.
+Build 101.26052.0016
+Release version 20.126052.16.0 released: See enhancements and features for this release.
+Defender Deployment Tool for Linux
+Available from Defender for Endpoint on Linux version 101.26042.0011 and later.
+The Defender Deployment Tool for Linux simplifies deployment by combining installation, onboarding, upgrades, and uninstallation into a single workflow. The tool automates prerequisite validation, supports custom installation paths, enables deployment of specific Defender versions from preferred update channels, and works seamlessly in environments that use local repositories.
+In addition to a simplified deployment experience, customers can now gain complete visibility into deployment progress through Device Timeline integration, providing step-by-step installation, upgrade, and onboarding status, Advanced Hunting queries for fleet-wide deployment monitoring, and detailed error reporting, including deployment stage, status, exit code, and failure reason to simplify troubleshooting. These capabilities help administrators quickly identify deployment issues, track onboarding progress, and understand deployment outcomes across their Linux estate. Available from Defender version 101.26042.0011 onwards.
+Release - Android
+Build 1.0.9029.0101
+Release version 1.0.9029.0101 released: See enhancements and features for this release.
+Build 101.26042.0020
+Release version 20.126042.20.0 released: See enhancements and features for this release.
+Local AI agent discovery â macOS support and new agents
+Local AI agent discovery now supports macOS endpoints in addition to Windows. This update also adds discovery support for new agents including Junie CLI, Kiro CLI, Warp, Hermes Agent, Goose Desktop, Perplexity Desktop, Kiro IDE, Devin Desktop (formerly Windsurf), and QClaw. For more information, see Local AI agent discovery.
+Enhanced Defender deployment tool for Windows
+The new version of the tool streamlines onboarding and enhances security by:
+- Bundling the onboarding package directly into the tool's executable.
+- Generating a key during deployment package creation that is required for running the tool.
+- Enabling users to configure an expiry date for the package to reduce the risk of unauthorized use.
+- You have the option of downloading the package as either an .exe or a .zip file, whichever best suits your organization's needs.
+- A new Deployment packages page in the Defender portal facilitates management of downloaded packages by providing centralized visibility into all the packages and their current status.
+Selective Response Actions
+Selective Response Actions enables organizations to tailor high-impact security operations on devices during onboarding. It provides precise control over how response actions are applied on Tier-0 systems and other high-value assets, helping maintain operational stability while delivering strong protection.
+Enhanced exposure score in Defender Vulnerability Management
+The new exposure score model in Defender Vulnerability Management is now generally available. This model improves risk prioritization and recommendation impact accuracy by incorporating exploit prediction data (EPSS) and asset context factors such as internet-facing status and criticality. For more information, see Exposure score in Defender Vulnerability Management and Security recommendations.
+Release - Windows
+Windows Defender Antivirus: Platform 4.18.26050.15 / Engine 1.1.26050.11
+See enhancements and features for this release.
+New Microsoft Secure Score recommendation
+Microsoft Secure Score now includes the Reduce unnecessary inbound internet exposure on internet-facing devices recommendation, which helps identify devices that are accessible from the public internet and may represent unnecessary attack surface.
+Internet-facing devices are primary entry points for attackers and automated scanners, making them prime targets for credential brute-forcing, exploitation of unpatched vulnerabilities, and initial access for ransomware and hands-on-keyboard intrusions.
+This recommendation provides centralized visibility into internet-facing devices across the environment, enabling organizations to validate whether exposure is expected, prioritize remediation for unintended exposure, and reduce external attack surface at scale.
+Local AI agent discovery
+Microsoft Defender for Endpoint now automatically discovers supported local AI agents running on onboarded Windows devices â including coding agents and IDE extensions, desktop AI assistants, local AI runtimes, and agent platforms. Discovered agents appear as assets in the AI agent inventory, exposure map, and advanced hunting, giving security teams visibility into local AI agent usage across the organization. For more information, see Discover local AI agents.
+Local AI agent runtime protection
+Runtime protection for supported local AI agents on Windows endpoints is now available in public preview. Microsoft Defender inspects the agent loop (user prompts, tool calls, and tool responses) and can block risky activity before it executes, helping stop prompt injection and unsafe agent actions at the device level. Blocked and audited events appear as alerts in Microsoft Defender to support incident correlation and investigation workflows. For more information, see Set up AI agent runtime protection.
+Release - Linux
+Build 101.26042.0009
+Release version 30.126042.0009.0 - see considerations and updates for this release.
+Defender endpoint security solution for Windows 7 SP1 and Windows Server 2008 R2 SP1
+The Defender for endpoint security solution for legacy Windows 7 SP1 and Windows Server 2008 R2 SP1 devices is now generally available. The solution provides advanced protection capabilities and improved functionality for these devices compared to other solutions. The solution is available using the Defender deployment tool.
+The new exposure score model in Defender Vulnerability Management is now available in preview. This model improves risk prioritization and recommendation impact accuracy by incorporating exploit prediction data (EPSS) and asset context factors such as internet-facing status and criticality. For more information, see Exposure score in Defender Vulnerability Management and Security recommendations.
+Schedule antivirus scans on Linux
+You can now configure scheduled antivirus scans on Microsoft Defender for Endpoint on Linux. Scheduled scans support hourly quick scans, interval-based quick scans, and weekly full scans, with options for low-priority execution, idle-time scheduling, and randomized start times. Configure scans using managed JSON, the Microsoft Defender portal, or the mdatp CLI.
+Automatic device isolation (automatic attack disruption)
+Microsoft Defender for Endpoint can now automatically isolate compromised devices as part of automatic attack disruption. Isolation blocks most network traffic while keeping the device connected to security services. The action is time-limited, scoped to the incident, and security operators can release isolation at any time.
+Custom data collection
+Custom data collection is now generally available. This feature enables organizations to expand and customize telemetry collection beyond default configurations with rule-based filtering for specific events from endpoint devices. The maximum event limit per rule has been updated from 25,000 to 75,000 events per device within a 24-hour rolling window.
+Configure offline security intelligence update settings for Linux from the Defender and Intune portals
+You can now configure offline security intelligence update settings for Linux directly from the Defender and Intune portals.
+Windows Defender Antivirus: Platform 4.18.26040.7 / Engine 1.1.26040.8
+Microsoft Secure Score now includes the Ensure devices are updated to Secure Boot 2023 certificates and boot manager, which helps identify devices that haven't yet transitioned to the new Secure Boot 2023 certificates required ahead of the June 2026 expiration.
+Devices that remain on older Secure Boot certificates may become unable to receive new security protections for the early boot process as the certificates approach expiration in June 2026.
+This recommendation provides centralized visibility into deployment status across the environment, which enables organizations to identify exposure, prioritize remediation, and track rollout progress at scale. To learn more about the recommendation, see Assess Secure Boot status with Microsoft Defender (blog).
+View action status in the Activities tab (Preview)
+You can now view the current status of automatic attack disruption and predictive shielding actions related to a specific incident. You view this data in the Activities tab of the incident page. The data applies to the Contain user, GPO hardening, Safeboot hardening response actions.
+Build 101.26032.0000
+Release version 30.126032.0000.0 released: See enhancements and features for this release.
+Build 101.26032.0016
+Release version 20.126032.16.0 released: See enhancements and features for this release.
+Build 4.18.25040.1
+Release version 4.18.25040.1 released: See enhancements and features for this release.
+Windows Defender Antivirus: Platform 4.18.26030.3011 / Engine 1.1.26030.3008
+Build 101.26022.0020
+Release version 20.126022.20.0 released: See enhancements and features for this release.
+Build 101.26022.0018
+Release version 20.126022.18.0 released: See enhancements and features for this release.
+Build 1.0.8805.0103
+Build 1.0.8805.0103 released: See enhancements and features for this release.
+New Microsoft Secure Score recommendations
+Microsoft Secure Score now includes new recommendations to help organizations proactively prevent common endpoint attack techniques:
+- Block outbound network connections from Microsoft HTML Application Host (mshta.exe): Helps mitigate attacks that leverage mshta.exe (a trusted Windows binary) to execute malicious scripts and communicate with external command-and-control (C2) infrastructure. Blocking outbound connections from mshta.exe disrupts common attack chains, prevents payload download and data exfiltration, and reduces the risk of living-off-the-land attacks. This is relevant for emerging attack campaigns, for example, ClickFix campaigns, where attackers abuse legitimate tools like mshta.exe to execute malicious content delivered through user interaction.
+Build 101.26021.0002
+Release version 30.126021.0002.0 released: See enhancements and features for this release.
+Windows Defender Antivirus: Platform 4.18.26020.6 / Engine 1.1.26020.3
+Library management for live response
+Library management for live response is now generally available. This feature provides a centralized view for managing files and scripts used during live response sessions.
+Build 101.26012.0017
+Release version 20.126012.17.0 released: See enhancements and features for this release.
+Microsoft Secure Score now includes new recommendations to help organizations reduce exposure to common attack techniques involving remote access and authentication relay attacks:
+- Block file transfer over RDP: Restricts file transfer capabilities in Remote Desktop Protocol (RDP) sessions. This helps prevent attackers from using RDP sessions to transfer malicious files into the environment or exfiltrate sensitive data.
+- SMB server security hardening against authentication relay attacks: Helps protect servers from credential relay attacks by strengthening Server Message Block (SMB) authentication protections, including enforcing Extended Protection for Authentication (EPA), SMB signing, and SMB encryption to ensure authentication integrity and protect SMB traffic from tampering or interception.
+Build 101.26012.0015
+Release version 20.126012.15.0 released: See enhancements and features for this release.
+Build 101.26012.0007
+Release version 30.126012.0007.0 released: See enhancements and features for this release.
+Proactive user containment (contain user)
+The proactive user containment (contain user) action as part of the predictive shielding feature is now generally available. This action infuses activity data with exposure data to identify exposed credentials at risk of being compromised and reused to conduct malicious activity.
+What's new and release notes documentation updates
+The what's new and OS-specific release notes pages are now updated to provide better visibility and access to new features, improvements, and fixes:
+- The what's new page (this page) is now named New features in Microsoft Defender for Endpoint and includes both features and links to latest release notes.
+- The Release notes page now consolidates release details for all supported operating systems, including Windows Antivirus. The new page groups updates by platform and date, making it easier to find specific information.
+- All previous release notes pages redirect to the consolidated release notes page.
+Support for software product vulnerability data on Windows 7
+To provide comprehensive vulnerability management capabilities across all supported Windows versions, Microsoft Defender Vulnerability Management now gathers software product vulnerability data on Windows 7 devices.
+You can now view and manage files and scripts used during live response sessions in the Microsoft Defender portal. With this enhancement, you get a centralized view of all uploaded files and their properties, and can upload, view and delete files outside the live response session.
+Effective settings tab
+The Effective settings tab under the device inventory Configuration management tab is now generally available. In this tab, you can view the actual value and configuration source of each security setting on a device. This helps identify configuration attempts that didn't take effect and eliminates gaps where intended protections aren't enforced.
+Vulnerable components page renamed to Software components
+To reflect Defender Vulnerability Management's visibility into all software components identified in your organization, the Vulnerable components page is now named Software components.
+Improved Device Vulnerabilities report experience
+To simplify and streamline the Device vulnerabilities report experience, the Vulnerable devices report now includes the following changes and enhancements:
+- The Vulnerable devices by Windows 10/11 version over time section is now removed.
+- The report's filters only include the Device group filter.
+- The report's history is now limited to the last 30 days.
+Note: These changes are now visible to government cloud customers, but aren't yet visible in air-gapped environments. This visibility will be added in the coming months.
+In addition, a new Deployment packages page in the Defender portal facilitates management of downloaded packages by providing centralized visibility into all the packages and their current status.
+Build 101.26012.0012
+Release version 20.126012.12.0 released: See enhancements and features for this release.
+Sense version 10.8821
+Release details are now available: See enhancements and features for this release.
+Build 101.25122.0008
+Release version 20.125122.8.0 released: See enhancements and features for this release.
+Build 101.25122.0004
+Release version 30.125122.0004.0 released: See enhancements and features for this release.
+Windows Defender Antivirus: Platform 4.18.26010.5 / Engine 1.1.26010.1
+Build 101.25102.0005
+Release version 30.125102.0005.0 released: See enhancements and features for this release.
+Build 101.25122.0007
+Release version 20.125122.7.0 released: See enhancements and features for this release.
+Build 101.25122.0006
+Release version 20.125122.6.0 released: See enhancements and features for this release.
+Device vulnerabilities report enhancements
+To simplify and streamline the Device vulnerabilities report experience, the Vulnerable devices report now includes several changes and enhancements (learn more).
+Note: These changes are not yet visible to government cloud customers.
+Build 101.25092.0005
+Release version 30.125092.0005.0 released: See enhancements and features for this release.
+Build 101.25092.0002
+Release version 30.125092.0002.0 released: See enhancements and features for this release.
+Build 1.0.8412.0101
+Build 1.0.8412.0101 released: See enhancements and features for this release.
+Build 1.0.8321.0101
+Build 1.0.8321.0101 released: See enhancements and features for this release.
+Build 101.25102.0019
+Release version 20.125102.19.0 released: See enhancements and features for this release.
+Windows Defender Antivirus: Platform 4.18.25110.6 / Engine 1.1.25110.1
+Triage collection
+Use triage collection to prioritize incidents and hunt threats with the Sentinel Model Context Protocol (MCP) server.
+- Disable Remote Registry service on Windows: Prevents remote access to the Windows registry, reducing attack surface and blocking unauthorized configuration changes, privilege escalation, and lateral movement.
+- Disable NTLM authentication for Windows workstations: Helps prevent credential theft and lateral movement attacks by removing support for an outdated and insecure protocol.
+CVE exceptions are now generally available, and also support the False positive justification and the status field as part of the response for the GET /api/vulnerabilities request. Learn more.
+New predictive shielding response actions
+Defender for Endpoint now includes the GPO hardening and Safeboot hardening response actions. These actions are part of the predictive shielding feature, which anticipates and mitigates potential threats before they materialize.
+Custom data collection enables organizations to expand and customize telemetry collection beyond default configurations to support specialized threat hunting and security monitoring needs.
+Vulnerability management moves under Exposure management
+The Vulnerability Management section in the Microsoft Defender portal is now located under Exposure management. This change is part of the vulnerability management integration to Microsoft Security Exposure Management, which significantly expands the scope and capabilities of the platform. Learn more.
+- Require LDAP client signing or Require LDAP server signing: Helps ensure integrity of directory requests so attackers cannot tamper with or manipulate group memberships or permissions in transit.
+- Encrypt LDAP client traffic: Prevents exposure of credentials and sensitive user information by enforcing encrypted communication instead of clear-text LDAP.
+- Enforce LDAP channel binding: Stops adversaries from hijacking or relaying authentication sessions by binding NTLM authentication to a secure TLS channel.
+Defender deployment tool
+- for Windows devices
+- for Linux devices
+The new Defender deployment tool is a lightweight, self-updating application that streamlines onboarding devices to the Defender endpoint security solution. The tool takes care of prerequisites, automates migrations from older solutions, and removes the need for complex onboarding scripts, separate downloads, and manual installations. It supports Windows and Linux devices.
+A Defender for endpoint security solution is now available for legacy Windows 7 SP1 and Windows Server 2008 R2 SP1 devices. The solution provides advanced protection capabilities and improved functionality for these devices compared to other solutions. The new solution is available using the new Defender deployment tool.
+Windows Defender Antivirus: Platform 4.18.25100.9008 / Engine 1.1.25100.9002
+Build 1.0.8217.0101
+Build 1.0.8217.0101 released: See enhancements and features for this release.
+Build 1.0.8201.0101
+Build 1.0.8201.0101 released: See enhancements and features for this release.
+Build 101.25082.0006
+Release version 20.125082.6.0 released: See enhancements and features for this release.
+Build 1.1.70230101
+Build 1.1.70230101 released: See enhancements and features for this release.
+Build 1.1.69250104
+Build 1.1.69250104 released: See enhancements and features for this release.
+Release - Windows Antivirus
+Platform 4.18.25100.9008 / Engine 1.1.25100.9002
+Platform 4.18.25100.9008 and Engine 1.1.25100.9002 released: See enhancements and features for this release.
+Streamlined connectivity support for US government environments
+Defender for Endpoint now supports streamlined connectivity for US government cloud environments. This enhancement simplifies onboarding by reducing the number of required service endpoints and improves reliability across restricted networks. For more information, see the required connectivity settings.
+Isolation exclusions
+The Isolation exclusions feature is now generally available. Isolation exclusions allow designated processes or endpoints to bypass the restrictions of network isolation. This ensures that essential functions can continue while broader network exposure is limited.
+Build 101.25092.0001
+Release version 30.125092.0001.0 released: See enhancements and features for this release.
+You can now use CVE exceptions to exclude specific Common Vulnerabilities and Exposures (CVEs) from analysis in your environment. CVE exceptions allow you to control what type of data is relevant to your organization and to selectively exclude certain data from your remediation efforts. For more information, see Exceptions in Microsoft Defender Vulnerability Management and Create, view, and manage exceptions.
+- Block web shell creation on servers (reduces the risk of web-based persistence and remote code execution attacks)
+- Block use of copied or impersonated system tools (helps prevent attacker misuse of legitimate administrative utilities for lateral movement or privilege escalation)
+- Block rebooting a machine in Safe Mode: Helps defend against attackers who attempt to disable endpoint protection or persist through reboots.
+Build 1.0.8102.0101
+Build 1.0.8102.0101 released: See enhancements and features for this release.
+Build 101.25072.0011
+Release version 20.125072.11.0 released: See enhancements and features for this release.
+Configure offline security intelligence updates for Microsoft Defender for Endpoint on macOS
+Enables organizations to update security intelligence (antivirus definitions/signatures) on macOS endpoints offline from a local mirror server.
+Build 101.25082.0003
+Release version 30.125082.0003.0 released: See enhancements and features for this release.
+Build 101.25072.0003
+Release version 30.125072.0003.0 released: See enhancements and features for this release.
+Build 1.1.68200103
+Build 1.1.68200103 released: See enhancements and features for this release.
+Sense version 10.8804
+Was this page helpful?
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Additional resources
+Last updated on 2026-10-30

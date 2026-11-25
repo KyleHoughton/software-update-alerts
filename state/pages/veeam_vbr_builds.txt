@@ -1,0 +1,194 @@
+Veeam Support Knowledge Base
+Build Numbers and Versions of Veeam Backup & Replication
+BACK TO KB LIST
+Veeam Backup & Replication | 5.0 | 6.1 | 6.5 | 7.0 | 8.0 | 9.0 | 9.5 | 10 | 11 | 12 | 12.1 | 12.2 | 12.3 | 12.3.1 | 12.3.2 | 13 | 13.1
+Veeam Cloud Connect | 8.0 | 9.0 | 9.5 | 11 | 12 | 12.2 | 12.3 | 12.3.2 | 13
+Get weekly article updates
+Cheers for trusting us with the spot in your mailbox!
+Now you’re less likely to miss what’s been brewing in our knowledge base with this weekly digest
+Oops! Something went wrong.
+Please, try again later.
+This KB article lists all versions of Veeam Backup & Replication and their respective build numbers.
+For more information on downloading the latest version of Veeam Backup & Replication, visit:
+My Account Portal - Product Downloads
+Latest Downloads Page
+Veeam Backup & Replication — What's New PDF
+Veeam Backup & Replication 13 Releases
+Veeam Backup & Replication 13.1.2
+Veeam Backup & Replication 13.1.1
+Veeam Backup & Replication 13.1
+Veeam Backup & Replication 13.0.3
+Veeam Backup & Replication 13.0.2
+Veeam Backup & Replication 13.0.1 P2
+Veeam Backup & Replication 13.0.1 P1
+Veeam Backup & Replication 13.0.1
+Veeam Backup & Replication 13
+Veeam Software Appliance
+Veeam Backup & Replication 12 Releases
+Veeam Backup & Replication 12.3.2 P4
+Veeam Backup & Replication 12.3.2 P3
+Veeam Backup & Replication 12.3.2 P2
+Veeam Backup & Replication 12.3.2 P1
+Veeam Backup & Replication 12.3.2
+Veeam Backup & Replication 12.3.1
+Veeam Backup & Replication 12.3
+Veeam Backup & Replication 12.2
+Veeam Backup & Replication 12.1.2
+Veeam Backup & Replication 12.1.1
+Veeam Backup & Replication 12.1
+Veeam Backup & Replication 12 P20230718
+12.0.0.1420 P20230718
+Veeam Backup & Replication 12 P20230412
+12.0.0.1420 P20230412
+Veeam Backup & Replication 12 P20230223
+12.0.0.1420 P20230223
+Veeam Backup & Replication 12 GA
+Veeam Backup & Replication 12 RTM
+Veeam Backup & Replication 11 Releases
+Veeam Backup & Replication 11a P20240304
+11.0.1.1261 P20240304
+Veeam Backup & Replication 11a P20230227
+11.0.1.1261 P20230227
+Veeam Backup & Replication 11a P20220302
+11.0.1.1261 P20220302
+Veeam Backup & Replication 11a P20211211
+11.0.1.1261 P20211211
+Veeam Backup & Replication 11a P20211123
+11.0.1.1261 P20211123
+Veeam Backup & Replication 11a GA
+Veeam Backup & Replication 11a RTM
+Veeam Backup & Replication 11 P20210525
+11.0.0.837 P20210525
+Veeam Backup & Replication 11 P20210507
+11.0.0.837 P20210507
+Veeam Backup & Replication 11 P20210401
+11.0.0.837 P20210401
+Veeam Backup & Replication 11 P20210324
+11.0.0.837 P20210324
+Veeam Backup & Replication 11 P20210319
+11.0.0.837 P20210319
+Veeam Backup & Replication 11 GA
+Veeam Backup & Replication 11 RTM
+Veeam Backup & Replication 10 Releases
+Veeam Backup & Replication 10a P20220304
+10.0.1.4854 P20220304
+Veeam Backup & Replication 10a CU 20210609
+10.0.1.4854 P20210609
+Veeam Backup & Replication 10a CU 20201202
+10.0.1.4854 P20201202
+Veeam Backup & Replication 10a GA
+Veeam Backup & Replication 10a RTM
+Veeam Backup & Replication 10 P2
+Veeam Backup & Replication 10 P1
+Veeam Backup & Replication 10 GA
+Veeam Backup & Replication 10 RTM
+Veeam Backup & Replication 9.5 Releases
+Veeam Backup & Replication 9.5 U4b GA
+Veeam Backup & Replication 9.5 U4a GA
+Veeam Backup & Replication 9.5 U4 GA
+Veeam Backup & Replication 9.5 U4 RTM
+Veeam Backup & Replication 9.5 U3a
+Veeam Backup & Replication 9.5 U3
+Veeam Backup & Replication 9.5 U2
+Veeam Backup & Replication 9.5 U1
+Veeam Backup & Replication 9.5 U1 RC
+Veeam Backup & Replication 9.5 GA
+Veeam Backup & Replication 9.5 RTM
+Veeam Backup & Replication 9.0 Releases
+Veeam Backup & Replication 9.0 U2
+Veeam Backup & Replication 9.0 U1
+Veeam Backup & Replication 9.0 GA
+Veeam Backup & Replication 9.0 RTM
+Veeam Backup & Replication 8 Releases
+Veeam Backup & Replication 8.0 U3
+Veeam Backup & Replication 8.0 U2b
+Veeam Backup & Replication 8.0 U2a
+Veeam Backup & Replication 8.0 U2 GA
+Veeam Backup & Replication 8.0 U2 RTM
+Veeam Backup & Replication 8.0 P1
+Veeam Backup & Replication 8.0 GA
+Veeam Backup & Replication 8.0 RTM
+Veeam Backup & Replication 7 Releases
+Veeam Backup & Replication 7.0 P4a
+Veeam Backup & Replication 7.0 P4
+Veeam Backup & Replication 7.0 P3a
+Veeam Backup & Replication 7.0 P3
+Veeam Backup & Replication 7.0 R2a
+Veeam Backup & Replication 7.0 R2
+Veeam Backup & Replication 7.0 P1
+Veeam Backup & Replication 7.0 GA
+Veeam Backup & Replication 6.5 Releases
+Veeam Backup & Replication 6.5 P3
+Veeam Backup & Replication 6.5 P1
+Veeam Backup & Replication 6.5 GA
+Veeam Backup & Replication 6.5 RTM
+Veeam Backup & Replication 6.1 Releases
+Veeam Backup & Replication 6.1 P1a
+Veeam Backup & Replication 6.1 P1
+Veeam Backup & Replication 6.1 GA
+Veeam Backup & Replication 6.0 Releases
+Veeam Backup & Replication 6.0 P3
+Veeam Backup & Replication 6.0 P2
+Veeam Backup & Replication 6.0 P1
+Veeam Backup & Replication 6.0 GA
+Veeam Backup & Replication 5 Releases
+Veeam Backup & Replication 5.0.2
+Veeam Backup & Replication 5.0.1
+Veeam Backup & Replication 5.0
+Veeam Backup 4 Releases
+Veeam Backup 4.1.2
+Veeam Backup 4.1 R2 P1
+Veeam Backup 4.1 R2
+Veeam Backup 4.0
+Veeam Backup 3 Releases
+Veeam Backup 3.0.1
+Veeam Backup 3.0
+Veeam Backup 2 Releases
+Veeam Backup 2.0
+Veeam Backup 1 Releases
+Veeam Backup 1.0.1
+Veeam Backup 1.0
+Swipe to show more of the table
+Related Articles
+├ Build Numbers and Versions of Veeam Plug-In for Nutanix AHV
+├ Build Numbers and Versions of Veeam Plug-In for Proxmox VE
+├ Build Numbers and Versions of Veeam Plug-In for oVirt KVM
+├ Build Numbers and Versions of Veeam Plug-In for Scale Computing HyperCore
+├ Build Numbers and Versions of Veeam Plug-In for HPE Morpheus VM Essentials
+├ Build Numbers and Versions of Veeam Plug-In for Platform9
+├ Build Numbers and Versions of Veeam Plug-In for Sangfor aSV
+├ Build Numbers and Versions of Veeam Plug-In for Verge OS
+├ Build Numbers and Versions of Veeam Plug-In for Xen
+├ Build Numbers and Versions of Veeam Plug-In for KubeVirt
+├ Build Numbers and Versions of Veeam Plug-In for AWS
+├ Build Numbers and Versions of Veeam Plug-In for Microsoft Azure
+└ Build Numbers and Versions of Veeam Plug-In for Google Cloud
+Build Numbers and Versions of Veeam ONE
+Build Numbers and Versions of Veeam Recovery Orchestrator
+Build Numbers and Versions of Veeam Service Provider Console
+Build Numbers and Versions of Veeam Agent for Microsoft Windows
+Build Numbers and Versions of Veeam Agent for Linux
+Build Numbers and Versions of Veeam Agent for Mac
+Build Numbers and Versions of Veeam Agent for IBM AIX
+Build Numbers and Versions of Veeam Agent for Oracle Solaris
+Build Numbers and Versions of Veeam Backup for Microsoft 365
+Build Numbers and Versions of Veeam Backup for Salesforce
+Veeam Data Cloud for Microsoft 365 Release Information and Build Numbers
+Veeam Data Cloud for Microsoft Azure Release Information and Build Numbers
+If this KB article did not resolve your issue or you need further assistance with Veeam software, please create a Veeam Support Case.
+To submit feedback regarding this article, please click this link: Send Article Feedback
+To report a typo on this page, highlight the typo with your mouse and press CTRL + Enter.
+Spelling error in text
+Your feedback has been received and will be reviewed.
+You have selected too large block!
+Please try select less.
+KB Feedback/Suggestion
+This form is only for KB Feedback/Suggestions, if you need help with the software open a support case
+Verify your email to continue your product download
+We've sent a verification code to:
+An email with a verification code was just sent to
+Didn't receive the code? Click to resend in sec
+Didn't receive the code? Click to resend
+Start using Veeam:
+Download the product
+Activate the license key

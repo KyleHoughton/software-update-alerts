@@ -1,0 +1,69 @@
+Commvault Cloud Security Advisories
+The following table lists security advisories for the Commvault software. To report a new vulnerability, click here.
+OpenSSH Security Regression (CVE-2006-5051) Vulnerability
+SQL Injection and Command Injection Advisory
+Security vulnerability in Windows access nodes that are used for file server data protection
+DLL Injection Vulnerability in the Software Installation Path
+Apache Tomcat Time-of-check Time-of-use (TOCTOU) Race Condition Vulnerability
+Critical Webserver Vulnerability
+Apache Tomcat Remote Code Execution (CVE-2025-24813) Vulnerability
+Vulnerability in Commvault Command Center Installation
+SQL Injection Vulnerability
+Tomcat Denial of Service Vulnerabilities
+Handling Report Export Functionality
+Stored Cross-Site Scripting Vulnerability
+Authorization Schema Access Controls
+Argument Injection Vulnerability in CommServe
+Path Traversal Vulnerability
+Unauthorized API Access Risk
+Vulnerability in Initial Administrator Login Process
+MongoBleed: MongoDB Memory Disclosure Vulnerability (CVE-2025-14847)
+Impact Assessment for CVE-2025-15467 and CVE-2024-5535 (OpenSSL)
+OTP Invalidation Missing Upon Regeneration
+libcurl â Cross Proxy Digest Authentication State Leak
+LibcurlÂ - Cookie Leakage Due to Stale Host Header Handling
+Command Center API Authentication Bypass
+DataCube Security Feature Bypass
+CVFS Information Disclosure
+Server-Side Request Forgery (SSRF)
+Content Extractor Privilege Escalation
+Content Extractor Information Disclosure
+Command Restriction Bypass
+Improper Authorization Validation
+CvFWD Denial of Service
+CvFWD Out-of-Bounds Write
+CvFWD Null Pointer Dereference
+CVFS Missing Authentication
+Private Metrics Server Denial of Service
+Private Metrics Server SQL Injection
+CVFS Command Execution
+Media Agent Denial of Service
+CommServe Stack-based Buffer Overflow
+CommServe Denial of Service
+CommServe Information Disclosure
+CommServe Path Traversal
+CommServe Privilege Escalation
+HyperScale Path Traversal
+Cvlaunchd Code Execution
+QAPI stack-based buffer overflow
+Network messaging layer decompression resource exhaustion
+Node.js Security Update
+Red Hat Enterprise Linux (RHEL) Malicious Injection Vulnerability
+Apache Struts 2 Vulnerability
+Heap Based Buffer Overflow Vulnerability in cURL
+Remote Code Execution Vulnerability in Apache ActiveMQ
+Libwebp Vulnerability
+Volt Typhoon Advisory
+Remote Memory Corruption Vulnerability in OpenSSL
+Remote Code Execution Vulnerability in Apache Common Text
+Remote Code Execution Vulnerability in the Spring Framework
+CVE-2022-22963, CVE-2022-22965
+Local Privilege Escalation Vulnerability in Polkit's pkexec Utility
+Vulnerability in Apache Log4j Logging Libraries Impacting Commvault Products
+CVE-2021-44228, CVE-2021-45046, CVE-2021-45105, CVE-2021-4104, CVE-2021-44832
+Authentication Bypass Vulnerabilities on CVWebService Endpoint
+Apache Shiro Spring Boot Improper Authentication
+Spring Expression DoS Vulnerability
+Vulnerability with Carbon Black Software
+Commvault Ransomware Protection Is Safe from RIPlace
+Security Vulnerability With MongoDB Versions

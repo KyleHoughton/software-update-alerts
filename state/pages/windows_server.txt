@@ -1,0 +1,42 @@
+Table of contents Exit editor mode
+Ask Learn Ask Learn
+Reading mode Table of contents Read in English Add Add to Plans Edit Copy Markdown Print
+Access to this page requires authorization. You can try signing in or changing directories.
+Access to this page requires authorization. You can try changing directories.
+Windows Server release information
+Summarize this article for me
+Windows Server has two primary release channels: the Long-Term Servicing Channel (LTSC) and the Annual Channel (AC). The LTSC provides a longer-term option focusing on a traditional lifecycle of security and quality updates. The AC provides more frequent releases, focusing on containers and microservices, so you can take advantage of innovation more quickly.
+Windows Server 2025 is the current LTSC release. Windows Server, version 23H2 is the latest AC release. The focus on virtualization, container, and microservice innovation continues with Azure Stack HCI, Windows containers, and AKS on Azure Stack HCI.
+If you are an IT administrator and want to programmatically get information from this page, use the Windows Updates API in Microsoft Graph.
+Windows Server major versions by servicing option
+(All dates are listed in ISO 8601 format: YYYY-MM-DD)
+Windows Server versionServicing optionEditionsAvailability dateMainstream support end dateExtended support end dateLatest update for ESULatest revision dateLatest build
+Windows Server 2025
+Long-Term Servicing Channel (LTSC)
+Datacenter, Standard
+Windows Server 2022
+Windows Server 2019 (version 1809)
+Windows Server 2016 (version 1607)
+Long-Term Servicing Branch (LTSB)
+Datacenter, Essentials, Standard
+Windows Server is governed by the Fixed Lifecycle Policy. See the Windows Lifecycle FAQ and Comparison of servicing channels for details regarding servicing requirements and other important information. To learn more about Windows Serverâs Lifecycle Policy, see a Windows Server Releases.
+Windows Server release history
+The table below shows the history of all monthly security and non-security preview updates released for supported versions of Windows Server in the Long-Term Servicing Channel.
+Note that the Update type column references each monthly update by the year and the month of its release, followed by a letter indicating the week of the month (B is the second week of the month; D is the fourth week of the month). Out-of-band updates are referenced as OOB. This shorthand notation aligns with what you see in Microsoft Intune. For more information, see Type of update releases.
+Release notes for Windows Server are available on Windows Server 2025 update history, Windows Server 2022 update history, Windows Server 2019 update history, and Windows Server 2016 update history.
+Windows Server 2025 (OS build 26100)
+Servicing optionUpdate typeAvailability dateBuildKB article
+Windows Server 2022 (OS build 20348)
+Windows Server 2019 (OS build 17763)
+Windows Server 2016 (OS build 14393) - End of updates
+Windows Server hotpatch calendar
+View a calendar of hotpatch updates for Windows Server 2025 and Windows Server 2022. With hotpatching, devices receive a baseline cumulative update the first month of each quarter in the calendar year. A restart is required to install that baseline update. During the next two months, devices receive a hotpatch update, which includes only security updates and can be installed without a restart.
+For details on what is included in each update, see Release notes for Hotpatch on Windows Server 2025 Datacenter Azure Edition.
+Calendar year 2026
+MonthUpdate typeTypeAvailability dateBuildKB article
+Baseline (Restart)
+Calendar year 2025
+Calendar year 2024
+For details on what is included in each update, see Release notes for Hotpatch in Azure Automanage for Windows Server 2022.
+Additional resources
+Last updated on 2026-11-19

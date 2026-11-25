@@ -1,0 +1,7 @@
+security-advisory
+Topic Replies Views Activity
+ADV-2024-001 - Reflected Cross-site Scripting in Netwrix Password Manager
+General Security Information
+ADV-2022-001 - Netwrix Statement on CVE-2022-22965, the "Spring4shell" vulnerability
+ADV-2021-003 - Netwrix Statement on CVE-2021-44228, the Apache Log4j Vulnerability
+December 13, 2021

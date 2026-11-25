@@ -1,0 +1,115 @@
+Skip to Main Content
+Java4Shell & NGINX2Root: Find exposures, monitor post-exploit activity, and remediate faster with CrowdStrike guidance. Learn more
+Experienced a breach?
+Latest Innovations
+Cross-Domain Detection & Response
+Endpoint Security The leader in EPP and EDR, built to secure the agentic endpoint.
+Next-Gen Identity Security Continuous Identity Security for human, non-human and AI identities.
+Cloud Security The most complete CNAPP with unified agent and agentless protection, from code to cloud.
+SaaS Security Leading SaaS Security (SSPM) that delivers deep visibility into identities and misconfigurations.
+AI Detection & Response Secure AI adoption and development, from agents to models to prompts, across endpoints, cloud, and SaaS.
+AI Observability Evaluate agents pre-deployment then observe their behavior and enforce accountability in production.
+Seraphic Enterprise Browser Secure the modern workforce — protecting users, data and AI in the browser.
+Data Security Discover sensitive data, track it in real time, and stop data theft before it becomes a breach
+Next-Gen SIEM Consolidate siloed security tools and data in the world's only AI-native SOC platform.
+Agentic SOAR Orchestrate agents, workflows and automation across your security ecosystem.
+Charlotte AI Accelerate outcomes with autonomous intelligence fueled by world-class expertise.
+Data Pipeline Management Accelerate your agentic SOC transformation with clean, high-quality, real-time data.
+Continuous Threat and Exposure Management
+Threat Intelligence & Hunting The leader in cyber threat intelligence, backed by world-class research and elite threat hunting.
+Exposure Management Unified exposure management with complete attack surface visibility and AI-powered vulnerability management.
+IT Automation Unify security and IT on one platform, with one agent and console to reduce complexity and cost.
+XIoT Security Complete visibility and protection for mission-critical XIoT assets.
+Managed Services
+Falcon Complete Stop breaches across the entire attack surface with elite 24/7 managed detection and response (MDR).
+AI Security Services
+Frontier AI Readiness and Resilience Service Reduce exploitable risk with ongoing scans, expert prioritization, and guided remediation.
+Shadow AI Visibility Service Discover hidden AI tools, activity, and agents across endpoint, cloud, and SaaS.
+AI Security Services Secure AI systems and operationalize AI in the SOC with CrowdStrike Services.
+Project QuiltWorks The industry coalition mobilizing to close the frontier AI vulnerability gap at scale.
+Professional Services
+Incident Response 24/7 elite incident response to contain threats, restore order and mitigate breach impact.
+Cybersecurity Consulting Mature your cybersecurity program and mitigate technical risk.
+Platform Services Fully operationalize the Falcon platform and accelerate the time to ROI.
+Insider Risk Services Identify, contain, and prevent insider threats with advanced intelligence and expert-led services.
+Services Retainer On-demand access to CrowdStrike expertise, from rapid response to long term resilience.
+AI Detection & Response Detect, investigate, and stop threats to AI systems with unified, runtime security.
+Agent Security Secure AI agents across the agentic lifecycle, from development to adoption to runtime.
+Supply Chain Security Stop supply chain threats as coding agents introduce third-party packages at scale.
+Automated AI Security Testing Test every AI model, application, and agent for security weaknesses before deployment.
+Agentic SOC Transformation Transform security operations with unified data and agentic workflows that unlock machine-speed responses.
+Frontier AI Readiness & Resilience Reduce frontier AI-driven risk as the time between patch and exploit continues to collapse.
+Agentic Adversary Emulation Red team your environment to simulate real-world attacks and validate your defenses.
+Cross-Domain Attack Protection Detect and stop advanced threats with unified protection across security domains.
+Ransomware Protection Proven ransomware protection designed to keep adversaries at bay and safeguard your data.
+Defender Environment Protection Extend the power of agentic security across your defender stack.
+Federal Government
+Department of War
+State & Local Government
+Financial Services
+Election Security
+Cyber SuperIntelligence Lab
+Cyber SI Research Hub
+Why CrowdStrike
+Industry Recognition
+Customer Stories
+CrowdStrike vs The Competition
+Compliance & Certifications
+2026 Global Threat Report
+2026 Threat Hunting Report New
+AI Security Hub
+Training & Education
+CrowdStrike University
+Cybersecurity 101
+Hands-On Workshops
+Tech Hub Product Videos
+Fal.Con Las Vegas
+Resource Library
+CrowdCast Webinars
+Falcon Go Simplified cybersecurity — install AI-powered antivirus to protect your business from ransomware and breaches.
+Falcon Pro Comprehensive cybersecurity — deploy rapidly with simplified policy enforcement & comprehensive cybersecurity solutions.
+Falcon Enterprise Unified endpoint security — unify security with AI-powered endpoint protection and real-time threat detection.
+Upcoming events
+Sale | Nov. 23 - Dec. 4
+Black Friday / Cyber Monday
+50% off Falcon Go, Pro, or Enterprise.
+Find a city near you
+View all events
+There's nothing in your cart
+Explore products
+per endpoint / per year
+per endpoint / per month
+View Order{cartSize}
+Continue Shopping
+Start free trial
+Security Advisories
+This page contains information regarding security vulnerabilities that may impact CrowdStrike products.
+Vulnerability Affecting Office Macro Removal in CrowdStrike Falcon Sensor for Windows
+CrowdStrike LogScale Unauthenticated Path Traversal
+CVE-2025-42701, CVE-2025-42706
+Issues Affecting CrowdStrike Falcon Sensor for Windows
+CrowdStrike Falcon Sensor for Linux TLS Issue
+Falcon Sensor for Windows Uninstall with Elevated Privileges
+Try CrowdStrike free for 15 days
+Black Friday / Cyber Monday Deal
+Free Trial Guide
+CrowdStrike Marketplace
+Executive Leadership
+Board of Directors
+Investor Relations
+CrowdStrike Racing
+Cyber Superintelligence Lab
+Partner Programs
+Service Providers
+Strategic Technology
+Channel & Distributors
+Partner Locator
+Become a Partner
+Project QuiltWorks
+Existing Customers
+Developer Portal
+CrowdStrike Community
+Call 1-888-512-8906 (US)
+Experienced a Breach?
+Copyright © {currentYear}
+Your Privacy Choices
