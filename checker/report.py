@@ -32,6 +32,9 @@ INLINE_IMAGES = {
     # Logo with the navy background baked in: mail apps never recolour images, so it stays
     # visible even when a dark mode recolours or strips the header background.
     "symbiosys-logo": ASSETS / "logo-email-navy.png",
+    # Daily report header (title and logo on navy) as one image: Outlook's dark mode
+    # recolours HTML backgrounds and text but not images. Made with tools/render_header.js.
+    "header-daily": ASSETS / "header-daily.png",
     "icon-warning": ASSETS / "icons" / "warning.png",
     "icon-cyber": ASSETS / "icons" / "cyber.png",
     "icon-update": ASSETS / "icons" / "clouddeploy.png",
@@ -40,6 +43,7 @@ INLINE_IMAGES = {
 # Kept for backwards compatibility with main.py
 LOGO_CID = "symbiosys-logo"
 LOGO_FILE = INLINE_IMAGES[LOGO_CID]
+HEADER_CID = "header-daily"
 
 # Brand palette
 NAVY = "#071320"       # Deep Navy
@@ -232,10 +236,10 @@ def _section(n: int, label: str, headline: str, intro: str, icon_cid: str, img,
            f'<th {th} width="16%">{"Severity" if kind == "security" else "Status"}</th><th {th} width="12%">Date</th></tr>']
     for vendor in order:
         items = groups[vendor]
-        out.append(f'<tr><td class="sym-navy" colspan="4" style="padding:8px 12px;background:{NAVY};font-family:{TEXT_FONT};'
-                   f'font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:{OFFWHITE}">'
+        out.append(f'<tr><td colspan="4" style="padding:8px 12px;background:{OFFWHITE};border-top:2px solid {NAVY};font-family:{TEXT_FONT};'
+                   f'font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:{NAVY}">'
                    f'<span style="color:{ORANGE}">&#9632;</span>&nbsp; {_e(vendor)}'
-                   f'<span style="font-weight:400;color:{SILVER}"> &nbsp;&middot;&nbsp; {len(items)} item{"s" if len(items) != 1 else ""}</span></td></tr>')
+                   f'<span style="font-weight:400;color:{TEXT_2}"> &nbsp;&middot;&nbsp; {len(items)} item{"s" if len(items) != 1 else ""}</span></td></tr>')
         for s, i in items:
             title = (f'<a href="{_e(i["link"])}" style="color:{NAVY};text-decoration:none;font-weight:700">{_e(i["title"])}</a>'
                      if i.get("link") else f'<span style="font-weight:700">{_e(i["title"])}</span>')
@@ -352,8 +356,8 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
 
     sample_banner = (f'<tr><td style="padding:12px 40px 0">'
                      f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
-                     f'style="background:{NAVY};border-radius:4px"><tr><td style="padding:9px 14px;font-family:{TEXT_FONT};'
-                     f'font-size:12px;color:{OFFWHITE}"><b style="color:{ORANGE};letter-spacing:2px">SAMPLE</b> &nbsp; '
+                     f'style="background:{WHITE};border:1px solid {LINE};border-left:3px solid {ORANGE};border-radius:4px"><tr><td style="padding:9px 14px;font-family:{TEXT_FONT};'
+                     f'font-size:12px;color:{NAVY}"><b style="letter-spacing:2px">SAMPLE</b> &nbsp; '
                      f'Built from the latest items in each source to preview the format. Live reports list only items new since the previous check.'
                      f'</td></tr></table></td></tr>' if sample else "")
 
@@ -393,22 +397,14 @@ def build_report(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#dcd9d0"><tr><td align="center" style="padding:24px 10px">
 <table role="presentation" width="820" cellpadding="0" cellspacing="0" style="max-width:820px;width:100%;background:{OFFWHITE}">
 
-  <!-- Cover header: Deep Navy, white logo top right -->
-  <tr><td class="sym-navy" style="background:{NAVY};padding:30px 40px 34px">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-      <td valign="top">{_label("Security intelligence &middot; Daily brief", SILVER)}</td>
-      <td valign="top" align="right" width="190"><img src="{img(LOGO_CID)}" width="170" height="45" alt="SYMBIOSYS" style="display:block;width:170px;height:45px;border:0;background:{NAVY};color:{OFFWHITE};font-family:{HEAD_FONT};font-size:22px;letter-spacing:3px;line-height:45px;text-align:right"></td>
-    </tr>
-    <tr><td colspan="2" style="padding-top:18px">
-      <div style="font-family:{HEAD_FONT};font-size:34px;font-weight:700;color:{OFFWHITE};text-transform:uppercase;line-height:1.05">
-        Software updates &amp;<br><span class="sym-orange" style="color:{ORANGE}">vulnerabilities</span> report</div>
-      <div style="font-family:{TEXT_FONT};font-size:14px;color:{OFFWHITE};margin-top:10px">New releases, advisories and exploited vulnerabilities across the platforms Symbiosys supports.</div>
-    </td></tr></table>
+  <!-- Cover header: one image (navy, title and logo), so Outlook's dark mode can't recolour it -->
+  <tr><td class="sym-navy" style="background:{NAVY};padding:0;font-size:0;line-height:0">
+    <img src="{img(HEADER_CID)}" width="820" alt="SYMBIOSYS | SOFTWARE UPDATES &amp; VULNERABILITIES REPORT" style="display:block;width:100%;max-width:820px;height:auto;border:0;background:{NAVY};color:{OFFWHITE};font-family:{HEAD_FONT};font-size:24px;line-height:1.4;text-align:left">
   </td></tr>
-  <tr><td class="sym-navy" style="background:{NAVY};padding:0 40px 16px">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #1d2a3d"><tr>
-      <td style="padding-top:12px;font-family:{TEXT_FONT};font-size:10px;letter-spacing:3px;color:{SILVER}">{date_long} &nbsp;&middot;&nbsp; {time_str}</td>
-      <td align="right" style="padding-top:12px;font-family:{TEXT_FONT};font-size:10px;letter-spacing:3px;color:{ORANGE}">{ref}</td>
+  <tr><td style="padding:14px 40px 0">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid {LINE}"><tr>
+      <td style="padding-bottom:12px;font-family:{TEXT_FONT};font-size:10px;letter-spacing:3px;color:{TEXT_2}">{date_long} &nbsp;&middot;&nbsp; {time_str}</td>
+      <td align="right" style="padding-bottom:12px;font-family:{TEXT_FONT};font-size:10px;letter-spacing:3px;color:{NAVY};font-weight:700">{ref}</td>
     </tr></table>
   </td></tr>
   {sample_banner}
