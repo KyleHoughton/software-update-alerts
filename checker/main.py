@@ -550,7 +550,8 @@ def main() -> int:
         send_email(subject, body_html, body_text)
         return 0
 
-    scheduled = os.environ.get("GITHUB_EVENT_NAME") == "schedule"
+    # A manual "send report" run behaves exactly like a scheduled one (always emails).
+    scheduled = os.environ.get("GITHUB_EVENT_NAME") == "schedule" or os.environ.get("SEND_REPORT") == "true"
     if new or broken or test_email or scheduled:
         subject, body_html, body_text = build_email(new, broken)
         if test_email and not new and not broken and not scheduled:
