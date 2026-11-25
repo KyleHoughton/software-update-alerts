@@ -1,546 +1,2365 @@
- <!DOCTYPE html>
-		<html
-			class="layout layout-single    notfound  default-focus"
-			lang="en-us"
-			dir="ltr"
-			data-authenticated="false"
-			data-auth-status-determined="false"
-			data-target="docs"
-			x-ms-format-detection="none"
-		>
-			
-		<head>
-			<title>404 - Content not found</title>
-			<meta charset="utf-8" />
-			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-			<meta name="color-scheme" content="light dark" />
 
-			<meta name="description" content="The page you are looking for does not exist." />
-			 
 
-			<!-- Non-customizable open graph and sharing-related metadata -->
-			<meta name="twitter:card" content="summary_large_image" />
-			<meta name="twitter:site" content="@MicrosoftLearn" />
-			<meta property="og:type" content="website" />
-			<meta property="og:image:alt" content="Microsoft Learn" />
-			<meta property="og:image" content="https://learn.microsoft.com/en-us/media/open-graph-image.png" />
-			<!-- Page specific open graph and sharing-related metadata -->
-			<meta property="og:title" content="404 - Content not found" />
-			
-			<meta property="og:description" content="The page you are looking for does not exist." />
-			 
-			<meta name="locale" content="en-us" />
-			 
-			
-
-			<meta name="page_type" content="Docs" />
-
-			<!--page specific meta tags-->
-			<meta name="robots" content="NOINDEX, NOFOLLOW" />
-
-			<!-- custom meta tags -->
-			 
-
-			<!-- Apply persisted/system theme before first paint to prevent wrong-theme flash when scripts are deferred. -->
-			<script id="theme-preference">
-				(function () {
-			try {
-				var stored = localStorage.getItem('theme');
-				var theme = /^(light|dark|high-contrast)$/.test(stored)
-					? stored
-					: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-				document.documentElement.classList.add('theme-' + theme);
-			} catch (e) {}
-		})();;
-			</script>
-
-			<script id="atlas-layout-preferences">
-				(function () {
-			try {
-				var state = JSON.parse(localStorage.getItem('atlas-layout-preferences') || '{}');
-				var view = state["NotFound"] || {};
-				var excludesKey = "";
-				var blocked = {};
-				if (excludesKey) {
-					var exclusions = JSON.parse(localStorage.getItem('atlas-layout-exclusions') || '{}');
-					if (Object.prototype.hasOwnProperty.call(exclusions, excludesKey)) {
-						var scoped = exclusions[excludesKey];
-						if (scoped) {
-							if (typeof scoped === 'object') blocked = scoped;
-						}
-					}
-				}
-				var html = document.documentElement;
-				for (var c in view) {
-					if (Object.prototype.hasOwnProperty.call(blocked, c)) continue;
-					if (view[c]) html.classList.add(c);
-					else html.classList.remove(c);
-				}
-			} catch (e) {}
-		})();;
-			</script>
-
-			<!-- assets and js globals -->
-			
-			<link rel="stylesheet" href="/static/assets/0.4.03603.8379-b7d5d6ac/styles/site.css" />
-			
-			<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
-			<!-- Keep this URL in sync with oneDSScriptSelector in instrumentation/one-ds.ts. -->
-			<script async src="https://js.monitor.azure.com/scripts/c/ms.jsll-4.min.js"></script>
-			
-
-			<!-- msdocs global object -->
-			<script id="msdocs-script">
-		var msDocs = {
-  "environment": {
-    "accessLevel": "online",
-    "azurePortalHostname": "portal.azure.com",
-    "reviewFeatures": false,
-    "supportLevel": "production",
-    "systemContent": true,
-    "siteName": "learn",
-    "legacyHosting": false
-  },
-  "data": {
-    "contentLocale": "en-us",
-    "contentDir": "ltr",
-    "userLocale": "en-us",
-    "userDir": "ltr",
-    "pageTemplate": "NotFound",
-    "layoutStateStorageKey": "NotFound",
-    "brand": "",
-    "context": {},
-    "standardFeedback": false,
-    "showFeedbackReport": false,
-    "feedbackHelpLinkType": "",
-    "feedbackHelpLinkUrl": "",
-    "feedbackSystem": "",
-    "feedbackGitHubRepo": "",
-    "feedbackProductUrl": "",
-    "extendBreadcrumb": false,
-    "isEditDisplayable": false,
-    "isPrivateUnauthorized": false,
-    "hideViewSource": false,
-    "isPermissioned": false,
-    "hasRecommendations": false
-  },
-  "functions": {}
-};;
-	</script>
-
-			<!-- base scripts, msdocs global should be before this -->
-			<script
-				src="/static/assets/0.4.03603.8379-b7d5d6ac/scripts/en-us/index-docs.js"
-				async
-			></script>
-			
-
-			<!-- json-ld -->
-			
-		<script >bazadebezolkohpepadr="1038149824"</script><script type="text/javascript" src="https://learn.microsoft.com/akam/13/3de0e95b"  defer></script></head>
+<!DOCTYPE html>
+<html lang="en-US" dir=ltr>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Cumulative Update 28 for SQL Server 2022 (KB5125472) - SQL Server | Microsoft Support</title>
 	
-			<body
-				id="body"
-				data-bi-name="body"
-				class="layout-body "
-				lang="en-us"
-				dir="ltr"
-			>
-				<header class="layout-body-header background-color-body-medium">
-		<div class="header-holder has-default-focus">
-			
-		<a
-			href="#main"
-			
-			style="z-index: 1070"
-			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
-			
-		>
-			Skip to main content
-		</a>
+	<meta name="audience" content="itpro" />
+<meta name="author" content="aartig13" />
+<meta name="awa-articleGuid" content="af44727b-c40b-498f-89a1-0f716ea40103" />
+<meta name="awa-kb_id" content="5125472" />
+<meta name="depot_name" content="Learn.EndUser-Servicing-SQL" />
+<meta name="description" content="This article contains the summary, known issues, improvements, fixes, and other information for SQL Server 2022 Cumulative Update 28 (KB5125472)." />
+<meta name="disable_toc_fallback" content="true" />
+<meta name="document_id" content="a957a3f6-912f-defc-94ea-8f4e70548f33" />
+<meta name="document_version_independent_id" content="a957a3f6-912f-defc-94ea-8f4e70548f33" />
+<meta name="feedback_help_link_type" content="" />
+<meta name="feedback_help_link_url" content="" />
+<meta name="feedback_product_url" content="https://feedback.azure.com/d365community/forum/04fe6ee0-3b25-ec11-b6e6-000d3a4f0da0" />
+<meta name="feedback_system" content="Standard" />
+<meta name="git_commit_id" content="4124c69609176dba087882292b58739d6eba5099" />
+<meta name="gitcommit" content="https://github.com/MicrosoftDocs/enduser-servicing-sql-pr/blob/4124c69609176dba087882292b58739d6eba5099/SQL/sql-server-2022/cumulative-update/kb5125472-cu28.md" />
+<meta name="locale" content="en-us" />
+<meta name="manager" content="dcscontentpm" />
+<meta name="ms.author" content="aartigoyle" />
+<meta name="ms.custom" content="sap:Installation, Patching, Upgrade, Uninstall, evergreen, KB5125472" />
+<meta name="ms.date" content="11/18/2026" />
+<meta name="ms.reviewer" content="v-shaywood" />
+<meta name="ms.service" content="sql" />
+<meta name="ms.topic" content="release-notes" />
+<meta name="ms.update-cycle" content="1095-days" />
+<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/enduser-servicing-sql-pr/blob/live/SQL/sql-server-2022/cumulative-update/kb5125472-cu28.md" />
+<meta name="page_type" content="conceptual" />
+<meta name="permissioned-type" content="public" />
+<meta name="schema" content="Conceptual" />
+<meta name="site_name" content="SMC" />
+<meta name="toc_rel" content="toc.json" />
+<meta name="uhfHeaderId" content="MSDocsHeader-DocsSQL" />
+<meta name="updated_at" content="2026-11-18 06:37 AM" />
+<meta name="word_count" content="3339" />
+
+	
+	<link rel="canonical" href="https://support.microsoft.com/en-us/servicing/sql/sql-server-2022/cumulative-update/kb5125472-cu28" />
+
 	
 
-			<div hidden id="cookie-consent-holder" data-test-id="cookie-consent-container"></div>
-			<!-- Unsupported browser warning -->
-			<div
-				id="unsupported-browser"
-				style="background-color: white; color: black; padding: 16px; border-bottom: 1px solid grey;"
-				hidden
-			>
-				<div style="max-width: 800px; margin: 0 auto;">
-					<p style="font-size: 24px">This browser is no longer supported.</p>
-					<p style="font-size: 16px; margin-top: 16px;">
-						Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
-					</p>
-					<div style="margin-top: 12px;">
-						<a
-							href="https://go.microsoft.com/fwlink/p/?LinkID=2092881 "
-							style="background-color: #0078d4; border: 1px solid #0078d4; color: white; padding: 6px 12px; border-radius: 2px; display: inline-block;"
-						>
-							Download Microsoft Edge
-						</a>
-						<a
-							href="https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge"
-							style="background-color: white; padding: 6px 12px; border: 1px solid #505050; color: #171717; border-radius: 2px; display: inline-block;"
-						>
-							More info about Internet Explorer and Microsoft Edge
-						</a>
+
+<meta name="awa-env" content="Production" />
+<meta name="awa-market" content="en-US" />
+<meta name="awa-contentlang" content="en" />
+<meta name="awa-userFlightingId" content="fe654128-5999-4a77-aa3d-95f56b187767" />
+<meta name="awa-expid" content="P-R-1753027-1-1;P-D-1087983-1-1;P-E-1830045-2-3;P-E-1693585-C1-3;P-E-1661482-2-3;P-E-1660511-C1-3;P-E-1656596-C1-5;P-E-1551018-2-8;P-E-1585233-C1-3;P-E-1560750-C1-7;P-E-1554013-C1-6;P-E-1536917-C1-5;P-E-1526785-C1-5;P-E-1260007-C1-3;P-E-1247614-C1-8;P-E-1046152-2-3;P-R-1545158-1-4;P-R-1426254-2-6;P-R-1392118-1-2;P-R-1245128-2-4;P-R-1235984-2-3;P-R-1211158-1-4;P-R-1150391-2-8;P-R-1150395-2-8;P-R-1150399-2-8;P-R-1150396-2-8;P-R-1150394-2-8;P-R-1150390-2-8;P-R-1150386-2-8;P-R-1146801-1-11;P-R-1141562-1-2;P-R-1141283-2-9;P-R-1136354-4-8;P-R-1119659-1-16;P-R-1119437-1-17;P-R-1116805-2-18;P-R-1116803-2-20;P-R-1114100-1-2;P-R-1100996-2-14;P-R-1096341-2-6;P-R-1089468-1-2;P-R-1085248-1-2;P-R-1072011-6-8;P-R-1033854-4-6;P-R-1029969-4-4;P-R-1020735-1-10;P-R-1018544-4-7;P-R-1009708-2-9;P-R-1005895-2-11;P-R-116475-1-23;P-R-113175-4-7;P-R-113174-1-2;P-R-110379-1-7;P-R-107838-1-7;P-R-106524-1-3;P-R-103787-2-5;P-R-101783-1-2;P-R-97577-1-5;P-R-97457-1-10;P-R-94390-1-2;P-R-94360-10-25;P-R-93416-1-3;P-R-90963-2-2;P-R-85265-4-8;P-R-73296-2-15" />
+<meta name="awa-irisId" />
+<meta name="awa-origindatacenter" content="East US" />
+<meta name="awa-variationid" content="ECS" />
+<meta name="awa-prdct" content="office.com" />
+<meta name="awa-stv" content="4.0.0-a351f5e86ccb28e7773ed3ca5b10e497eae6fd96&#x2B;a351f5e86ccb28e7773ed3ca5b10e497eae6fd96" />
+
+
+ 
+	<meta name="awa-title" content="Cumulative Update 28 for SQL Server 2022 (KB5125472) - SQL Server | Microsoft Support" />
+	<meta name="awa-selfHelpExp" content="uhflandingbanner_m365" />
+	<meta name="awa-dataBoundary" content="WW" />
+	
+	
+		<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css?v=2FMn2Zx6PuH5tdBQDRNwrOo60ts5wWPC9R8jK67b3t4" crossorigin="anonymous" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" />
+	
+	<link rel="stylesheet" href="/css/sitewide/sitewide.css?v=MuqrNC72E8G9Js96VBBbw0VGWXMblTEtdcWprfQUH4Q" />
+	<link rel="stylesheet" href="/css/promotionbanner/promotion-banner.css?v=cAmflE3c6Gw7niTOiMPEie9MY87yDE2mSl3DO7_jZRI" />
+	<link rel="stylesheet" href="/css/glyphs/glyphs.css?v=VOnvhT441Pay0WAKH5gdcXXigXpiuNbaQcI9DgXyoDE" />
+	<link rel="stylesheet" href="/css/fonts/site-fonts.css?v=XWcxZPSEmN3tnHWAVMOFsAlPJq7aug49fUGb8saTNjw" />
+	<link rel="stylesheet" href="/css/MeControlCallout/teaching-callout.css?v=690pjf05o15fVEafEpUwgaF8vqVfOkp5wP1Jl9gE99U" />
+	
+	<link rel="stylesheet" href="/css/Learn/learn.min.css?v=jKbsfMfDZrnrORh3MG9O6hzMH9epKo8-84ogTW0N0rU" />
+	
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+		
+
+
+	
+        <link rel="stylesheet" href="https://www.microsoft.com/onerfstatics/marketingsites-wcus-prod/west-european/shell/_scrf/css/themes=default.device=uplevel_web_pc/63-57d110/c9-be0100/a6-e969ef/43-9f2e7c/82-8b5456/a0-5d3913/4f-460e79/ae-f1ac0c?ver=2.0&amp;_cf=02242021_3231" type="text/css" media="all" />
+    
+</head>
+<body class="article">
+	<div id="bodyWrapper">
+
+            <div id="headerArea" class="uhf"  data-m='{"cN":"headerArea","cT":"Area_coreuiArea","id":"a1Body","sN":1,"aN":"Body"}'>
+                <div id="headerRegion"      data-region-key="headerregion" data-m='{"cN":"headerRegion","cT":"Region_coreui-region","id":"r1a1","sN":1,"aN":"a1"}' >
+
+    <div  id="headerUniversalHeader" data-m='{"cN":"headerUniversalHeader","cT":"Module_coreui-universalheader","id":"m1r1a1","sN":1,"aN":"r1a1"}'  data-module-id="Category|headerRegion|coreui-region|headerUniversalHeader|coreui-universalheader">
+        
+
+
+
+
+
+
+        <a id="uhfSkipToMain" class="m-skip-to-main" href="javascript:void(0)" data-href="#supArticleContent" tabindex="0" data-m='{"cN":"Skip to content_nonnav","id":"nn1m1r1a1","sN":1,"aN":"m1r1a1"}'>Skip to main content</a>
+
+
+<header class="c-uhfh context-uhf no-js c-sgl-stck c-category-header " itemscope="itemscope" data-header-footprint="/SMCConvergence/ContextualHeader-Site, fromService: True"   data-magict="true"   itemtype="http://schema.org/Organization">
+    <div class="theme-light js-global-head f-closed  global-head-cont" data-m='{"cN":"Universal Header_cont","cT":"Container","id":"c2m1r1a1","sN":2,"aN":"m1r1a1"}'>
+        <div class="c-uhfh-gcontainer-st">
+            <button type="button" class="c-action-trigger c-glyph glyph-global-nav-button" aria-label="All Microsoft expand to see list of Microsoft products and services" initialState-label="All Microsoft expand to see list of Microsoft products and services" toggleState-label="Close All Microsoft list" aria-expanded="false" data-m='{"cN":"Mobile menu button_nonnav","id":"nn1c2m1r1a1","sN":1,"aN":"c2m1r1a1"}'></button>
+            <button type="button" class="c-action-trigger c-glyph glyph-arrow-htmllegacy c-close-search" aria-label="Close search" aria-expanded="false" data-m='{"cN":"Close Search_nonnav","id":"nn2c2m1r1a1","sN":2,"aN":"c2m1r1a1"}'></button>
+                    <a id="uhfLogo" class="c-logo c-sgl-stk-uhfLogo" itemprop="url" href="https://www.microsoft.com" aria-label="Microsoft" data-m='{"cN":"GlobalNav_Logo_cont","cT":"Container","id":"c3c2m1r1a1","sN":3,"aN":"c2m1r1a1"}'>
+                        <img alt="" itemprop="logo" class="c-image" src="https://uhf.microsoft.com/images/microsoft/RE1Mu3b.png" role="presentation" aria-hidden="true" />
+                        <span itemprop="name" role="presentation" aria-hidden="true">Microsoft</span>
+                    </a>
+            <div class="f-mobile-title">
+                <button type="button" class="c-action-trigger c-glyph glyph-chevron-left" aria-label="See more menu options" data-m='{"cN":"Mobile back button_nonnav","id":"nn4c2m1r1a1","sN":4,"aN":"c2m1r1a1"}'></button>
+                <span data-global-title="Microsoft home" class="js-mobile-title">Support</span>
+                <button type="button" class="c-action-trigger c-glyph glyph-chevron-right" aria-label="See more menu options" data-m='{"cN":"Mobile forward button_nonnav","id":"nn5c2m1r1a1","sN":5,"aN":"c2m1r1a1"}'></button>
+            </div>
+                    <div class="c-show-pipe x-hidden-vp-mobile-st">
+                        <a id="uhfCatLogo" class="c-logo c-cat-logo" href="https://support.microsoft.com/en-us" aria-label="Support" itemprop="url" data-m='{"cN":"CatNav_Support_nav","id":"n6c2m1r1a1","sN":6,"aN":"c2m1r1a1"}'>
+                                <span>Support</span>
+                        </a>
+                    </div>
+                <div class="cat-logo-button-cont x-hidden">
+                        <button type="button" id="uhfCatLogoButton" class="c-cat-logo-button x-hidden" aria-expanded="false" aria-label="Support" data-m='{"cN":"Support_nonnav","id":"nn7c2m1r1a1","sN":7,"aN":"c2m1r1a1"}'>
+                            Support
+                        </button>
+                </div>
+
+
+
+                    <nav id="uhf-g-nav" aria-label="Contextual menu" class="c-uhfh-gnav" data-m='{"cN":"Category nav_cont","cT":"Container","id":"c8c2m1r1a1","sN":8,"aN":"c2m1r1a1"}'>
+            <ul class="js-paddle-items">
+                    <li class="single-link js-nav-menu x-hidden-none-mobile-vp uhf-menu-item">
+                        <a class="c-uhf-nav-link" href="https://support.microsoft.com/en-us" data-m='{"cN":"CatNav_Home_nav","id":"n1c8c2m1r1a1","sN":1,"aN":"c8c2m1r1a1"}' > Home </a>
+                    </li>
+                                        <li class="single-link js-nav-menu uhf-menu-item">
+                            <a id="c-shellmenu_0" class="c-uhf-nav-link" href="https://www.microsoft.com/microsoft-365?ocid=cmmttvzgpuy" data-m='{"id":"n2c8c2m1r1a1","sN":2,"aN":"c8c2m1r1a1"}'>Microsoft 365</a>
+                        </li>
+                        <li class="single-link js-nav-menu uhf-menu-item">
+                            <a id="c-shellmenu_1" class="c-uhf-nav-link" href="https://www.microsoft.com/microsoft-365/microsoft-office?ocid=cmml7tr0rib" data-m='{"id":"n3c8c2m1r1a1","sN":3,"aN":"c8c2m1r1a1"}'>Office</a>
+                        </li>
+                        <li class="nested-menu uhf-menu-item">
+                            <div class="c-uhf-menu js-nav-menu">
+                                <button type="button" id="c-shellmenu_2"  aria-expanded="false" data-m='{"id":"nn4c8c2m1r1a1","sN":4,"aN":"c8c2m1r1a1"}'>Products</button>
+
+                                <ul class="" data-class-idn="" aria-hidden="true" data-m='{"cT":"Container","id":"c5c8c2m1r1a1","sN":5,"aN":"c8c2m1r1a1"}'>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c1c5c8c2m1r1a1","sN":1,"aN":"c5c8c2m1r1a1"}'>
+            <a id="c-shellmenu_3" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/microsoft-365/" data-m='{"id":"n1c1c5c8c2m1r1a1","sN":1,"aN":"c1c5c8c2m1r1a1"}'>Microsoft 365</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c2c5c8c2m1r1a1","sN":2,"aN":"c5c8c2m1r1a1"}'>
+            <a id="c-shellmenu_4" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/outlook/" data-m='{"id":"n1c2c5c8c2m1r1a1","sN":1,"aN":"c2c5c8c2m1r1a1"}'>Outlook</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c3c5c8c2m1r1a1","sN":3,"aN":"c5c8c2m1r1a1"}'>
+            <a id="c-shellmenu_5" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/teams/" data-m='{"id":"n1c3c5c8c2m1r1a1","sN":1,"aN":"c3c5c8c2m1r1a1"}'>Microsoft Teams</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c4c5c8c2m1r1a1","sN":4,"aN":"c5c8c2m1r1a1"}'>
+            <a id="c-shellmenu_6" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/onedrive/" data-m='{"id":"n1c4c5c8c2m1r1a1","sN":1,"aN":"c4c5c8c2m1r1a1"}'>OneDrive</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c5c5c8c2m1r1a1","sN":5,"aN":"c5c8c2m1r1a1"}'>
+            <a id="c-shellmenu_7" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/microsoft-copilot/" data-m='{"id":"n1c5c5c8c2m1r1a1","sN":1,"aN":"c5c5c8c2m1r1a1"}'>Microsoft Copilot</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c6c5c8c2m1r1a1","sN":6,"aN":"c5c8c2m1r1a1"}'>
+            <a id="c-shellmenu_8" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/onenote/" data-m='{"id":"n1c6c5c8c2m1r1a1","sN":1,"aN":"c6c5c8c2m1r1a1"}'>OneNote</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c7c5c8c2m1r1a1","sN":7,"aN":"c5c8c2m1r1a1"}'>
+            <a id="c-shellmenu_9" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/windows/" data-m='{"id":"n1c7c5c8c2m1r1a1","sN":1,"aN":"c7c5c8c2m1r1a1"}'>Windows</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c8c5c8c2m1r1a1","sN":8,"aN":"c5c8c2m1r1a1"}'>
+            <a id="c-shellmenu_10" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/all-products-list" data-m='{"id":"n1c8c5c8c2m1r1a1","sN":1,"aN":"c8c5c8c2m1r1a1"}'>more ...</a>
+            
+        </li>
+                                                    
+                                </ul>
+                            </div>
+                        </li>                        <li class="nested-menu uhf-menu-item">
+                            <div class="c-uhf-menu js-nav-menu">
+                                <button type="button" id="c-shellmenu_11"  aria-expanded="false" data-m='{"id":"nn6c8c2m1r1a1","sN":6,"aN":"c8c2m1r1a1"}'>Devices</button>
+
+                                <ul class="" data-class-idn="" aria-hidden="true" data-m='{"cT":"Container","id":"c7c8c2m1r1a1","sN":7,"aN":"c8c2m1r1a1"}'>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c1c7c8c2m1r1a1","sN":1,"aN":"c7c8c2m1r1a1"}'>
+            <a id="c-shellmenu_12" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/surface/" data-m='{"id":"n1c1c7c8c2m1r1a1","sN":1,"aN":"c1c7c8c2m1r1a1"}'>Surface</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c2c7c8c2m1r1a1","sN":2,"aN":"c7c8c2m1r1a1"}'>
+            <a id="c-shellmenu_13" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/surface/accessories/pc/" data-m='{"id":"n1c2c7c8c2m1r1a1","sN":1,"aN":"c2c7c8c2m1r1a1"}'>PC Accessories</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c3c7c8c2m1r1a1","sN":3,"aN":"c7c8c2m1r1a1"}'>
+            <a id="c-shellmenu_14" class="js-subm-uhf-nav-link" href="https://support.xbox.com/" data-m='{"id":"n1c3c7c8c2m1r1a1","sN":1,"aN":"c3c7c8c2m1r1a1"}'>Xbox</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c4c7c8c2m1r1a1","sN":4,"aN":"c7c8c2m1r1a1"}'>
+            <a id="c-shellmenu_15" class="js-subm-uhf-nav-link" href="https://support.xbox.com/help/games-apps/my-games-apps/all-about-pc-gaming" data-m='{"id":"n1c4c7c8c2m1r1a1","sN":1,"aN":"c4c7c8c2m1r1a1"}'>PC Gaming</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c5c7c8c2m1r1a1","sN":5,"aN":"c7c8c2m1r1a1"}'>
+            <a id="c-shellmenu_16" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/hololens/" data-m='{"id":"n1c5c7c8c2m1r1a1","sN":1,"aN":"c5c7c8c2m1r1a1"}'>HoloLens</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c6c7c8c2m1r1a1","sN":6,"aN":"c7c8c2m1r1a1"}'>
+            <a id="c-shellmenu_17" class="js-subm-uhf-nav-link" href="https://learn.microsoft.com/surface-hub/" data-m='{"id":"n1c6c7c8c2m1r1a1","sN":1,"aN":"c6c7c8c2m1r1a1"}'>Surface Hub</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c7c7c8c2m1r1a1","sN":7,"aN":"c7c8c2m1r1a1"}'>
+            <a id="c-shellmenu_18" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/surface/hardware-warranty/" data-m='{"id":"n1c7c7c8c2m1r1a1","sN":1,"aN":"c7c7c8c2m1r1a1"}'>Hardware warranties</a>
+            
+        </li>
+                                                    
+                                </ul>
+                            </div>
+                        </li>                        <li class="single-link js-nav-menu uhf-menu-item">
+                            <a id="c-shellmenu_19" class="c-uhf-nav-link" href="https://support.microsoft.com/accounts-billing/" data-m='{"id":"n8c8c2m1r1a1","sN":8,"aN":"c8c2m1r1a1"}'>Account &amp; billing</a>
+                        </li>
+                        <li class="nested-menu uhf-menu-item">
+                            <div class="c-uhf-menu js-nav-menu">
+                                <button type="button" id="c-shellmenu_20"  aria-expanded="false" data-m='{"id":"nn9c8c2m1r1a1","sN":9,"aN":"c8c2m1r1a1"}'>Resources</button>
+
+                                <ul class="" data-class-idn="" aria-hidden="true" data-m='{"cT":"Container","id":"c10c8c2m1r1a1","sN":10,"aN":"c8c2m1r1a1"}'>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c1c10c8c2m1r1a1","sN":1,"aN":"c10c8c2m1r1a1"}'>
+            <a id="c-shellmenu_21" class="js-subm-uhf-nav-link" href="https://learn.microsoft.com/answers/" data-m='{"id":"n1c1c10c8c2m1r1a1","sN":1,"aN":"c1c10c8c2m1r1a1"}'>Community forums</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c2c10c8c2m1r1a1","sN":2,"aN":"c10c8c2m1r1a1"}'>
+            <a id="c-shellmenu_22" class="js-subm-uhf-nav-link" href="https://portal.office.com/AdminPortal#/support" data-m='{"id":"n1c2c10c8c2m1r1a1","sN":1,"aN":"c2c10c8c2m1r1a1"}'>Microsoft 365 Admins</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c3c10c8c2m1r1a1","sN":3,"aN":"c10c8c2m1r1a1"}'>
+            <a id="c-shellmenu_23" class="js-subm-uhf-nav-link" href="https://developer.microsoft.com/" data-m='{"id":"n1c3c10c8c2m1r1a1","sN":1,"aN":"c3c10c8c2m1r1a1"}'>Developer</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c4c10c8c2m1r1a1","sN":4,"aN":"c10c8c2m1r1a1"}'>
+            <a id="c-shellmenu_24" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/education/" data-m='{"id":"n1c4c10c8c2m1r1a1","sN":1,"aN":"c4c10c8c2m1r1a1"}'>Education</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c5c10c8c2m1r1a1","sN":5,"aN":"c10c8c2m1r1a1"}'>
+            <a id="c-shellmenu_25" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/reportascam/" data-m='{"id":"n1c5c10c8c2m1r1a1","sN":1,"aN":"c5c10c8c2m1r1a1"}'>Report a support scam</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cT":"Container","id":"c6c10c8c2m1r1a1","sN":6,"aN":"c10c8c2m1r1a1"}'>
+            <a id="c-shellmenu_26" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/surface/product-safety-guidelines" data-m='{"id":"n1c6c10c8c2m1r1a1","sN":1,"aN":"c6c10c8c2m1r1a1"}'>Product safety</a>
+            
+        </li>
+                                                    
+                                </ul>
+                            </div>
+                        </li>
+
+                <li id="overflow-menu" class="overflow-menu x-hidden uhf-menu-item">
+                        <div class="c-uhf-menu js-nav-menu">
+        <button data-m='{"pid":"More","id":"nn11c8c2m1r1a1","sN":11,"aN":"c8c2m1r1a1"}' type="button" aria-label="More" aria-expanded="false">More</button>
+        <ul id="overflow-menu-list" aria-hidden="true" class="overflow-menu-list">
+        </ul>
+    </div>
+
+                </li>
+                                    <li class="single-link js-nav-menu" id="c-uhf-nav-cta">
+                        <a id="buyInstallButton" class="c-uhf-nav-link" href="https://go.microsoft.com/fwlink/?linkid=849747" data-m='{"cN":"CatNav_cta_Buy Microsoft 365_nav","id":"n12c8c2m1r1a1","sN":12,"aN":"c8c2m1r1a1"}'>Buy Microsoft 365</a>
+                    </li>
+            </ul>
+            
+        </nav>
+
+
+            <div class="c-uhfh-actions" data-m='{"cN":"Header actions_cont","cT":"Container","id":"c9c2m1r1a1","sN":9,"aN":"c2m1r1a1"}'>
+                <div class="wf-menu">        <nav id="uhf-c-nav" aria-label="All Microsoft menu" data-m='{"cN":"GlobalNav_cont","cT":"Container","id":"c1c9c2m1r1a1","sN":1,"aN":"c9c2m1r1a1"}'>
+            <ul class="js-paddle-items">
+                <li>
+                    <div class="c-uhf-menu js-nav-menu">
+                        <button type="button" class="c-button-logo all-ms-nav" aria-expanded="false" data-m='{"cN":"GlobalNav_More_nonnav","id":"nn1c1c9c2m1r1a1","sN":1,"aN":"c1c9c2m1r1a1"}'> <span>All Microsoft</span></button>
+                        <ul class="f-multi-column f-multi-column-6" aria-hidden="true" data-m='{"cN":"More_cont","cT":"Container","id":"c2c1c9c2m1r1a1","sN":2,"aN":"c1c9c2m1r1a1"}'>
+                                    <li class="c-w0-contr">
+            <h2 class="c-uhf-sronly">Global</h2>
+            <ul class="c-w0">
+        <li class="js-nav-menu single-link" data-m='{"cN":"M365_cont","cT":"Container","id":"c1c2c1c9c2m1r1a1","sN":1,"aN":"c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_27" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/microsoft-365" data-m='{"cN":"W0Nav_M365_nav","id":"n1c1c2c1c9c2m1r1a1","sN":1,"aN":"c1c2c1c9c2m1r1a1"}'>Microsoft 365</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"GlobalAzure_cont","cT":"Container","id":"c2c2c1c9c2m1r1a1","sN":2,"aN":"c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_28" class="js-subm-uhf-nav-link" href="https://azure.microsoft.com/en-us?ocid=cmm4r4ppnhp" data-m='{"cN":"W0Nav_GlobalAzure_nav","id":"n1c2c2c1c9c2m1r1a1","sN":1,"aN":"c2c2c1c9c2m1r1a1"}'>Azure</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"Copilot_cont","cT":"Container","id":"c3c2c1c9c2m1r1a1","sN":3,"aN":"c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_29" class="js-subm-uhf-nav-link" href="https://copilot.com/?fromcode=cmmuaql67jy" data-m='{"cN":"W0Nav_Copilot_nav","id":"n1c3c2c1c9c2m1r1a1","sN":1,"aN":"c3c2c1c9c2m1r1a1"}'>Copilot</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"Windows_cont","cT":"Container","id":"c4c2c1c9c2m1r1a1","sN":4,"aN":"c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_30" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/windows/" data-m='{"cN":"W0Nav_Windows_nav","id":"n1c4c2c1c9c2m1r1a1","sN":1,"aN":"c4c2c1c9c2m1r1a1"}'>Windows</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"Surface_cont","cT":"Container","id":"c5c2c1c9c2m1r1a1","sN":5,"aN":"c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_31" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/surface" data-m='{"cN":"W0Nav_Surface_nav","id":"n1c5c2c1c9c2m1r1a1","sN":1,"aN":"c5c2c1c9c2m1r1a1"}'>Surface</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"XBOX_cont","cT":"Container","id":"c6c2c1c9c2m1r1a1","sN":6,"aN":"c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_32" class="js-subm-uhf-nav-link" href="https://www.xbox.com/" data-m='{"cN":"W0Nav_XBOX_nav","id":"n1c6c2c1c9c2m1r1a1","sN":1,"aN":"c6c2c1c9c2m1r1a1"}'>XBOX</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"Deals_cont","cT":"Container","id":"c7c2c1c9c2m1r1a1","sN":7,"aN":"c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_33" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/sale?icid=DSM_TopNavDeals" data-m='{"cN":"W0Nav_Deals_nav","id":"n1c7c2c1c9c2m1r1a1","sN":1,"aN":"c7c2c1c9c2m1r1a1"}'>Deals</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"Small Business_cont","cT":"Container","id":"c8c2c1c9c2m1r1a1","sN":8,"aN":"c2c1c9c2m1r1a1"}'>
+            <a id="l0_SmallBusiness" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/business" data-m='{"cN":"W0Nav_Small Business_nav","id":"n1c8c2c1c9c2m1r1a1","sN":1,"aN":"c8c2c1c9c2m1r1a1"}'>Small Business</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"Support_cont","cT":"Container","id":"c9c2c1c9c2m1r1a1","sN":9,"aN":"c2c1c9c2m1r1a1"}'>
+            <a id="l1_support" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us" data-m='{"cN":"W0Nav_Support_nav","id":"n1c9c2c1c9c2m1r1a1","sN":1,"aN":"c9c2c1c9c2m1r1a1"}'>Support</a>
+            
+        </li>
+            </ul>
+        </li>
+
+<li class="f-sub-menu js-nav-menu nested-menu" data-m='{"cT":"Container","id":"c10c2c1c9c2m1r1a1","sN":10,"aN":"c2c1c9c2m1r1a1"}'>
+
+    <span id="uhf-navspn-shellmenu_37-span" style="display:none"   f-multi-parent="true" aria-expanded="false" data-m='{"id":"nn1c10c2c1c9c2m1r1a1","sN":1,"aN":"c10c2c1c9c2m1r1a1"}'>Software</span>
+    <button id="uhf-navbtn-shellmenu_37-button" type="button"   f-multi-parent="true" aria-expanded="false" data-m='{"id":"nn2c10c2c1c9c2m1r1a1","sN":2,"aN":"c10c2c1c9c2m1r1a1"}'>Software</button>
+    <ul aria-hidden="true" aria-labelledby="uhf-navspn-shellmenu_37-span">
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Software_WindowsApps_cont","cT":"Container","id":"c3c10c2c1c9c2m1r1a1","sN":3,"aN":"c10c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_38" class="js-subm-uhf-nav-link" href="https://apps.microsoft.com/home" data-m='{"cN":"GlobalNav_More_Software_WindowsApps_nav","id":"n1c3c10c2c1c9c2m1r1a1","sN":1,"aN":"c3c10c2c1c9c2m1r1a1"}'>Windows Apps</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Software_Outlook_cont","cT":"Container","id":"c4c10c2c1c9c2m1r1a1","sN":4,"aN":"c10c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_39" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook" data-m='{"cN":"GlobalNav_More_Software_Outlook_nav","id":"n1c4c10c2c1c9c2m1r1a1","sN":1,"aN":"c4c10c2c1c9c2m1r1a1"}'>Outlook</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Software_OneDrive_cont","cT":"Container","id":"c5c10c2c1c9c2m1r1a1","sN":5,"aN":"c10c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_40" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/microsoft-365/onedrive/online-cloud-storage" data-m='{"cN":"GlobalNav_More_Software_OneDrive_nav","id":"n1c5c10c2c1c9c2m1r1a1","sN":1,"aN":"c5c10c2c1c9c2m1r1a1"}'>OneDrive</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Software_Microsoft Teams_cont","cT":"Container","id":"c6c10c2c1c9c2m1r1a1","sN":6,"aN":"c10c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_41" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/microsoft-teams/group-chat-software" data-m='{"cN":"GlobalNav_More_Software_Microsoft Teams_nav","id":"n1c6c10c2c1c9c2m1r1a1","sN":1,"aN":"c6c10c2c1c9c2m1r1a1"}'>Microsoft Teams</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Software_OneNote_cont","cT":"Container","id":"c7c10c2c1c9c2m1r1a1","sN":7,"aN":"c10c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_42" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/microsoft-365/onenote/digital-note-taking-app" data-m='{"cN":"GlobalNav_More_Software_OneNote_nav","id":"n1c7c10c2c1c9c2m1r1a1","sN":1,"aN":"c7c10c2c1c9c2m1r1a1"}'>OneNote</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Software_Edge_cont","cT":"Container","id":"c8c10c2c1c9c2m1r1a1","sN":8,"aN":"c10c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_43" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/edge" data-m='{"cN":"GlobalNav_More_Software_Edge_nav","id":"n1c8c10c2c1c9c2m1r1a1","sN":1,"aN":"c8c10c2c1c9c2m1r1a1"}'>Microsoft Edge</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Software_Skype_cont","cT":"Container","id":"c9c10c2c1c9c2m1r1a1","sN":9,"aN":"c10c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_44" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us/office/moving-from-skype-to-microsoft-teams-free-3c0caa26-d9db-4179-bcb3-930ae2c87570?icid=DSM_All_Skype" data-m='{"cN":"GlobalNav_More_Software_Skype_nav","id":"n1c9c10c2c1c9c2m1r1a1","sN":1,"aN":"c9c10c2c1c9c2m1r1a1"}'>Moving from Skype to Teams</a>
+            
+        </li>
+    </ul>
+    
+</li>
+<li class="f-sub-menu js-nav-menu nested-menu" data-m='{"cN":"PCsAndDevices_cont","cT":"Container","id":"c11c2c1c9c2m1r1a1","sN":11,"aN":"c2c1c9c2m1r1a1"}'>
+
+    <span id="uhf-navspn-shellmenu_45-span" style="display:none"   f-multi-parent="true" aria-expanded="false" data-m='{"cN":"GlobalNav_PCsAndDevices_nonnav","id":"nn1c11c2c1c9c2m1r1a1","sN":1,"aN":"c11c2c1c9c2m1r1a1"}'>PCs &amp; Devices  </span>
+    <button id="uhf-navbtn-shellmenu_45-button" type="button"   f-multi-parent="true" aria-expanded="false" data-m='{"cN":"GlobalNav_PCsAndDevices_nonnav","id":"nn2c11c2c1c9c2m1r1a1","sN":2,"aN":"c11c2c1c9c2m1r1a1"}'>PCs &amp; Devices  </button>
+    <ul aria-hidden="true" aria-labelledby="uhf-navspn-shellmenu_45-span">
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_PCsAndDevices_PCsAndTablets_cont","cT":"Container","id":"c3c11c2c1c9c2m1r1a1","sN":3,"aN":"c11c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_46" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/pc?icid=CNavDevicesPC" data-m='{"cN":"GlobalNav_More_PCsAndDevices_PCsAndTablets_nav","id":"n1c3c11c2c1c9c2m1r1a1","sN":1,"aN":"c3c11c2c1c9c2m1r1a1"}'>Computers</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_PCsAndDevices_ShopXbox_cont","cT":"Container","id":"c4c11c2c1c9c2m1r1a1","sN":4,"aN":"c11c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_47" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/xbox?icid=DSM_All_ShopXbox" data-m='{"cN":"GlobalNav_More_PCsAndDevices_ShopXbox_nav","id":"n1c4c11c2c1c9c2m1r1a1","sN":1,"aN":"c4c11c2c1c9c2m1r1a1"}'>Shop XBOX</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_PCsAndDevices_Accessories_cont","cT":"Container","id":"c5c11c2c1c9c2m1r1a1","sN":5,"aN":"c11c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_48" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/accessories?icid=CNavDevicesAccessories" data-m='{"cN":"GlobalNav_More_PCsAndDevices_Accessories_nav","id":"n1c5c11c2c1c9c2m1r1a1","sN":1,"aN":"c5c11c2c1c9c2m1r1a1"}'>Accessories</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_PCsAndDevices_VMAndMixedReality_cont","cT":"Container","id":"c6c11c2c1c9c2m1r1a1","sN":6,"aN":"c11c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_49" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/virtualreality?icid=CNavVirtualReality" data-m='{"cN":"GlobalNav_More_PCsAndDevices_VMAndMixedReality_nav","id":"n1c6c11c2c1c9c2m1r1a1","sN":1,"aN":"c6c11c2c1c9c2m1r1a1"}'>VR &amp; mixed reality</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_PCsAndDevicesCertifiedRefurbished_cont","cT":"Container","id":"c7c11c2c1c9c2m1r1a1","sN":7,"aN":"c11c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_50" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/certified-refurbished-products" data-m='{"cN":"GlobalNav_More_PCsAndDevicesCertifiedRefurbished_nav","id":"n1c7c11c2c1c9c2m1r1a1","sN":1,"aN":"c7c11c2c1c9c2m1r1a1"}'>Certified Refurbished</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_PCsAndDevices_Trade-in-for-cash_cont","cT":"Container","id":"c8c11c2c1c9c2m1r1a1","sN":8,"aN":"c11c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_51" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/microsoft-trade-in" data-m='{"cN":"GlobalNav_More_PCsAndDevices_Trade-in-for-cash_nav","id":"n1c8c11c2c1c9c2m1r1a1","sN":1,"aN":"c8c11c2c1c9c2m1r1a1"}'>Trade-in for cash</a>
+            
+        </li>
+    </ul>
+    
+</li>
+<li class="f-sub-menu js-nav-menu nested-menu" data-m='{"cT":"Container","id":"c12c2c1c9c2m1r1a1","sN":12,"aN":"c2c1c9c2m1r1a1"}'>
+
+    <span id="uhf-navspn-shellmenu_52-span" style="display:none"   f-multi-parent="true" aria-expanded="false" data-m='{"id":"nn1c12c2c1c9c2m1r1a1","sN":1,"aN":"c12c2c1c9c2m1r1a1"}'>Entertainment</span>
+    <button id="uhf-navbtn-shellmenu_52-button" type="button"   f-multi-parent="true" aria-expanded="false" data-m='{"id":"nn2c12c2c1c9c2m1r1a1","sN":2,"aN":"c12c2c1c9c2m1r1a1"}'>Entertainment</button>
+    <ul aria-hidden="true" aria-labelledby="uhf-navspn-shellmenu_52-span">
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Entertainment_XboxGamePassUltimate_cont","cT":"Container","id":"c3c12c2c1c9c2m1r1a1","sN":3,"aN":"c12c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_53" class="js-subm-uhf-nav-link" href="https://www.xbox.com/en-us/games/store/xbox-game-pass-ultimate/cfq7ttc0khs0?icid=DSM_All_XboxGamePassUltimate" data-m='{"cN":"GlobalNav_More_Entertainment_XboxGamePassUltimate_nav","id":"n1c3c12c2c1c9c2m1r1a1","sN":1,"aN":"c3c12c2c1c9c2m1r1a1"}'>XBOX Game Pass Ultimate</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Entertainment_PC_Game_Pass_cont","cT":"Container","id":"c4c12c2c1c9c2m1r1a1","sN":4,"aN":"c12c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_54" class="js-subm-uhf-nav-link" href="https://www.xbox.com/en-us/games/store/pc-game-pass/cfq7ttc0kgq8?icid=CNavAllPCGamePass" data-m='{"cN":"GlobalNav_More_Entertainment_PC_Game_Pass_nav","id":"n1c4c12c2c1c9c2m1r1a1","sN":1,"aN":"c4c12c2c1c9c2m1r1a1"}'>PC Game Pass</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Entertainment_XboxGames_cont","cT":"Container","id":"c5c12c2c1c9c2m1r1a1","sN":5,"aN":"c12c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_55" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/xboxgames?icid=DSM_All_XboxGames" data-m='{"cN":"GlobalNav_More_Entertainment_XboxGames_nav","id":"n1c5c12c2c1c9c2m1r1a1","sN":1,"aN":"c5c12c2c1c9c2m1r1a1"}'>XBOX games</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Entertainment_PCGames_cont","cT":"Container","id":"c6c12c2c1c9c2m1r1a1","sN":6,"aN":"c12c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_56" class="js-subm-uhf-nav-link" href="https://apps.microsoft.com/games" data-m='{"cN":"GlobalNav_More_Entertainment_PCGames_nav","id":"n1c6c12c2c1c9c2m1r1a1","sN":1,"aN":"c6c12c2c1c9c2m1r1a1"}'>PC games</a>
+            
+        </li>
+    </ul>
+    
+</li>
+<li class="f-sub-menu js-nav-menu nested-menu" data-m='{"cT":"Container","id":"c13c2c1c9c2m1r1a1","sN":13,"aN":"c2c1c9c2m1r1a1"}'>
+
+    <span id="uhf-navspn-shellmenu_57-span" style="display:none"   f-multi-parent="true" aria-expanded="false" data-m='{"id":"nn1c13c2c1c9c2m1r1a1","sN":1,"aN":"c13c2c1c9c2m1r1a1"}'>Business</span>
+    <button id="uhf-navbtn-shellmenu_57-button" type="button"   f-multi-parent="true" aria-expanded="false" data-m='{"id":"nn2c13c2c1c9c2m1r1a1","sN":2,"aN":"c13c2c1c9c2m1r1a1"}'>Business</button>
+    <ul aria-hidden="true" aria-labelledby="uhf-navspn-shellmenu_57-span">
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Business_AI_cont","cT":"Container","id":"c3c13c2c1c9c2m1r1a1","sN":3,"aN":"c13c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_58" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/ai?icid=DSM_All_AI" data-m='{"cN":"GlobalNav_More_Business_AI_nav","id":"n1c3c13c2c1c9c2m1r1a1","sN":1,"aN":"c3c13c2c1c9c2m1r1a1"}'>Microsoft AI</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Business_Microsoft Security_cont","cT":"Container","id":"c4c13c2c1c9c2m1r1a1","sN":4,"aN":"c13c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_59" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/security" data-m='{"cN":"GlobalNav_More_Business_Microsoft Security_nav","id":"n1c4c13c2c1c9c2m1r1a1","sN":1,"aN":"c4c13c2c1c9c2m1r1a1"}'>Microsoft Security</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Business_MicrosoftDynamics365_cont","cT":"Container","id":"c5c13c2c1c9c2m1r1a1","sN":5,"aN":"c13c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_60" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/dynamics-365" data-m='{"cN":"GlobalNav_More_Business_MicrosoftDynamics365_nav","id":"n1c5c13c2c1c9c2m1r1a1","sN":1,"aN":"c5c13c2c1c9c2m1r1a1"}'>Dynamics 365</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Business_Microsoft365forbusiness_cont","cT":"Container","id":"c6c13c2c1c9c2m1r1a1","sN":6,"aN":"c13c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_61" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/microsoft-365/business" data-m='{"cN":"GlobalNav_More_Business_Microsoft365forbusiness_nav","id":"n1c6c13c2c1c9c2m1r1a1","sN":1,"aN":"c6c13c2c1c9c2m1r1a1"}'>Microsoft 365 for business</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Business_MicrosoftPowerPlatform_cont","cT":"Container","id":"c7c13c2c1c9c2m1r1a1","sN":7,"aN":"c13c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_62" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/power-platform" data-m='{"cN":"GlobalNav_More_Business_MicrosoftPowerPlatform_nav","id":"n1c7c13c2c1c9c2m1r1a1","sN":1,"aN":"c7c13c2c1c9c2m1r1a1"}'>Microsoft Power Platform</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Business_Windows365_cont","cT":"Container","id":"c8c13c2c1c9c2m1r1a1","sN":8,"aN":"c13c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_63" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/windows-365" data-m='{"cN":"GlobalNav_More_Business_Windows365_nav","id":"n1c8c13c2c1c9c2m1r1a1","sN":1,"aN":"c8c13c2c1c9c2m1r1a1"}'>Windows 365</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Business_SmallBusiness_cont","cT":"Container","id":"c9c13c2c1c9c2m1r1a1","sN":9,"aN":"c13c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_64" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/business?icid=CNavBusinessStore" data-m='{"cN":"GlobalNav_More_Business_SmallBusiness_nav","id":"n1c9c13c2c1c9c2m1r1a1","sN":1,"aN":"c9c13c2c1c9c2m1r1a1"}'>Small Business</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Business_Sovereignty_cont","cT":"Container","id":"c10c13c2c1c9c2m1r1a1","sN":10,"aN":"c13c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_65" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/sovereignty?icid=DSM_More_Sovereignty" data-m='{"cN":"GlobalNav_More_Business_Sovereignty_nav","id":"n1c10c13c2c1c9c2m1r1a1","sN":1,"aN":"c10c13c2c1c9c2m1r1a1"}'>Digital Sovereignty</a>
+            
+        </li>
+    </ul>
+    
+</li>
+<li class="f-sub-menu js-nav-menu nested-menu" data-m='{"cT":"Container","id":"c14c2c1c9c2m1r1a1","sN":14,"aN":"c2c1c9c2m1r1a1"}'>
+
+    <span id="uhf-navspn-shellmenu_66-span" style="display:none"   f-multi-parent="true" aria-expanded="false" data-m='{"id":"nn1c14c2c1c9c2m1r1a1","sN":1,"aN":"c14c2c1c9c2m1r1a1"}'>Developer &amp; IT  </span>
+    <button id="uhf-navbtn-shellmenu_66-button" type="button"   f-multi-parent="true" aria-expanded="false" data-m='{"id":"nn2c14c2c1c9c2m1r1a1","sN":2,"aN":"c14c2c1c9c2m1r1a1"}'>Developer &amp; IT  </button>
+    <ul aria-hidden="true" aria-labelledby="uhf-navspn-shellmenu_66-span">
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_DeveloperAndIT_Azure_cont","cT":"Container","id":"c3c14c2c1c9c2m1r1a1","sN":3,"aN":"c14c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_67" class="js-subm-uhf-nav-link" href="https://azure.microsoft.com/en-us/" data-m='{"cN":"GlobalNav_More_DeveloperAndIT_Azure_nav","id":"n1c3c14c2c1c9c2m1r1a1","sN":1,"aN":"c3c14c2c1c9c2m1r1a1"}'>Azure</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_DeveloperAndIT_MicrosoftDeveloper_cont","cT":"Container","id":"c4c14c2c1c9c2m1r1a1","sN":4,"aN":"c14c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_68" class="js-subm-uhf-nav-link" href="https://developer.microsoft.com/en-us/" data-m='{"cN":"GlobalNav_More_DeveloperAndIT_MicrosoftDeveloper_nav","id":"n1c4c14c2c1c9c2m1r1a1","sN":1,"aN":"c4c14c2c1c9c2m1r1a1"}'>Microsoft Developer</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_DeveloperAndIT_MicrosoftLearn_cont","cT":"Container","id":"c5c14c2c1c9c2m1r1a1","sN":5,"aN":"c14c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_69" class="js-subm-uhf-nav-link" href="https://learn.microsoft.com/" data-m='{"cN":"GlobalNav_More_DeveloperAndIT_MicrosoftLearn_nav","id":"n1c5c14c2c1c9c2m1r1a1","sN":1,"aN":"c5c14c2c1c9c2m1r1a1"}'>Microsoft Learn</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_DeveloperAndIT_SupportForAIMarketplaceApps_cont","cT":"Container","id":"c6c14c2c1c9c2m1r1a1","sN":6,"aN":"c14c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_70" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/software-development-companies/offers-benefits/isv-success?icid=DSM_All_SupportAIMarketplace&amp;ocid=cmm3atxvn98" data-m='{"cN":"GlobalNav_More_DeveloperAndIT_SupportForAIMarketplaceApps_nav","id":"n1c6c14c2c1c9c2m1r1a1","sN":1,"aN":"c6c14c2c1c9c2m1r1a1"}'>Support for AI marketplace apps</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_DeveloperAndIT_MicrosoftTechCommunity_cont","cT":"Container","id":"c7c14c2c1c9c2m1r1a1","sN":7,"aN":"c14c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_71" class="js-subm-uhf-nav-link" href="https://techcommunity.microsoft.com/" data-m='{"cN":"GlobalNav_More_DeveloperAndIT_MicrosoftTechCommunity_nav","id":"n1c7c14c2c1c9c2m1r1a1","sN":1,"aN":"c7c14c2c1c9c2m1r1a1"}'>Microsoft Tech Community</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_DeveloperAndIT_Marketplace_cont","cT":"Container","id":"c8c14c2c1c9c2m1r1a1","sN":8,"aN":"c14c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_72" class="js-subm-uhf-nav-link" href="https://marketplace.microsoft.com?icid=DSM_All_Marketplace&amp;ocid=cmm3atxvn98" data-m='{"cN":"GlobalNav_More_DeveloperAndIT_Marketplace_nav","id":"n1c8c14c2c1c9c2m1r1a1","sN":1,"aN":"c8c14c2c1c9c2m1r1a1"}'>Microsoft Marketplace</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"Software companies_cont","cT":"Container","id":"c9c14c2c1c9c2m1r1a1","sN":9,"aN":"c14c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_73" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/software-development-companies?icid=DSM_All_SoftwareCompanies&amp;ocid=cmm3atxvn98" data-m='{"cN":"GlobalNav_Software companies_nav","id":"n1c9c14c2c1c9c2m1r1a1","sN":1,"aN":"c9c14c2c1c9c2m1r1a1"}'>Software companies</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_DeveloperAndIT_VisualStudio_cont","cT":"Container","id":"c10c14c2c1c9c2m1r1a1","sN":10,"aN":"c14c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_74" class="js-subm-uhf-nav-link" href="https://visualstudio.microsoft.com/" data-m='{"cN":"GlobalNav_More_DeveloperAndIT_VisualStudio_nav","id":"n1c10c14c2c1c9c2m1r1a1","sN":1,"aN":"c10c14c2c1c9c2m1r1a1"}'>Visual Studio</a>
+            
+        </li>
+    </ul>
+    
+</li>
+<li class="f-sub-menu js-nav-menu nested-menu" data-m='{"cT":"Container","id":"c15c2c1c9c2m1r1a1","sN":15,"aN":"c2c1c9c2m1r1a1"}'>
+
+    <span id="uhf-navspn-shellmenu_75-span" style="display:none"   f-multi-parent="true" aria-expanded="false" data-m='{"id":"nn1c15c2c1c9c2m1r1a1","sN":1,"aN":"c15c2c1c9c2m1r1a1"}'>Other</span>
+    <button id="uhf-navbtn-shellmenu_75-button" type="button"   f-multi-parent="true" aria-expanded="false" data-m='{"id":"nn2c15c2c1c9c2m1r1a1","sN":2,"aN":"c15c2c1c9c2m1r1a1"}'>Other</button>
+    <ul aria-hidden="true" aria-labelledby="uhf-navspn-shellmenu_75-span">
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Other_Microsoft Rewards_cont","cT":"Container","id":"c3c15c2c1c9c2m1r1a1","sN":3,"aN":"c15c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_76" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/rewards" data-m='{"cN":"GlobalNav_More_Other_Microsoft Rewards_nav","id":"n1c3c15c2c1c9c2m1r1a1","sN":1,"aN":"c3c15c2c1c9c2m1r1a1"}'>Microsoft Rewards </a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Other_FreeDownloadsAndSecurity_cont","cT":"Container","id":"c4c15c2c1c9c2m1r1a1","sN":4,"aN":"c15c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_77" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/download" data-m='{"cN":"GlobalNav_More_Other_FreeDownloadsAndSecurity_nav","id":"n1c4c15c2c1c9c2m1r1a1","sN":1,"aN":"c4c15c2c1c9c2m1r1a1"}'>Free downloads &amp; security</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Other_Education_cont","cT":"Container","id":"c5c15c2c1c9c2m1r1a1","sN":5,"aN":"c15c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_78" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/education" data-m='{"cN":"GlobalNav_More_Other_Education_nav","id":"n1c5c15c2c1c9c2m1r1a1","sN":1,"aN":"c5c15c2c1c9c2m1r1a1"}'>Education</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Other_GiftCards_cont","cT":"Container","id":"c6c15c2c1c9c2m1r1a1","sN":6,"aN":"c15c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_79" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/gift-cards?icid=DSM_All_GiftCards" data-m='{"cN":"GlobalNav_More_Other_GiftCards_nav","id":"n1c6c15c2c1c9c2m1r1a1","sN":1,"aN":"c6c15c2c1c9c2m1r1a1"}'>Gift cards</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Other_Licensing_cont","cT":"Container","id":"c7c15c2c1c9c2m1r1a1","sN":7,"aN":"c15c2c1c9c2m1r1a1"}'>
+            <a id="Licensing" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/licensing/" data-m='{"cN":"GlobalNav_More_Other_Licensing_nav","id":"n1c7c15c2c1c9c2m1r1a1","sN":1,"aN":"c7c15c2c1c9c2m1r1a1"}'>Licensing</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m='{"cN":"More_Other_Unlocked_stories_cont","cT":"Container","id":"c8c15c2c1c9c2m1r1a1","sN":8,"aN":"c15c2c1c9c2m1r1a1"}'>
+            <a id="shellmenu_81" class="js-subm-uhf-nav-link" href="https://unlocked.microsoft.com/" data-m='{"cN":"GlobalNav_More_Other_Unlocked_stories_nav","id":"n1c8c15c2c1c9c2m1r1a1","sN":1,"aN":"c8c15c2c1c9c2m1r1a1"}'>Unlocked stories</a>
+            
+        </li>
+    </ul>
+    
+</li>
+                                                            <li class="f-multi-column-info">
+                                    <a data-m='{"id":"n16c2c1c9c2m1r1a1","sN":16,"aN":"c2c1c9c2m1r1a1"}' href="https://www.microsoft.com/en-us/sitemap" aria-label="" class="c-glyph">View Sitemap</a>
+                                </li>
+                            
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+</div>
+                            <form class="c-search" autocomplete="off" id="searchForm" name="searchForm" role="search" action="/en-us/Search/results" method="GET" data-seAutoSuggest='{"isAutosuggestDisabled":false,"queryParams":{"market":"en-us","clientId":"7F27B536-CF6B-4C65-8638-A0F8CBDFCA65","sources":"Microsoft-Terms,Iris-Products,DCatAll-Products","filter":"+ClientType:StoreWeb","counts":"5,1,5"},"familyNames":{"Apps":"App","Books":"Book","Bundles":"Bundle","Devices":"Device","Fees":"Fee","Games":"Game","MusicAlbums":"Album","MusicTracks":"Song","MusicVideos":"Video","MusicArtists":"Artist","OperatingSystem":"Operating System","Software":"Software","Movies":"Movie","TV":"TV","CSV":"Gift Card","VideoActor":"Actor"}}' data-seautosuggestapi="https://www.microsoft.com/msstoreapiprod/api/autosuggest" data-m='{"cN":"GlobalNav_Search_cont","cT":"Container","id":"c3c1c9c2m1r1a1","sN":3,"aN":"c1c9c2m1r1a1"}' aria-expanded="false">
+                                <input  id="cli_shellHeaderSearchInput" aria-label="Search Expanded" aria-expanded="false" aria-controls="universal-header-search-auto-suggest-transparent" aria-owns="universal-header-search-auto-suggest-ul" type="search" name="query" placeholder="Search for help" data-m='{"cN":"SearchBox_nav","id":"n1c3c1c9c2m1r1a1","sN":1,"aN":"c3c1c9c2m1r1a1"}' data-toggle="tooltip" data-placement="right" title="Search for help" />
+                                    <button id="search" aria-label="Search for help" class="c-glyph" data-m='{"cN":"Search_nav","id":"n2c3c1c9c2m1r1a1","sN":2,"aN":"c3c1c9c2m1r1a1"}' data-bi-mto="true" aria-expanded="false" disabled="disabled">
+                                        <span role="presentation">Search</span>
+                                        <span role="tooltip" class="c-uhf-tooltip c-uhf-search-tooltip">Search for help</span>
+                                    </button>
+                                <div class="m-auto-suggest" id="universal-header-search-auto-suggest-transparent" role="group">
+                                    <ul class="c-menu" id="universal-header-search-auto-suggest-ul" aria-label="Search Suggestions" aria-hidden="true" data-bi-dnt="true" data-bi-mto="true" data-js-auto-suggest-position="default" role="listbox" data-tel="jsll" data-m='{"cN":"search suggestions_cont","cT":"Container","id":"c3c3c1c9c2m1r1a1","sN":3,"aN":"c3c1c9c2m1r1a1"}'></ul>
+                                    <ul class="c-menu f-auto-suggest-no-results" aria-hidden="true" aria-label="No results" data-js-auto-suggest-postion="default" data-js-auto-suggest-position="default" role="listbox">
+                                        <li class="c-menu-item" role="option" aria-disabled="true"> <span tabindex="-1">No results</span></li>
+                                    </ul>
+                                </div>
+                                
+                            </form>
+                        <button data-m='{"cN":"cancel-search","pid":"Cancel Search","id":"nn4c1c9c2m1r1a1","sN":4,"aN":"c1c9c2m1r1a1"}' id="cancel-search" class="cancel-search" aria-label="Cancel Search">
+                            <span>Cancel</span>
+                        </button>
+                        <div id="meControl" class="c-me" data-bi-cn="GlobalNav_Account_SignIn"  data-signinsettings='{"containerId":"meControl","enabled":true,"headerHeight":48,"debug":false,"extensibleLinks":[],"userData":{"idp":"msa","firstName":"","lastName":"","memberName":"","cid":"","authenticatedState":"3"},"rpData":{"preferredIdp":"msa","msaInfo":{"signInUrl":"/en-us/store/signin","signOutUrl":"/en-us/store/signout","meUrl":"https://login.live.com/me.srf?wa=wsignin1.0"},"aadInfo":{"signOutUrl":"/en-us/store/signout","appId":"","siteUrl":"","blockMsaFed":true}}}' data-m='{"cN":"GlobalNav_Account_cont","cT":"Container","id":"c5c1c9c2m1r1a1","sN":5,"aN":"c1c9c2m1r1a1"}'>
+                            <div class="msame_Header">
+                                <div class="msame_Header_name st_msame_placeholder">Sign in</div>
+                            </div>
+                            
+                        </div>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+    
+</header>
+
+
+
+
+    </div>
+        </div>
+
+    </div>
+
+    			
+
+<div id="smcTeachingCalloutPopover" class="teachingCalloutHidden teachingCalloutPopover caretArrowUp" data-timeout="8">
+
+	<div class="caretArrow caretArrowPosition"> </div>
+	<div class="popoverMessageWrapper">
+		<div class="calloutDismiss">
+			<a id="teachingCalloutDismiss"
+				href="javascript:void(0)"
+				ms.interactiontype="11" data-bi-bhvr="HIDE"
+				data-bi-id="teachingCalloutDismiss"
+				aria-label="Close callout prompt.">
+				<span class="icon-mdl2 icon-cancel"></span>
+			</a>
+		</div>
+
+		<div id="noAccounts" class="signInMessages calloutMessageHidden">
+			<div class="calloutHeading" id="calloutHeading">Sign in with Microsoft</div>
+			<div class="calloutMessage" id="calloutMessage">Sign in or create an account.</div>
+		</div>
+		<div id="multipleSignInSuccess" class="signInMessages calloutMessageHidden">
+			<div class="calloutHeading" id="calloutHeading">Hello,</div>
+			<div class="calloutMessage" id="calloutMessage">Select a different account.</div>
+		</div>
+		<div id="multipleSignInFail" class="signInMessages calloutMessageHidden">
+			<div class="calloutHeading" id="calloutHeading">You have multiple accounts</div>
+			<div class="calloutMessage" id="calloutMessage">Choose the account you want to sign in with.</div>
+		</div>
+	</div>
+</div>
+
+		<div id="ocHelp">
+			<div class="container" id="ocArticle">
+				<div class="row">
+					<div class="col-md-3 mt-4">
+						
+		
+<div class="fs-6 w-100 d-md-none" dir="ltr">
+	<button id="showRelatedTopics" class="relatedTopicsButton font-size-14px lh-base bg-white p-1 d-flex d-md-none align-items-center"
+			type="button"
+			ms.pgarea="leftnav"
+			data-bi-area="leftnav">
+		<span class="bulletedListIcon fw-bold float-start ps-1 m-1 fs-6"></span>
+		<span class="p-1 text-center" role="heading">Related topics</span>
+	</button>
+</div>
+
+<div id="learnRenderLeftNav"
+	class="ps-4 float-end pe-0 end-0"
+	role="complementary"
+	aria-label="Related Links"
+	ms.pgarea="leftnav"
+	data-bi-area="leftnav"
+	dir="ltr">
+
+	<div class="height-48px flex-row border-bottom w-100 d-flex d-md-none">
+		<div class="display-inherit text-truncate fw-semibold flex-grow-1 text-dark fs-6 px-4 py-3" role="heading" aria-level="2" tabindex="-1">
+			<span>Related topics</span>
+		</div>
+		<div class="closePaneButtonContainer border-bottom fs-6 flex-shrink-1 border-start d-flex align-items-center justify-content-center">
+			<a href="javascript:"
+			class="closePaneButton text-decoration-none"
+			ms.interactiontype="11"
+			data-bi-bhvr="HIDE"
+			data-bi-area="Banner"
+			ms.pgarea="leftnav"
+			roles="button"
+			aria-label="Close">&times;</a>
+		</div>
+	</div>
+
+	<div class="learnRenderLeftNavContent fs-6 fw-normal text-muted lh-base overflow-y-auto">
+				<div class="learnRenderLeftNavCategory learnRenderLeftNavActiveCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5125472-cu28" class="learnRenderLeftNavLink" data-bi-slot="1">Cumulative Update 28</a>
 					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle learnRenderLeftNavCurrentArticle"><a href="kb5125472-cu28" class="learnRenderLeftNavLink" data-bi-slot="2" aria-current="page">Cumulative Update 28 (KB5125472)</a></li>						</ul>
 				</div>
-			</div>
-			<!-- site header -->
-			<div
-				id="ms--site-header"
-				data-test-id="site-header-wrapper"
-				itemscope="itemscope"
-				itemtype="http://schema.org/Organization"
-			>
-				<div
-					id="ms--mobile-nav"
-					class="site-header display-none-tablet padding-inline-none gap-none"
-					data-bi-name="mobile-header"
-					data-test-id="mobile-header"
-				></div>
-				<div
-					id="ms--primary-nav"
-					class="site-header display-none display-flex-tablet"
-					data-bi-name="L1-header"
-					data-test-id="primary-header"
-				></div>
-				<div
-					id="ms--secondary-nav"
-					class="display-none"
-					data-bi-name="L2-header"
-					data-test-id="secondary-header"
-					hidden
-				></div>
-			</div>
-			
-		<!-- banner -->
-		<div data-banner>
-			<div id="disclaimer-holder"></div>
-			
-		</div>
-		<!-- banner end -->
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5104824-cu27" class="learnRenderLeftNavLink" data-bi-slot="3">Cumulative Update 27</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5104824-cu27" class="learnRenderLeftNavLink" data-bi-slot="4">Cumulative Update 27 (KB5104824)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5126934-cu27-gdr-october-2026" class="learnRenderLeftNavLink" data-bi-slot="5">Description of the security update for SQL Server 2022 CU27: October 13, 2026 (KB5126934)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5129300-cu27-gdr-november-2026" class="learnRenderLeftNavLink" data-bi-slot="6">Description of the security update for SQL Server 2022 CU27: November 10, 2026 (KB5129300)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5093420-cu26" class="learnRenderLeftNavLink" data-bi-slot="7">Cumulative Update 26</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5093420-cu26" class="learnRenderLeftNavLink" data-bi-slot="8">Cumulative Update 26 for SQL Server 2022 (KB5093420)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5122768-cu26-gdr-september-2026" class="learnRenderLeftNavLink" data-bi-slot="9">Description of the security update for SQL Server 2022 CU26: September 8, 2026 (KB5122768)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5081477-cu25" class="learnRenderLeftNavLink" data-bi-slot="10">Cumulative Update 25</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5081477-cu25" class="learnRenderLeftNavLink" data-bi-slot="11">Cumulative Update 25 (KB5081477)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5101347-cu25-gdr-july-2026" class="learnRenderLeftNavLink" data-bi-slot="12">Description of the security update for SQL Server 2022 CU25: July 14, 2026 (KB5101347)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5080999-cu24" class="learnRenderLeftNavLink" data-bi-slot="13">Cumulative Update 24</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5080999-cu24" class="learnRenderLeftNavLink" data-bi-slot="14">Cumulative Update 24 (KB5080999)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5083252-cu24-gdr-april-2026" class="learnRenderLeftNavLink" data-bi-slot="15">Description of the security update for SQL Server 2022 CU24: April 14, 2026 (KB5083252)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5089900-cu24-gdr-may-2026" class="learnRenderLeftNavLink" data-bi-slot="16">Description of the security update for SQL Server 2022 CU24: May 12, 2026 (KB5089900)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5078297-cu23" class="learnRenderLeftNavLink" data-bi-slot="17">Cumulative Update 23</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5078297-cu23" class="learnRenderLeftNavLink" data-bi-slot="18">Cumulative Update 23 (KB5078297)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5077464-cu23-gdr-march-2026" class="learnRenderLeftNavLink" data-bi-slot="19">Description of the security update for SQL Server 2022 CU23: March 10, 2026 (KB5077464)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5068450-cu22" class="learnRenderLeftNavLink" data-bi-slot="20">Cumulative Update 22</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5068450-cu22" class="learnRenderLeftNavLink" data-bi-slot="21">Cumulative Update 22 (KB5068450)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5072936-cu22-gdr-january-2026" class="learnRenderLeftNavLink" data-bi-slot="22">Description of the security update for SQL Server 2022 CU22: January 13, 2026 (KB5072936)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5065865-cu21" class="learnRenderLeftNavLink" data-bi-slot="23">Cumulative Update 21</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5065865-cu21" class="learnRenderLeftNavLink" data-bi-slot="24">Cumulative Update 21 (KB5065865)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5068406-cu21-gdr-november-2025" class="learnRenderLeftNavLink" data-bi-slot="25">Description of the security update for SQL Server 2022 CU21: November 11, 2025 (KB5068406)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5059390-cu20" class="learnRenderLeftNavLink" data-bi-slot="26">Cumulative Update 20</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5059390-cu20" class="learnRenderLeftNavLink" data-bi-slot="27">Cumulative Update 20 (KB5059390)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5063814-cu20-gdr-august-2025" class="learnRenderLeftNavLink" data-bi-slot="28">Description of the security update for SQL Server 2022 CU20: August 12, 2025 (KB5063814)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5065220-cu20-gdr-september-2025" class="learnRenderLeftNavLink" data-bi-slot="29">Description of the security update for SQL Server 2022 CU20: September 9, 2025 (KB5065220)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5054531-cu19" class="learnRenderLeftNavLink" data-bi-slot="30">Cumulative Update 19</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5054531-cu19" class="learnRenderLeftNavLink" data-bi-slot="31">Cumulative Update 19 (KB5054531)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5058721-cu19-gdr-july-2025" class="learnRenderLeftNavLink" data-bi-slot="32">Description of the security update for SQL Server 2022 CU19: July 8, 2025 (KB5058721)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5050771-cu18" class="learnRenderLeftNavLink" data-bi-slot="33">Cumulative Update 18</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5050771-cu18" class="learnRenderLeftNavLink" data-bi-slot="34">Cumulative Update 18 (KB5050771)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5048038-cu17" class="learnRenderLeftNavLink" data-bi-slot="35">Cumulative Update 17</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5048038-cu17" class="learnRenderLeftNavLink" data-bi-slot="36">Cumulative Update 17 (KB5048038)</a></li><li class="learnRenderLeftNavArticle"><a href="kb4538581-fix-scalar-udf-inlining-issues-in-sql-server-2022-and-2019" class="learnRenderLeftNavLink" data-bi-slot="37">FIX: Scalar UDF Inlining issues in SQL Server 2022 and 2019 (KB4538581)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5043526-microsoft-entra-managed-identity-support-for-backup-restore-database-ekm-akv" class="learnRenderLeftNavLink" data-bi-slot="38">Improvement: Microsoft Entra managed identity support for backup and restore database operations and for EKM with AKV in SQL Server on Azure VMs (KB5043526)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5048033-cu16" class="learnRenderLeftNavLink" data-bi-slot="39">Cumulative Update 16</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5048033-cu16" class="learnRenderLeftNavLink" data-bi-slot="40">Cumulative Update 16 (KB5048033)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5048510-database-suspend-incorrect-run-alter-server-configuration" class="learnRenderLeftNavLink" data-bi-slot="41">FIX: Database is suspended incorrectly when you run ALTER SERVER CONFIGURATION (KB5048510)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5041321-cu15" class="learnRenderLeftNavLink" data-bi-slot="42">Cumulative Update 15</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5041321-cu15" class="learnRenderLeftNavLink" data-bi-slot="43">Cumulative Update 15 (KB5041321)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5046059-cu15-gdr-october-2024" class="learnRenderLeftNavLink" data-bi-slot="44">Description of the security update for SQL Server 2022 CU15: October 8, 2024 (KB5046059)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5046862-cu15-gdr-november-2024" class="learnRenderLeftNavLink" data-bi-slot="45">Description of the security update for SQL Server 2022 CU15: November 12, 2024 (KB5046862)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5038325-cu14" class="learnRenderLeftNavLink" data-bi-slot="46">Cumulative Update 14</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5038325-cu14" class="learnRenderLeftNavLink" data-bi-slot="47">Cumulative Update 14 (KB5038325)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5042369-memory-exceed-configured-limits-memory-memorylimitmb" class="learnRenderLeftNavLink" data-bi-slot="48">FIX: Memory exceeds the configured limits that are specified by memory.memorylimitmb (KB5042369)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5042578-cu14-gdr-september-2024" class="learnRenderLeftNavLink" data-bi-slot="49">Description of the security update for SQL Server 2022 CU14: September 10, 2024 (KB5042578)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5036432-cu13" class="learnRenderLeftNavLink" data-bi-slot="50">Cumulative Update 13</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5036432-cu13" class="learnRenderLeftNavLink" data-bi-slot="51">Cumulative Update 13 (KB5036432)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5040939-cu13-gdr-july-2024" class="learnRenderLeftNavLink" data-bi-slot="52">Description of the security update for SQL Server 2022 CU13: July 9, 2024 (KB5040939)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5033663-cu12" class="learnRenderLeftNavLink" data-bi-slot="53">Cumulative Update 12</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5033663-cu12" class="learnRenderLeftNavLink" data-bi-slot="54">Cumulative Update 12 (KB5033663)</a></li><li class="learnRenderLeftNavArticle"><a href="kb4538581-fix-scalar-udf-inlining-issues-in-sql-server-2022-and-2019" class="learnRenderLeftNavLink" data-bi-slot="55">FIX: Scalar UDF Inlining issues in SQL Server 2022 and 2019 (KB4538581)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5036343-cu12-gdr-april-2024" class="learnRenderLeftNavLink" data-bi-slot="56">Description of the security update for SQL Server 2022 CU12: April 9, 2024 (KB5036343)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5032679-cu11" class="learnRenderLeftNavLink" data-bi-slot="57">Cumulative Update 11</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5032679-cu11" class="learnRenderLeftNavLink" data-bi-slot="58">Cumulative Update 11 (KB5032679)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5031778-cu10" class="learnRenderLeftNavLink" data-bi-slot="59">Cumulative Update 10</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5031778-cu10" class="learnRenderLeftNavLink" data-bi-slot="60">Cumulative Update 10 (KB5031778)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5033592-cu10-gdr-january-2024" class="learnRenderLeftNavLink" data-bi-slot="61">Description of the security update for SQL Server 2022 CU10: January 9, 2024 (KB5033592)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5030731-cu9" class="learnRenderLeftNavLink" data-bi-slot="62">Cumulative Update 9</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5030731-cu9" class="learnRenderLeftNavLink" data-bi-slot="63">Cumulative Update 9 (KB5030731)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5029666-cu8" class="learnRenderLeftNavLink" data-bi-slot="64">Cumulative Update 8</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5029666-cu8" class="learnRenderLeftNavLink" data-bi-slot="65">Cumulative Update 8 (KB5029666)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5029503-cu8-gdr-october-2023" class="learnRenderLeftNavLink" data-bi-slot="66">Description of the security update for SQL Server 2022 CU8: October 10, 2023 (KB5029503)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5028743-cu7" class="learnRenderLeftNavLink" data-bi-slot="67">Cumulative Update 7</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5028743-cu7" class="learnRenderLeftNavLink" data-bi-slot="68">Cumulative Update 7 (KB5028743)</a></li><li class="learnRenderLeftNavArticle"><a href="kb4538581-fix-scalar-udf-inlining-issues-in-sql-server-2022-and-2019" class="learnRenderLeftNavLink" data-bi-slot="69">FIX: Scalar UDF Inlining issues in SQL Server 2022 and 2019 (KB4538581)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5028786-make-enhancements-sqliosim-utility" class="learnRenderLeftNavLink" data-bi-slot="70">Improvement: Make several enhancements to the SQLIOSim utility (KB5028786)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5027505-cu6" class="learnRenderLeftNavLink" data-bi-slot="71">Cumulative Update 6</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5027505-cu6" class="learnRenderLeftNavLink" data-bi-slot="72">Cumulative Update 6 (KB5027505)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5026806-cu5" class="learnRenderLeftNavLink" data-bi-slot="73">Cumulative Update 5</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5026806-cu5" class="learnRenderLeftNavLink" data-bi-slot="74">Cumulative Update 5 (KB5026806)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5027811-incorrect-results-run-queries" class="learnRenderLeftNavLink" data-bi-slot="75">FIX: Incorrect results when you run queries against tables with indexes (KB5027811)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5026717-cu4" class="learnRenderLeftNavLink" data-bi-slot="76">Cumulative Update 4</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5026717-cu4" class="learnRenderLeftNavLink" data-bi-slot="77">Cumulative Update 4 (KB5026717)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5027331-errors-apply-cu-contained-availability-group" class="learnRenderLeftNavLink" data-bi-slot="78">FIX: Errors after you apply a cumulative update to a contained availability group (KB5027331)</a></li><li class="learnRenderLeftNavArticle"><a href="kb4538581-fix-scalar-udf-inlining-issues-in-sql-server-2022-and-2019" class="learnRenderLeftNavLink" data-bi-slot="79">FIX: Scalar UDF Inlining issues in SQL Server 2022 and 2019 (KB4538581)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5024396-cu3" class="learnRenderLeftNavLink" data-bi-slot="80">Cumulative Update 3</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5024396-cu3" class="learnRenderLeftNavLink" data-bi-slot="81">Cumulative Update 3 (KB5024396)</a></li><li class="learnRenderLeftNavArticle"><a href="kb4538581-fix-scalar-udf-inlining-issues-in-sql-server-2022-and-2019" class="learnRenderLeftNavLink" data-bi-slot="82">FIX: Scalar UDF Inlining issues in SQL Server 2022 and 2019 (KB4538581)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5023127-cu2" class="learnRenderLeftNavLink" data-bi-slot="83">Cumulative Update 2</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5023127-cu2" class="learnRenderLeftNavLink" data-bi-slot="84">Cumulative Update 2 (KB5023127)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5024352-error-set-sql-server-agent-job-history-log" class="learnRenderLeftNavLink" data-bi-slot="85">FIX: Error when setting the SQL Server Agent job history log (KB5024352)</a></li>						</ul>
+				</div>
+				<div class="learnRenderLeftNavCategory">
+					<div class="learnRenderLeftNavCategoryTitle">
+						<a href="kb5022375-cu1" class="learnRenderLeftNavLink" data-bi-slot="86">Cumulative Update 1</a>
+					</div>
+						<ul class="learnRenderLeftNavArticles list-unstyled col">
+<li class="learnRenderLeftNavArticle"><a href="kb5022375-cu1" class="learnRenderLeftNavLink" data-bi-slot="87">Cumulative Update 1 (KB5022375)</a></li><li class="learnRenderLeftNavArticle"><a href="kb5023236-database-accessibility-issues-high-volume-customer-workloads" class="learnRenderLeftNavLink" data-bi-slot="88">FIX: Database accessibility issues with high-volume customer workloads (KB5023236)</a></li><li class="learnRenderLeftNavArticle"><a href="../../sql-server-2016/cumulative-update/kb4521739-fix-error-occurs-when-cdc-capture-process-tries-to-insert-duplicate-key-in-table-cdc-lsn-t" class="learnRenderLeftNavLink" data-bi-slot="89">FIX: Error occurs when CDC capture process tries to insert duplicate key in table "cdc.lsn_time_mapping" in SQL Server 2016, 2017 and 2019 (KB4521739)</a></li><li class="learnRenderLeftNavArticle"><a href="kb4538581-fix-scalar-udf-inlining-issues-in-sql-server-2022-and-2019" class="learnRenderLeftNavLink" data-bi-slot="90">FIX: Scalar UDF Inlining issues in SQL Server 2022 and 2019 (KB4538581)</a></li>						</ul>
+				</div>
+	</div>
+</div>
 	
+					</div>
+                    <main role="main" class="col col-md-9 mt-4" id="supMainContent" tabindex="-1">
+						
+
+
+
+
+<h1 id="kb5125472---cumulative-update-28-for-sql-server-2022">KB5125472 - Cumulative Update 28 for SQL Server 2022</h1>	<div class="learnArticleContent">
+		<p><em>Release Date:</em>   November 12, 2026<br/>
+<em>Version:</em>   16.0.4325.4</p>
+<h2 id="summary">Summary</h2>
+<p>This article describes Cumulative Update package 28 (CU28) for Microsoft SQL Server 2022. This update contains 91 <a href="#improvements-and-fixes-included-in-this-update" data-linktype="self-bookmark">fixes</a> that were issued after the release of SQL Server 2022 Cumulative Update 28. It updates components in the following builds:</p>
+<ul>
+<li>SQL Server - Product version: <strong>16.0.4325.4</strong>, file version: <strong>2022.160.4325.4</strong></li>
+<li>Analysis Services - Product version: <strong>16.0.43.253</strong>, file version: <strong>2022.160.43.253</strong></li>
+</ul>
+<div class="IMPORTANT">
+<p>Important</p>
+<p>To help secure SQL Server on Windows, <a href="https://learn.microsoft.com/sql/relational-databases/security/sql-server-security-best-practices#enable-encryption-with-extended-protection" data-linktype="external">enable encryption with Extended Protection</a>.</p>
+</div>
+<h2 id="known-issues-in-this-update">Known issues in this update</h2>
+<h3 id="incorrect-behavior-of-session_context-in-parallel-plans">Incorrect behavior of SESSION_CONTEXT in parallel plans</h3>
+<p>Queries that use the built-in <code>SESSION_CONTEXT</code> function might return incorrect results or trigger access violation (AV) dump files when run in parallel query plans. This issue occurs because of the manner in which <code>SESSION_CONTEXT</code> interacts with parallel execution threads, particularly if the session is reset for reuse.</p>
+<p>For more information, see the <a href="https://learn.microsoft.com/sql/t-sql/functions/session-context-transact-sql#known-issues" data-linktype="external">Known issues</a> section in <code>SESSION_CONTEXT</code>.</p>
+<h2 id="improvements-and-fixes-included-in-this-update">Improvements and fixes included in this update</h2>
+<p>A downloadable Microsoft Excel workbook that contains a summary list of builds, together with their current support lifecycle, is available. The Excel file also contains detailed fix lists for SQL Server 2022, SQL Server 2019, and SQL Server 2017. <a href="https://aka.ms/sqlserverbuilds" data-linktype="external">Download this Excel file now</a>.</p>
+<div class="NOTE">
+<p>Note</p>
+<p>Individual entries in the following table can be referenced directly through a bookmark. If you select any bug reference ID in the table, a bookmark tag is added to the URL by using the &quot;#NNNNNNN&quot; format. You can then share this URL with others so that they can jump directly to the desired fix in the table.</p>
+</div>
+<p>For more information about the bugs that are fixed and enhancements that are included in this cumulative update, see the following table.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bug reference</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Fix area</th>
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Platform</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a id=5216517><a href="#5216517" data-linktype="self-bookmark">5216517</a></a></td>
+<td style="text-align: left;">Fixes an issue in which monitoring queries that use <code>sys.dm_exec_requests</code> or <code>sys.sysprocesses</code> intermittently fail and return a &quot;976&quot; or &quot;978&quot; error message when they run on a read-intent-only secondary replica in an availability group.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">High Availability and Disaster Recovery</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5289354><a href="#5289354" data-linktype="self-bookmark">5289354</a></a></td>
+<td style="text-align: left;">Fixes an issue that causes performance degradation during online operations and database recovery on SQL Server instances that are configured to have approximately 20 TB or more of memory.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Transaction Services</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5383173><a href="#5383173" data-linktype="self-bookmark">5383173</a></a></td>
+<td style="text-align: left;">Fixes error &quot;33550&quot;, state &quot;42&quot;, that occurs when a secure enclave in SQL Server decrypts empty or <code>NULL</code> values in <code>varchar(max)</code>, <code>nvarchar(max)</code>, or <code>varbinary(max)</code> columns that use Always Encrypted.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Security Infrastructure</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5419469><a href="#5419469" data-linktype="self-bookmark">5419469</a></a></td>
+<td style="text-align: left;">Addresses a security vulnerability in PolyBase by improving data validation.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">PolyBase</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5439314><a href="#5439314" data-linktype="self-bookmark">5439314</a></a></td>
+<td style="text-align: left;">Fixes an issue in which the SQL Server process might end unexpectedly when it accesses external data sources.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">PolyBase</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5478462><a href="#5478462" data-linktype="self-bookmark">5478462</a></a></td>
+<td style="text-align: left;">Fixes an issue in which an availability group listener that uses a Dynamic Host Configuration Protocol (DHCP) address doesn't come online.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">High Availability and Disaster Recovery</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5490933><a href="#5490933" data-linktype="self-bookmark">5490933</a></a></td>
+<td style="text-align: left;">Fixes an input validation issue in which malformed size values in Virtual Device Interface (VDI) and SQL Server VSS Writer backup operations can cause out-of-bounds memory access.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Backup Restore</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5497299><a href="#5497299" data-linktype="self-bookmark">5497299</a></a></td>
+<td style="text-align: left;">Fixes an integer-handling issue in backup and restore metadata processing that can cause SQL Server to end unexpectedly or permit elevation of privilege when malformed or oversized input is processed.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Backup Restore</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5505574><a href="#5505574" data-linktype="self-bookmark">5505574</a></a></td>
+<td style="text-align: left;">Updates a component that's used to extract archives when you install external language and external library packages.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Extensibility</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5509882><a href="#5509882" data-linktype="self-bookmark">5509882</a></a></td>
+<td style="text-align: left;">Fixes an issue in which the <code>hadr_log_block_decompression</code> extended event reports the same value for the compressed and uncompressed log block sizes.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">SQL OS</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5523678><a href="#5523678" data-linktype="self-bookmark">5523678</a></a></td>
+<td style="text-align: left;">Adds validation of FILESTREAM fragment sizes on availability group secondary replicas to reject oversized fragments.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">High Availability and Disaster Recovery</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5529157><a href="#5529157" data-linktype="self-bookmark">5529157</a></a></td>
+<td style="text-align: left;">Fixes an out-of-bounds memory write action in the <code>SqlDataRecord.SetBytes</code> API for <code>sql_variant</code> values that can cause denial of service or elevation of privilege when common language runtime (CLR) integration is enabled.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Programmability</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5529197><a href="#5529197" data-linktype="self-bookmark">5529197</a></a></td>
+<td style="text-align: left;">Improves input validation in Showplan processing to enhance security and reliability.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Query Store</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5529340><a href="#5529340" data-linktype="self-bookmark">5529340</a></a></td>
+<td style="text-align: left;">Improves the protection of internal replication data during processing.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5529352><a href="#5529352" data-linktype="self-bookmark">5529352</a></a></td>
+<td style="text-align: left;">Improves the handling of text data in merge replication to enhance security and reliability.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5529364><a href="#5529364" data-linktype="self-bookmark">5529364</a></a></td>
+<td style="text-align: left;">Improves validation and handling of replication operations to enhance security and reliability.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5529376><a href="#5529376" data-linktype="self-bookmark">5529376</a></a></td>
+<td style="text-align: left;">Improves security and reliability of queued updating subscriptions in transactional replication.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5529388><a href="#5529388" data-linktype="self-bookmark">5529388</a></a></td>
+<td style="text-align: left;">Improves security and reliability of queued updating subscriptions in transactional replication.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5558726><a href="#5558726" data-linktype="self-bookmark">5558726</a></a></td>
+<td style="text-align: left;">Improves validation of shared memory region counts to prevent race conditions during shared memory cleanup.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">PolyBase</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5571551><a href="#5571551" data-linktype="self-bookmark">5571551</a></a></td>
+<td style="text-align: left;">Fixes a security vulnerability in which opening a SQL Server Virtual Device Interface (VDI) virtual device set can cause an out-of-bounds memory write action.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Backup Restore</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5571985><a href="#5571985" data-linktype="self-bookmark">5571985</a></a></td>
+<td style="text-align: left;">Fixes a security vulnerability in which SQL Server can access memory outside the allocated buffer when it processes data transferred during Virtual Device Interface (VDI) backup or restore operations.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Backup Restore</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5577584><a href="#5577584" data-linktype="self-bookmark">5577584</a></a></td>
+<td style="text-align: left;">Improves validation of Delta table schemas.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">PolyBase</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5578970><a href="#5578970" data-linktype="self-bookmark">5578970</a></a></td>
+<td style="text-align: left;">Fixes memory corruption and information disclosure vulnerabilities in the SQLSatellite protocol processing that's used by Machine Learning Services and Language Extensions.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Extensibility</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5581403><a href="#5581403" data-linktype="self-bookmark">5581403</a></a></td>
+<td style="text-align: left;">Fixes an issue in which <code>MSDASQL</code>-linked server connections might fail if the provider string doesn't include a user ID (<code>UID</code>).</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Distributed Query</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5587164><a href="#5587164" data-linktype="self-bookmark">5587164</a></a></td>
+<td style="text-align: left;">Fixes an issue in which Multidimensional Expressions (MDX) queries that use nested subselects over ragged hierarchies that are configured by using <code>HideMemberIf</code> omit hidden leaf members. This condition causes missing rows or lower measure totals.</td>
+<td style="text-align: left;">Analysis Services</td>
+<td style="text-align: left;">Analysis Services</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5596464><a href="#5596464" data-linktype="self-bookmark">5596464</a></a></td>
+<td style="text-align: left;">Fixes an out-of-bounds memory read action that can occur when SQL Server processes certain client connection requests.</td>
+<td style="text-align: left;">SQL Connectivity</td>
+<td style="text-align: left;">SQL Connectivity</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5614130><a href="#5614130" data-linktype="self-bookmark">5614130</a></a></td>
+<td style="text-align: left;">Improves identifier validation in merge replication.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5620647><a href="#5620647" data-linktype="self-bookmark">5620647</a></a></td>
+<td style="text-align: left;">Fixes an issue in which change data capture (CDC) or transactional replication fails to process consecutive clustered-key updates to rows with large off-row large object (LOB) values.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5622465><a href="#5622465" data-linktype="self-bookmark">5622465</a></a></td>
+<td style="text-align: left;">Fixes a heap buffer overflow during XML operation.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Programmability</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5622545><a href="#5622545" data-linktype="self-bookmark">5622545</a></a></td>
+<td style="text-align: left;">Improves output-buffer validation in XA stored procedures to prevent buffer overflows. Undersized output buffers now return a &quot;47204&quot; error message.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Transaction Services</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5622596><a href="#5622596" data-linktype="self-bookmark">5622596</a></a></td>
+<td style="text-align: left;">Improves identifier validation in transactional replication.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5624106><a href="#5624106" data-linktype="self-bookmark">5624106</a></a></td>
+<td style="text-align: left;">Improves validation of transaction log blocks during recovery and log scanning to prevent out-of-bounds memory read actions when scanning malformed records.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Storage Management</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5624545><a href="#5624545" data-linktype="self-bookmark">5624545</a></a></td>
+<td style="text-align: left;">Improves security by initializing buffers that are used during index record construction and B-tree page splits.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Methods to access stored data</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5624558><a href="#5624558" data-linktype="self-bookmark">5624558</a></a></td>
+<td style="text-align: left;">Fixes an issue in which querying a corrupted row-compressed record can return unintended memory content. SQL Server now validates the compressed-record metadata and returns a database corruption error message.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Methods to access stored data</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5624581><a href="#5624581" data-linktype="self-bookmark">5624581</a></a></td>
+<td style="text-align: left;">Improves security by initializing buffers that are used during storage engine insert, update, bulk, compression, and record reconstruction operations.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Methods to access stored data</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5624592><a href="#5624592" data-linktype="self-bookmark">5624592</a></a></td>
+<td style="text-align: left;">Improves validation of long-column offsets in page-compressed records to reject malformed record metadata.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Methods to access stored data</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5624644><a href="#5624644" data-linktype="self-bookmark">5624644</a></a></td>
+<td style="text-align: left;">Fixes a heap buffer overflow that can occur when SQL Server reads <code>COLUMNSTORE_ARCHIVE</code>-compressed segments with malformed compression block headers.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Column Stores</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5624884><a href="#5624884" data-linktype="self-bookmark">5624884</a></a></td>
+<td style="text-align: left;">Improves validation of sparse-column record headers and column offsets when SQL Server reads or rebuilds records.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Methods to access stored data</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5624930><a href="#5624930" data-linktype="self-bookmark">5624930</a></a></td>
+<td style="text-align: left;">Improves validation of columnstore header sizes when SQL Server attaches, restores, or checks a database.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Column Stores</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5624959><a href="#5624959" data-linktype="self-bookmark">5624959</a></a></td>
+<td style="text-align: left;">Improves validation of variable-length column offsets when SQL Server processes database records.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Methods to access stored data</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5624997><a href="#5624997" data-linktype="self-bookmark">5624997</a></a></td>
+<td style="text-align: left;">Improves validation of column metadata to prevent out-of-bounds memory write actions when SQL Server loads database schemas.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Methods to access stored data</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5632314><a href="#5632314" data-linktype="self-bookmark">5632314</a></a></td>
+<td style="text-align: left;">Improves security and reliability of replication security metadata handling during subscriber database restore and upgrade operations.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5632802><a href="#5632802" data-linktype="self-bookmark">5632802</a></a></td>
+<td style="text-align: left;">Improves security and reliability of the Log Reader Agent in heterogeneous transactional replication scenarios.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5632815><a href="#5632815" data-linktype="self-bookmark">5632815</a></a></td>
+<td style="text-align: left;">Improves security and reliability of change feed configuration.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5632837><a href="#5632837" data-linktype="self-bookmark">5632837</a></a></td>
+<td style="text-align: left;">Fixes a security issue in authorization checks for merge replication row metadata.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5632850><a href="#5632850" data-linktype="self-bookmark">5632850</a></a></td>
+<td style="text-align: left;">Fixes a buffer overflow that occurs if merge replication processes more than 250 WebSync XML nickname entries.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5632863><a href="#5632863" data-linktype="self-bookmark">5632863</a></a></td>
+<td style="text-align: left;">Improves bounds validation when merge replication processes retry lists.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5632876><a href="#5632876" data-linktype="self-bookmark">5632876</a></a></td>
+<td style="text-align: left;">Improves data validation during replication encryption operations.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5632889><a href="#5632889" data-linktype="self-bookmark">5632889</a></a></td>
+<td style="text-align: left;">Improves data validation during merge replication web synchronization.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5632929><a href="#5632929" data-linktype="self-bookmark">5632929</a></a></td>
+<td style="text-align: left;">Improves authorization checks for replication performance counter operations.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5634469><a href="#5634469" data-linktype="self-bookmark">5634469</a></a></td>
+<td style="text-align: left;">Fixes an issue in which a query that applies a string predicate over a window aggregate might return incorrect results if the partitioning column uses a case-insensitive collation.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Query Optimizer</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5635185><a href="#5635185" data-linktype="self-bookmark">5635185</a></a></td>
+<td style="text-align: left;">Improves validation and handling of metadata in merge replication operations.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5635964><a href="#5635964" data-linktype="self-bookmark">5635964</a></a></td>
+<td style="text-align: left;">Improves validation of login security identifier (SID) data to prevent out-of-bounds memory read actions when the SQL Trace reader processes malformed trace data.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Programmability</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5636104><a href="#5636104" data-linktype="self-bookmark">5636104</a></a></td>
+<td style="text-align: left;">Improves bounds validation and Unicode conversion when processing replication transaction identifiers.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5636147><a href="#5636147" data-linktype="self-bookmark">5636147</a></a></td>
+<td style="text-align: left;">Improves bounds validation to prevent out-of-bounds memory read actions when SQL Server scans UTF-16 terminators during replication numeric conversion.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5639541><a href="#5639541" data-linktype="self-bookmark">5639541</a></a></td>
+<td style="text-align: left;">Adds trace flag 697 to disable heap or B-tree (HoBt) schema-latch promotion to superlatches for workloads that experience high CPU usage and latch contention, without disabling all superlatching.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Methods to access stored data</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5642397><a href="#5642397" data-linktype="self-bookmark">5642397</a></a></td>
+<td style="text-align: left;">Improves object name validation in internal stored procedures while preserving existing behavior.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Management Services</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5645714><a href="#5645714" data-linktype="self-bookmark">5645714</a></a></td>
+<td style="text-align: left;">Improves SQLDiag handling of database names, including long names and Unicode characters, to enhance diagnostic collection reliability and security.</td>
+<td style="text-align: left;">SQL Server Client Tools</td>
+<td style="text-align: left;">SQLDiag</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5650236><a href="#5650236" data-linktype="self-bookmark">5650236</a></a></td>
+<td style="text-align: left;">Adds trace flag 683 to reduce CPU overhead when heap or B-tree (HoBt) latches are promoted to superlatches but counter partitioning doesn't occur.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Methods to access stored data</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653498><a href="#5653498" data-linktype="self-bookmark">5653498</a></a></td>
+<td style="text-align: left;">Improves security validation during replication database upgrades.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653528><a href="#5653528" data-linktype="self-bookmark">5653528</a></a></td>
+<td style="text-align: left;">Improves conflict table name validation in transactional replication.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653574><a href="#5653574" data-linktype="self-bookmark">5653574</a></a></td>
+<td style="text-align: left;">Improves parameter validation in the Replication Queue Reader Agent.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653597><a href="#5653597" data-linktype="self-bookmark">5653597</a></a></td>
+<td style="text-align: left;">Improves conflict table name handling in merge replication.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653630><a href="#5653630" data-linktype="self-bookmark">5653630</a></a></td>
+<td style="text-align: left;">Improves security validation for merge replication conflict reporting.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653696><a href="#5653696" data-linktype="self-bookmark">5653696</a></a></td>
+<td style="text-align: left;">Improves object name validation for merge replication schema changes.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653709><a href="#5653709" data-linktype="self-bookmark">5653709</a></a></td>
+<td style="text-align: left;">Improves table name handling in generated merge replication procedures.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653723><a href="#5653723" data-linktype="self-bookmark">5653723</a></a></td>
+<td style="text-align: left;">Improves input validation when SQL Server processes merge replication changes.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653745><a href="#5653745" data-linktype="self-bookmark">5653745</a></a></td>
+<td style="text-align: left;">Improves security when SQL Server processes schema changes in transactional replication.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653772><a href="#5653772" data-linktype="self-bookmark">5653772</a></a></td>
+<td style="text-align: left;">Improves security checks for lightweight merge replication operations.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653810><a href="#5653810" data-linktype="self-bookmark">5653810</a></a></td>
+<td style="text-align: left;">Improves security validation when SQL Server processes queued replication data.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653826><a href="#5653826" data-linktype="self-bookmark">5653826</a></a></td>
+<td style="text-align: left;">Improves authorization validation for SQL Server Agent job steps.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Management Services</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5653835><a href="#5653835" data-linktype="self-bookmark">5653835</a></a></td>
+<td style="text-align: left;">Improves role validation during replication subscription checks.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5654329><a href="#5654329" data-linktype="self-bookmark">5654329</a></a></td>
+<td style="text-align: left;">Disables Extensible Stylesheet Language Transformations (XSLT) scripting by default in the SQL Server Integration Services XML Task. To restore the previous behavior, set <code>EnableXsltScript</code> to <code>1</code> under <em>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server{version}\SSIS\XMLTask</em>.</td>
+<td style="text-align: left;">Integration Services</td>
+<td style="text-align: left;">Integration Services</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5654541><a href="#5654541" data-linktype="self-bookmark">5654541</a></a></td>
+<td style="text-align: left;">Improves security for replication data and operations.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5657243><a href="#5657243" data-linktype="self-bookmark">5657243</a></a></td>
+<td style="text-align: left;">Fixes an issue in which handling truncated OLE DB output parameters in the Integration Services Execute SQL Task can cause invalid memory access.</td>
+<td style="text-align: left;">Integration Services</td>
+<td style="text-align: left;">Integration Services</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5657883><a href="#5657883" data-linktype="self-bookmark">5657883</a></a></td>
+<td style="text-align: left;">Fixes an integer overflow in the Integration Services HTTP Connection Manager that can cause invalid memory access.</td>
+<td style="text-align: left;">Integration Services</td>
+<td style="text-align: left;">Integration Services</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5658034><a href="#5658034" data-linktype="self-bookmark">5658034</a></a></td>
+<td style="text-align: left;">Fixes an input validation issue in SQL Server VSS Writer in which an oversized user instance name can disrupt backup and snapshot operations or cause an out-of-bounds memory write action.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Backup Restore</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5658115><a href="#5658115" data-linktype="self-bookmark">5658115</a></a></td>
+<td style="text-align: left;">Fixes a memory access violation that might occur when the Raw File source component in SQL Server Integration Services reads data.</td>
+<td style="text-align: left;">Integration Services</td>
+<td style="text-align: left;">Integration Services</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5660083><a href="#5660083" data-linktype="self-bookmark">5660083</a></a></td>
+<td style="text-align: left;">Fixes non-yielding scheduler errors and dump files that might occur during heavy lazy writer I/O activity.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">SQL OS</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5660569><a href="#5660569" data-linktype="self-bookmark">5660569</a></a></td>
+<td style="text-align: left;">Improves bounds validation when the Replication Queue Reader Agent processes queued update messages.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5660608><a href="#5660608" data-linktype="self-bookmark">5660608</a></a></td>
+<td style="text-align: left;">Improves input validation in the <code>sys.sp_polybase_show_objects</code> stored procedure.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">PolyBase</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5673576><a href="#5673576" data-linktype="self-bookmark">5673576</a></a></td>
+<td style="text-align: left;">Adds three stored procedures for databases in multi-database link mode with Azure SQL Managed Instance: <code>sys.sp_milink_reseed</code> restarts seeding without removing and re-adding the database to the availability group, <code>sys.sp_milink_repair</code> repairs a broken link, and <code>sys.sp_milink_check</code> checks database health.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">High Availability and Disaster Recovery</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5678408><a href="#5678408" data-linktype="self-bookmark">5678408</a></a></td>
+<td style="text-align: left;">Improves parameter validation and data conversion handling in the Replication Queue Reader Agent.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5693317><a href="#5693317" data-linktype="self-bookmark">5693317</a></a></td>
+<td style="text-align: left;">Fixes an issue in which <code>ALTER DATABASE CURRENT ADD FILE</code> fails and returns a &quot;42019&quot; error message on Azure SQL Managed Instance General Purpose and Next-gen General Purpose service tiers.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Programmability</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5698422><a href="#5698422" data-linktype="self-bookmark">5698422</a></a></td>
+<td style="text-align: left;">Improves replication metadata validation to prevent invalid rowset binding access.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5720065><a href="#5720065" data-linktype="self-bookmark">5720065</a></a></td>
+<td style="text-align: left;">Improves security checks for replication linked-server access.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">All</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5720088><a href="#5720088" data-linktype="self-bookmark">5720088</a></a></td>
+<td style="text-align: left;">Improves input validation in Azure Synapse Link for SQL.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5722308><a href="#5722308" data-linktype="self-bookmark">5722308</a></a></td>
+<td style="text-align: left;">Fixes an information disclosure vulnerability in the <code>xp_decodequeuecmd</code> replication queue command decoder.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5723138><a href="#5723138" data-linktype="self-bookmark">5723138</a></a></td>
+<td style="text-align: left;">Improves error-source validation in merge replication to handle a security vulnerability.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5723283><a href="#5723283" data-linktype="self-bookmark">5723283</a></a></td>
+<td style="text-align: left;">Fixes a heap buffer overflow that can occur when the Log Reader Agent escapes single quotation marks in column values.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a id=5731797><a href="#5731797" data-linktype="self-bookmark">5731797</a></a></td>
+<td style="text-align: left;">Fixes an elevation of privilege vulnerability in merge replication by improving validation of subscriber validation expressions.</td>
+<td style="text-align: left;">SQL Server Engine</td>
+<td style="text-align: left;">Replication</td>
+<td style="text-align: left;">Windows</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-to-obtain-or-download-this-or-the-latest-cumulative-update-package">How to obtain or download this or the latest cumulative update package</h2>
+<details>
+<summary><b>How to obtain or download the latest cumulative update package for Windows (recommended)</b></summary>
+<p>The following update is available from the Microsoft Download Center:</p>
+<p><img src="../../media/download.png" role="presentation" data-linktype="relative-path">
+ <a href="https://www.microsoft.com/download/details.aspx?id=105013" data-linktype="external">Download the latest cumulative update package for SQL Server 2022 now</a></p>
+<div class="NOTE">
+<p>Note</p>
+<ul>
+<li>Microsoft Download Center always offers the latest SQL Server 2022 CU release.</li>
+<li>If the download page doesn't appear, contact <a href="/en-us/contactus/?ws=support" data-linktype="absolute-path">Microsoft Customer Service and Support</a> to obtain the cumulative update package.</li>
+</ul>
+</div>
+</details>
+<details>
+<summary><b>How to obtain or download this cumulative update package for Windows from Microsoft Update Catalog</b></summary>
+<p>The following update is available from the Microsoft Update Catalog:</p>
+<ul>
+<li><img src="../../media/download.png" role="presentation" data-linktype="relative-path">
+ <a href="https://www.catalog.update.microsoft.com/Search.aspx?q=KB5125472" data-linktype="external">Download the cumulative update package for SQL Server 2022 CU28 now</a></li>
+</ul>
+<div class="NOTE">
+<p>Note</p>
+<ul>
+<li><a href="https://www.catalog.update.microsoft.com/Search.aspx?q=sql%20server%202022" data-linktype="external">Microsoft Update Catalog</a> contains this SQL Server 2022 CU and previously released SQL Server 2022 CU releases.</li>
+<li>This CU is also available through Windows Server Update Services (WSUS).</li>
+<li>We recommend that you always install the latest cumulative update that is available.</li>
+</ul>
+</div>
+</details>
+<details>
+<summary><b>How to obtain or download the latest cumulative update package for Linux</b></summary>
+<p>To update SQL Server 2022 on Linux to the latest CU, you must first have the <a href="https://learn.microsoft.com/sql/linux/install-upgrade/setup?view=sql-server-ver16&amp;preserve-view=true#repositories" data-linktype="external">Cumulative Update repository configured</a>. Then, update your SQL Server packages by using the appropriate platform-specific update command.</p>
+<p>For installation instructions and direct links to the CU package downloads, see the <a href="https://learn.microsoft.com/sql/linux/sql-server-linux-release-notes?view=sql-server-ver16&amp;preserve-view=true&amp;tabs=sql2022" data-linktype="external">SQL Server 2022 Release Notes</a>.</p>
+</details>
+<h2 id="file-information">File information</h2>
+<details>
+<summary><b>File hash information</b></summary>
+<p>You can verify the download by computing the hash of the <em>SQLServer2022-KB5125472-x64.exe</em> file through the following command:</p>
+<p><code>certutil -hashfile SQLServer2022-KB5125472-x64.exe SHA256</code></p>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>SHA256 hash</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLServer2022-KB5125472-x64.exe</td>
+<td>0C0FDE7858B349B476D2B667F399E707A67235F1C4AEDFD68564C3534192F686</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details>
+<summary><b>Cumulative Update package file information</b></summary>
+<p>Download <a href="https://download.microsoft.com/download/9e89d683-42ab-4c64-a960-448f719dd288/KB5125472.csv" data-linktype="external">the list of files that are included in KB5125472</a>.</p>
+</details>
+<h2 id="notes-for-this-update">Notes for this update</h2>
+<details>
+<summary><b>Prerequisites</b></summary>
+<p>To apply this cumulative update package, you must be running SQL Server 2022.</p>
+</details>
+<details>
+<summary><b>Restart information</b></summary>
+<p>You might have to restart the computer after you apply this cumulative update package.</p>
+</details>
+<details>
+<summary><b>Registry information</b></summary>
+<p>To use one of the hotfixes in this package, you don't have to make any changes to the registry.</p>
+</details>
+<details>
+<summary><b>Important notices</b></summary>
+<p>This article also provides the following important information.</p>
+<h3 id="analysis-services-cu-build-version">Analysis Services CU build version</h3>
+<p>Beginning in Microsoft SQL Server 2017, the Analysis Services build version number and SQL Server Database Engine build version number don't match. For more information, see <a href="https://learn.microsoft.com/analysis-services/instances/analysis-services-component-version" data-linktype="external">Verify Analysis Services cumulative update build version</a>.</p>
+<h3 id="cumulative-updates-cu">Cumulative updates (CU)</h3>
+<ul>
+<li>Each new CU contains all the fixes that were included with the previous CU for the installed version of SQL Server.</li>
+<li>SQL Server CUs are certified to the same levels as service packs, and should be installed at the same level of confidence.</li>
+<li>We recommend ongoing, proactive installation of CUs as they become available according to these guidelines:
+<ul>
+<li>Historical data shows that a significant number of support cases involve an issue that has already been addressed in a released CU.</li>
+<li>CUs might contain added value over and above hotfixes. This includes supportability, manageability, and reliability updates.</li>
+</ul>
+</li>
+<li>We recommend that you test SQL Server CUs before you deploy them to production environments.</li>
+</ul>
+</details>
+<details>
+<summary><b>Hybrid environment deployment</b></summary>
+<p>When you deploy an update to a hybrid environment (such as Always On, replication, cluster, and mirroring), we recommend that you refer to the following articles before you deploy the update:</p>
+<ul>
+<li><p><a href="https://learn.microsoft.com/sql/sql-server/failover-clusters/windows/upgrade-a-sql-server-failover-cluster-instance?view=sql-server-ver16&amp;preserve-view=true" data-linktype="external">Upgrade a failover cluster instance</a></p>
+<div class="NOTE">
+<p>Note</p>
+<p>If you don't want to use the rolling update process, follow these steps to apply an update:</p>
+<ol>
+<li>Install the update on the passive node.</li>
+<li>Install the update on the active node (requires a service restart).</li>
+</ol>
+</div>
+</li>
+<li><p><a href="https://learn.microsoft.com/sql/database-engine/availability-groups/windows/upgrading-always-on-availability-group-replica-instances?view=sql-server-ver16&amp;preserve-view=true" data-linktype="external">Upgrade and update of availability group servers that use minimal downtime and data loss</a></p>
+<div class="NOTE">
+<p>Note</p>
+<p>If you enabled Always On together with the <strong>SSISDB</strong> catalog, see the <a href="https://techcommunity.microsoft.com/blog/ssis/ssis-with-alwayson/388091" data-linktype="external">information about SSIS with Always On</a> about how to apply an update in these environments.</p>
+</div>
+</li>
+<li><p><a href="https://learn.microsoft.com/troubleshoot/sql/database-engine/replication/install-service-packs-hotfixes" data-linktype="external">How to apply a hotfix for SQL Server in a transactional replication and database mirroring topology</a></p>
+</li>
+<li><p><a href="https://learn.microsoft.com/previous-versions/troubleshoot/sql/replication/apply-hotfix-sql-replication-topology" data-linktype="external">How to apply a hotfix for SQL Server in a replication topology</a></p>
+</li>
+<li><p><a href="https://learn.microsoft.com/sql/database-engine/database-mirroring/upgrading-mirrored-instances?view=sql-server-ver16&amp;preserve-view=true" data-linktype="external">Upgrading Mirrored Instances</a></p>
+</li>
+<li><p><a href="https://learn.microsoft.com/sql/database-engine/install-windows/install-sql-server-servicing-updates?view=sql-server-ver16&amp;preserve-view=true" data-linktype="external">Overview of SQL Server Servicing Installation</a></p>
+</li>
+</ul>
+</details>
+<details>
+<summary><b>Language support</b></summary>
+<p>SQL Server CUs are currently multilingual. Therefore, this CU package isn't specific to one language. It applies to all supported languages.</p>
+</details>
+<details>
+<summary><b>Components (features) updated</b></summary>
+<p>One CU package includes all available updates for all SQL Server 2022 components (features). However, the cumulative update package updates only those components that are currently installed on the SQL Server instance that you select to be serviced. If a SQL Server feature (for example, Analysis Services) is added to the instance after this CU is applied, you must reapply this CU to update the new feature to this CU.</p>
+</details>
+<details>
+<summary><b>Support for this update</b></summary>
+<p>If other issues occur, or if any troubleshooting is required, you might have to create a service request. The usual support costs will apply to additional support questions and to issues that don't qualify for this specific cumulative update package. For a complete list of Microsoft Customer Service and Support telephone numbers, or to create a separate service request, go to the <a href="/en-us/contactus/?ws=support" data-linktype="absolute-path">Microsoft support website</a>.</p>
+</details>
+<h2 id="how-to-uninstall-this-update">How to uninstall this update</h2>
+<details>
+<summary><b>How to uninstall this update on Windows</b></summary>
+<ol>
+<li>In Control Panel, open the <strong>Programs and Features</strong> item, and then select <strong>View installed updates</strong>.</li>
+<li>Locate the entry that corresponds to this cumulative update package under <strong>SQL Server 2022</strong>.</li>
+<li>Press and hold (or right-click) the entry, and then select <strong>Uninstall</strong>.</li>
+</ol>
+</details>
+<details>
+<summary><b>How to uninstall this update on Linux</b></summary>
+<p>To uninstall this CU on Linux, you must roll back the package to the previous version. For more information about how to roll back the installation, see <a href="https://learn.microsoft.com/sql/linux/install-upgrade/setup?view=sql-server-ver16&amp;preserve-view=true#rollback" data-linktype="external">Roll back SQL Server</a>.</p>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/archive/blogs/sqlreleaseservices/announcing-updates-to-the-sql-server-incremental-servicing-model-ism" data-linktype="external">Announcing updates to the SQL Server Incremental Servicing Model (ISM)</a></li>
+<li><a href="../../sql-server-2017/cumulative-update/kb4041553-sql-server-service-packs-are-discontinued-starting-from-sql-server-2017" data-linktype="relative-path">SQL Server Service Packs are no longer supported starting from SQL Server 2017</a></li>
+<li><a href="https://learn.microsoft.com/troubleshoot/sql/releases/find-my-sql-version" data-linktype="external">Determine which version and edition of SQL Server Database Engine is running</a></li>
+<li><a href="https://learn.microsoft.com/troubleshoot/sql/releases/servicing-models-sql-server" data-linktype="external">Servicing models for SQL Server</a></li>
+<li><a href="https://learn.microsoft.com/troubleshoot/sql/releases/naming-schema-and-fix-area" data-linktype="external">Naming schema and Fix area descriptions for SQL Server software update packages</a></li>
+<li><a href="https://learn.microsoft.com/troubleshoot/windows-client/installing-updates-features-roles/standard-terminology-software-updates" data-linktype="external">Description of the standard terminology that is used to describe Microsoft software updates</a></li>
+</ul>
+
+	</div>
+
+
+
+
+					</main>
+				</div>
+			</div>
 		</div>
-	</header>
-				 
+		<div id="ocFooterWrapper">
 
-				<main
-					id="main"
-					role="main"
-					class="layout-body-main "
-					data-bi-name="content"
-					lang="en-us"
-					dir="ltr"
-				>
-					
-		<section id="ms--not-found-page-content" data-bi-name="page-not-found" class="uhf-container">
-			<div
-				class="columns has-large-gaps is-gapless-mobile padding-block-md margin-top-sm-tablet margin-inline-xxl-desktop"
-			>
-				<div class="column is-5 display-none display-block-tablet">
-					<img
-						class="margin-top-xs image theme-display is-high-contrast is-dark"
-						alt=""
-						src="/en-us/media/learn/not-found/learn-not-found-dark-mode.png?branch=main"
-						data-linktype="absolute-path"
-					/>
-					<img
-						class="margin-top-xs image theme-display is-light"
-						alt=""
-						src="/en-us/media/learn/not-found/learn-not-found-light-mode.png?branch=main"
-						data-linktype="absolute-path"
-					/>
+		
+
+
+	<div id="modernFeedback" data-enable-star-rating="False">
+		<section id="feedbackSection" class="prrFeedbackWrapper mw-none w-100 bottom-0 display-block">
+			<div class="prrColumnWrapper py-2 border-bottom">
+				<div id="feedBackContainer" class="m-auto position-relative text-center">
+					<section class="p-0 feedbackSection">
+						<div>
+							<form action="javascript:void(0);" id="extendedFeedbackForm" name="smartFeedbackForm" class="smartFeedbackForm mb-0">
+								<div class="feedbackBegin h-auto justify-content-center align-items-center gap-4 d-block d-sm-flex">
+									<span id="beginFeedbackHeader" class="pe-2 display-inline-block p-0 m-0 fw-semibold fs-6 lh-base mt-0 align-baseline">Was this information helpful?</span>
+									<div class="feedbackButtons align-items-start gap-3 lh-base fs-6 fw-semibold display-inline-block d-block d-md-flex" role="group" aria-labelledby="beginFeedbackHeader">
+										<button class="feedbackButtonBlue fw-normal fs-6 display-inline-block text-align-center text-decoration-none text-white border border-transparent feedbackSelection" name="buttonYes" type="button" data-bi-id="buttonYes" data-bi-mto>Yes</button>
+										<button class="feedbackButtonBlue fw-normal fs-6 display-inline-block text-align-center text-decoration-none text-white border border-transparent feedbackSelection" name="buttonNo" type="button" data-bi-id="buttonNo" data-bi-mto>No</button>
+									</div>
+								</div>
+                            <div id="extendedFeedback" class="feedbackReply text-start hidden ps-sm-5 ps-3">
+									<div id="extendedFeedbackHeader" class="feedbackHeader mt-2 display-table">
+									<label for="feedbackText" class="feedbackHeaderIfArticleHelpful mt-3 fw-normal align-middle fs-6 display-table-cell hidden">
+										<span class="fw-semibold" aria-hidden="true">Thank you! Any more feedback for Microsoft?</span>
+										</label>
+									<label for="feedbackText" class="feedbackHeaderIfArticleNotHelpful mt-3 fw-normal align-middle fs-6 display-table-cell hidden">
+										<span class="fw-semibold" aria-hidden="true">Can you help us improve?</span> (Send feedback to Microsoft so we can help.)
+										</label>
+									</div>
+
+									
+
+									<fieldset id="extendedFeedbackArticleExperience" class="mt-4">
+										<legend class="fs-6 pb-2">What affected your experience?</legend>
+										<div class="feedbackHeaderIfArticleHelpful hidden">
+			<div id="articleExperience_helpful_0">
+		<div class="experienceOption pt-1">
+			<label class="articleExperienceOptionsLabels">
+				<input class="articleExperienceOptionsCheckbox position-absolute opacity-0" type="checkbox" tabindex="-1" id="helpful_0" name="helpful_0" value="Resolved my issue" data-bi-dnt />
+				<span class="checkboxTick position-absolute rounded-1 mt-1" tabindex="0" role="checkbox" aria-label="Resolved my issue"></span>
+				<span class="experienceOptionLabels align-top ms-4 fs-6 d-block fw-normal lh-base">Resolved my issue</span>
+			</label>
+		</div>
+
+		<div class="experienceOption pt-1">
+			<label class="articleExperienceOptionsLabels">
+				<input class="articleExperienceOptionsCheckbox position-absolute opacity-0" type="checkbox" tabindex="-1" id="helpful_1" name="helpful_1" value="Clear instructions" data-bi-dnt />
+				<span class="checkboxTick position-absolute rounded-1 mt-1" tabindex="0" role="checkbox" aria-label="Clear instructions"></span>
+				<span class="experienceOptionLabels align-top ms-4 fs-6 d-block fw-normal lh-base">Clear instructions</span>
+			</label>
+		</div>
+			</div>
+			<div id="articleExperience_helpful_1">
+		<div class="experienceOption pt-1">
+			<label class="articleExperienceOptionsLabels">
+				<input class="articleExperienceOptionsCheckbox position-absolute opacity-0" type="checkbox" tabindex="-1" id="helpful_2" name="helpful_2" value="Easy to follow" data-bi-dnt />
+				<span class="checkboxTick position-absolute rounded-1 mt-1" tabindex="0" role="checkbox" aria-label="Easy to follow"></span>
+				<span class="experienceOptionLabels align-top ms-4 fs-6 d-block fw-normal lh-base">Easy to follow</span>
+			</label>
+		</div>
+
+		<div class="experienceOption pt-1">
+			<label class="articleExperienceOptionsLabels">
+				<input class="articleExperienceOptionsCheckbox position-absolute opacity-0" type="checkbox" tabindex="-1" id="helpful_3" name="helpful_3" value="No jargon" data-bi-dnt />
+				<span class="checkboxTick position-absolute rounded-1 mt-1" tabindex="0" role="checkbox" aria-label="No jargon"></span>
+				<span class="experienceOptionLabels align-top ms-4 fs-6 d-block fw-normal lh-base">No jargon</span>
+			</label>
+		</div>
+			</div>
+			<div id="articleExperience_helpful_2">
+		<div class="experienceOption pt-1">
+			<label class="articleExperienceOptionsLabels">
+				<input class="articleExperienceOptionsCheckbox position-absolute opacity-0" type="checkbox" tabindex="-1" id="helpful_4" name="helpful_4" value="Pictures helped" data-bi-dnt />
+				<span class="checkboxTick position-absolute rounded-1 mt-1" tabindex="0" role="checkbox" aria-label="Pictures helped"></span>
+				<span class="experienceOptionLabels align-top ms-4 fs-6 d-block fw-normal lh-base">Pictures helped</span>
+			</label>
+		</div>
+
+		<div class="experienceOption pt-1">
+			<label class="articleExperienceOptionsLabels">
+				<input class="articleExperienceOptionsCheckbox position-absolute opacity-0" type="checkbox" tabindex="-1" id="helpful_5" name="helpful_5" value="Other" data-bi-dnt />
+				<span class="checkboxTick position-absolute rounded-1 mt-1" tabindex="0" role="checkbox" aria-label="Other"></span>
+				<span class="experienceOptionLabels align-top ms-4 fs-6 d-block fw-normal lh-base">Other</span>
+			</label>
+		</div>
+			</div>
+										</div>
+										<div class="feedbackHeaderIfArticleNotHelpful hidden">
+			<div id="articleExperience_notHelpful_0">
+		<div class="experienceOption pt-1">
+			<label class="articleExperienceOptionsLabels">
+				<input class="articleExperienceOptionsCheckbox position-absolute opacity-0" type="checkbox" tabindex="-1" id="notHelpful_0" name="notHelpful_0" value="Didn&#x27;t match my screen" data-bi-dnt />
+				<span class="checkboxTick position-absolute rounded-1 mt-1" tabindex="0" role="checkbox" aria-label="Didn't match my screen"></span>
+				<span class="experienceOptionLabels align-top ms-4 fs-6 d-block fw-normal lh-base">Didn't match my screen</span>
+			</label>
+		</div>
+
+		<div class="experienceOption pt-1">
+			<label class="articleExperienceOptionsLabels">
+				<input class="articleExperienceOptionsCheckbox position-absolute opacity-0" type="checkbox" tabindex="-1" id="notHelpful_1" name="notHelpful_1" value="Incorrect instructions" data-bi-dnt />
+				<span class="checkboxTick position-absolute rounded-1 mt-1" tabindex="0" role="checkbox" aria-label="Incorrect instructions"></span>
+				<span class="experienceOptionLabels align-top ms-4 fs-6 d-block fw-normal lh-base">Incorrect instructions</span>
+			</label>
+		</div>
+			</div>
+			<div id="articleExperience_notHelpful_1">
+		<div class="experienceOption pt-1">
+			<label class="articleExperienceOptionsLabels">
+				<input class="articleExperienceOptionsCheckbox position-absolute opacity-0" type="checkbox" tabindex="-1" id="notHelpful_2" name="notHelpful_2" value="Too technical" data-bi-dnt />
+				<span class="checkboxTick position-absolute rounded-1 mt-1" tabindex="0" role="checkbox" aria-label="Too technical"></span>
+				<span class="experienceOptionLabels align-top ms-4 fs-6 d-block fw-normal lh-base">Too technical</span>
+			</label>
+		</div>
+
+		<div class="experienceOption pt-1">
+			<label class="articleExperienceOptionsLabels">
+				<input class="articleExperienceOptionsCheckbox position-absolute opacity-0" type="checkbox" tabindex="-1" id="notHelpful_3" name="notHelpful_3" value="Not enough information" data-bi-dnt />
+				<span class="checkboxTick position-absolute rounded-1 mt-1" tabindex="0" role="checkbox" aria-label="Not enough information"></span>
+				<span class="experienceOptionLabels align-top ms-4 fs-6 d-block fw-normal lh-base">Not enough information</span>
+			</label>
+		</div>
+			</div>
+			<div id="articleExperience_notHelpful_2">
+		<div class="experienceOption pt-1">
+			<label class="articleExperienceOptionsLabels">
+				<input class="articleExperienceOptionsCheckbox position-absolute opacity-0" type="checkbox" tabindex="-1" id="notHelpful_4" name="notHelpful_4" value="Not enough pictures" data-bi-dnt />
+				<span class="checkboxTick position-absolute rounded-1 mt-1" tabindex="0" role="checkbox" aria-label="Not enough pictures"></span>
+				<span class="experienceOptionLabels align-top ms-4 fs-6 d-block fw-normal lh-base">Not enough pictures</span>
+			</label>
+		</div>
+
+		<div class="experienceOption pt-1">
+			<label class="articleExperienceOptionsLabels">
+				<input class="articleExperienceOptionsCheckbox position-absolute opacity-0" type="checkbox" tabindex="-1" id="notHelpful_5" name="notHelpful_5" value="Other" data-bi-dnt />
+				<span class="checkboxTick position-absolute rounded-1 mt-1" tabindex="0" role="checkbox" aria-label="Other"></span>
+				<span class="experienceOptionLabels align-top ms-4 fs-6 d-block fw-normal lh-base">Other</span>
+			</label>
+		</div>
+			</div>
+										</div>
+									</fieldset>
+
+									<div id="extendedFeedbackVerbatim" class="verbatimFeedback mt-4">
+										<label for="verbatimFeedbackInput" class="fs-6 pb-2">Any additional feedback? (Optional)</label>
+									<textarea id="verbatimFeedbackInput" class="feedbackTextArea lh-sm fw-normal fs-6 border border-light p-3" name="feedbackText" rows="6" cols="40" maxlength="250" placeholder="To protect your privacy, do not provide any personal information such as email address, phone number, product key, password, or credit card number."></textarea>
+									</div>
+									<div id="extendedFeedbackFormSubmit" class="feedbackButtons">
+									<button id="buttonFeedbackVerbatimSubmit" class="feedbackButtonBlue fw-normal fs-6 display-inline-block text-align-center text-decoration-none text-white border border-transparent mt-3" type="submit" data-bi-id="buttonFeedbackVerbatimSubmit" data-bi-mto disabled>Submit feedback</button>
+									</div>
+									<div id="privacyStatement" class="pt-2">
+										<span>By pressing submit, your feedback will be used to improve Microsoft products and services.</span>
+										<span id="aadPrivacySubtext" class="hidden">Your IT admin will be able to collect this data.</span>
+										<a id="privacyLink" href="https://privacy.microsoft.com/en-US/privacystatement"><span>Privacy Statement.</span></a>
+									</div>
+								</div>
+							</form>
+							<div id="feedbackThankYouMessage" class="hidden feedbackHeader mt-3 display-table mb-0 fw-bold feedbackThankYou">
+								<h2 class="fw-normal align-middle fs-6 display-table-cell"><span class="c-glyph glyph-heart-fill text-dark align-middle mx-3" aria-hidden="true"></span>Thank you for your feedback!</h2>
+							</div>
+						</div>
+					</section>
 				</div>
-				<div class="column is-7">
-					<h1 class="title is-1 margin-bottom-sm">404 - Page not found</h1>
-					<p class="font-size-xl auth-status-determined not-authenticated">
-						We couldn't find this page. You can try <a id="not-found-sign-in-link" class="docs-sign-in" href="#" data-bi-name="docs-sign-in" data-linktype="self-bookmark">signing in</a>, or choosing from the relevant <a href="#" data-term-to-search data-linktype="self-bookmark">search results</a> below:
-
-					</p>
-					<p class="font-size-xl auth-status-determined authenticated">
-						We couldn't find this page. You can try <span data-permissioned-content><a class="docs-change-directory" href="#" data-bi-name="docs-change-directory" data-linktype="self-bookmark"> changing directories</a>, or</span> choosing from the relevant <a href="#" data-term-to-search data-linktype="self-bookmark">search results</a> below:
-
-					</p>
-					<ul id="ms--suggested-links" class="list-style-none margin-top-sm"></ul>
-				</div>
+				<a href="javascript:" id="disableStickyFeedbackButton" class="position-absolute top-0 fs-4 text-decoration-none hidden" role="button" ms.interactiontype="11" aria-label="Close dialog" data-bi-bhvr="HIDE" data-bi-area="Feedback" ms.cmpgrp="content" ms.pgarea="Body" data-bi-id="buttonFeedbackCancel" data-bi-mto>&times;</a>
 			</div>
 		</section>
-	
-				</main>
-				  <div class="layout-body-footer " data-bi-name="layout-footer">
-		<footer
-			id="footer"
-			data-test-id="footer"
-			data-bi-name="footer"
-			class="footer-layout padding-xs padding-sm-desktop has-default-focus border-top"
-			role="contentinfo"
-		>
-			<div class="display-flex gap-xs flex-wrap-wrap is-full-height padding-right-lg-desktop">
-				
-		<a
-			data-mscc-ic="false"
-			href="#"
-			data-bi-name="select-locale"
-			class="locale-selector-link flex-shrink-0 button button-sm button-clear external-link-indicator"
-			id=""
-			title=""
-			><span class="icon" aria-hidden="true"
-				><span class="docon docon-world"></span></span
-			><span class="local-selector-link-text">en-us</span></a
-		>
-	 <div class="ccpa-privacy-link" data-ccpa-privacy-link hidden>
-		
-		<a
-			data-mscc-ic="false"
-			href="https://aka.ms/yourcaliforniaprivacychoices"
-			data-bi-name="your-privacy-choices"
-			class="button button-sm button-clear flex-shrink-0 external-link-indicator"
-			id=""
-			title=""
-			>
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 30 14"
-			xml:space="preserve"
-			height="16"
-			width="43"
-			aria-hidden="true"
-			focusable="false"
-		>
-			<path
-				d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z"
-				style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"
-			></path>
-			<path
-				d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z"
-				style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"
-			></path>
-			<path
-				d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z"
-				style="fill:#fff"
-			></path>
-			<path
-				d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z"
-				style="fill:#06f"
-			></path>
-		</svg>
-	
-			<span>Your Privacy Choices</span></a
-		>
-	
 	</div>
-				<div class="flex-shrink-0">
-		<div class="dropdown has-caret-up">
-			<button
-				data-test-id="theme-selector-button"
-				class="dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger"
-				aria-controls="{{ themeMenuId }}"
-				aria-haspopup="true"
-				aria-expanded="false"
-				data-bi-name="theme"
-			>
-				<span class="icon" aria-hidden="true"><span class="docon docon-sun"></span></span>
-				<span>Theme</span>
-				<span class="icon expanded-indicator" aria-hidden="true">
-					<span class="docon docon-chevron-down-light"></span>
-				</span>
-			</button>
-			<div class="dropdown-menu" id="{{ themeMenuId }}" role="menu">
-				<ul class="theme-selector padding-xxs" data-test-id="theme-dropdown-menu" role="none">
-					<li class="theme display-block" role="none">
-						<button
-							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
-							role="menuitemradio"
-							aria-checked="false"
-							data-theme-to="light"
-							tabindex="-1"
-						>
-							<span class="theme-light margin-right-xxs">
-								<span
-									class="theme-selector-icon border display-inline-block has-body-background"
-									aria-hidden="true"
-								>
-									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
-										<rect width="22" height="14" class="has-fill-body-background" />
-										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
-										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
-										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
-										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
-										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
-										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
-										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
-									</svg>
-								</span>
-							</span>
-							<span> Light </span>
-						</button>
-					</li>
-					<li class="theme display-block" role="none">
-						<button
-							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
-							role="menuitemradio"
-							aria-checked="false"
-							data-theme-to="dark"
-							tabindex="-1"
-						>
-							<span class="theme-dark margin-right-xxs">
-								<span
-									class="border theme-selector-icon display-inline-block has-body-background"
-									aria-hidden="true"
-								>
-									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
-										<rect width="22" height="14" class="has-fill-body-background" />
-										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
-										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
-										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
-										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
-										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
-										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
-										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
-									</svg>
-								</span>
-							</span>
-							<span> Dark </span>
-						</button>
-					</li>
-					<li class="theme display-block" role="none">
-						<button
-							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
-							role="menuitemradio"
-							aria-checked="false"
-							data-theme-to="high-contrast"
-							tabindex="-1"
-						>
-							<span class="theme-high-contrast margin-right-xxs">
-								<span
-									class="border theme-selector-icon display-inline-block has-body-background"
-									aria-hidden="true"
-								>
-									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
-										<rect width="22" height="14" class="has-fill-body-background" />
-										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
-										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
-										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
-										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
-										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
-										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
-										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
-									</svg>
-								</span>
-							</span>
-							<span> High contrast </span>
-						</button>
-					</li>
-				</ul>
+
 			</div>
-		</div>
-	</div>
-			</div>
-			<ul class="links" data-bi-name="footerlinks">
-				<li class="manage-cookies-holder" hidden=""></li>
-				<li>
-		
-		<a
-			data-mscc-ic="false"
-			href="https://learn.microsoft.com/en-us/principles-for-ai-generated-content"
-			data-bi-name="aiDisclaimer"
-			class=" external-link-indicator"
-			id=""
-			title=""
-			>AI Disclaimer</a
-		>
+
+
+            <div id="footerArea" class="uhf"  data-m='{"cN":"footerArea","cT":"Area_coreuiArea","id":"a2Body","sN":2,"aN":"Body"}'>
+                <div id="footerRegion"      data-region-key="footerregion" data-m='{"cN":"footerRegion","cT":"Region_coreui-region","id":"r1a2","sN":1,"aN":"a2"}' >
+
+    <div  id="footerUniversalFooter" data-m='{"cN":"footerUniversalFooter","cT":"Module_coreui-universalfooter","id":"m1r1a2","sN":1,"aN":"r1a2"}'  data-module-id="Category|footerRegion|coreui-region|footerUniversalFooter|coreui-universalfooter">
+        
+
+
+
+<footer id="uhf-footer" class="c-uhff context-uhf"  data-uhf-mscc-rq="false" data-footer-footprint="/SMCConvergence/MSSMCConvergenceFooter, fromService: True" data-m='{"cN":"Uhf footer_cont","cT":"Container","id":"c1m1r1a2","sN":1,"aN":"m1r1a2"}'>
+        <nav class="c-uhff-nav" aria-label="Footer Resource links" data-m='{"cN":"Footer nav_cont","cT":"Container","id":"c1c1m1r1a2","sN":1,"aN":"c1m1r1a2"}'>
+            
+                <div class="c-uhff-nav-row">
+                    <div class="c-uhff-nav-group" data-m='{"cN":"footerNavColumn1_cont","cT":"Container","id":"c1c1c1m1r1a2","sN":1,"aN":"c1c1m1r1a2"}'>
+                        <div class="c-heading-4" role="heading" aria-level="2">What&#39;s new</div>
+                        <ul class="c-list f-bare">
+                            <li>
+                                <a aria-label="Surface Laptop Ultra What&#39;s new" class="c-uhff-link" href="https://www.microsoft.com/en-us/surface/devices/surface-laptop-ultra?icid=DSM_Footer_WhatsNew_SurfaceLaptopUltra" data-m='{"cN":"Footer_WhatsNew_Surface Laptop Ultra_nav","id":"n1c1c1c1m1r1a2","sN":1,"aN":"c1c1c1m1r1a2"}'>Surface Laptop Ultra</a>
+                            </li>
+                            <li>
+                                <a aria-label="Surface Pro What&#39;s new" class="c-uhff-link" href="https://www.microsoft.com/surface/devices/surface-pro" data-m='{"cN":"Footer_WhatsNew_NewSurfacePro_nav","id":"n2c1c1c1m1r1a2","sN":2,"aN":"c1c1c1m1r1a2"}'>Surface Pro</a>
+                            </li>
+                            <li>
+                                <a aria-label="Surface Laptop What&#39;s new" class="c-uhff-link" href="https://www.microsoft.com/surface/devices/surface-laptop" data-m='{"cN":"Footer_WhatsNew_SurfaceLaptop_nav","id":"n3c1c1c1m1r1a2","sN":3,"aN":"c1c1c1m1r1a2"}'>Surface Laptop</a>
+                            </li>
+                            <li>
+                                <a aria-label="Surface RTX Spark Dev Box What&#39;s new" class="c-uhff-link" href="https://www.microsoft.com/en-us/surface/devices/surface-rtx-spark-dev-box?icid=DSM_Footer_WhatsNew_SurfaceRTXSparkDevBox" data-m='{"cN":"footer_whatsnew_SurfaceRTXSparksDevBox_nav_nav","id":"n4c1c1c1m1r1a2","sN":4,"aN":"c1c1c1m1r1a2"}'>Surface RTX Spark Dev Box</a>
+                            </li>
+                            <li>
+                                <a aria-label="Explore Copilot What&#39;s new" class="c-uhff-link" href="https://www.microsoft.com/en-us/copilot?icid=DSM_Footer_WhatsNew_Copilot" data-m='{"cN":"Footer_WhatsNew_CopilotMicrosoft_nav","id":"n5c1c1c1m1r1a2","sN":5,"aN":"c1c1c1m1r1a2"}'>Explore Copilot</a>
+                            </li>
+                            <li>
+                                <a aria-label="Explore Microsoft products What&#39;s new" class="c-uhff-link" href="https://www.microsoft.com/en-us/microsoft-products-and-apps" data-m='{"cN":"Footer_WhatsNew_ExploreMicrosoftProducts_nav","id":"n6c1c1c1m1r1a2","sN":6,"aN":"c1c1c1m1r1a2"}'>Explore Microsoft products</a>
+                            </li>
+                            <li>
+                                <a aria-label="Windows 11 apps What&#39;s new" class="c-uhff-link" href="https://www.microsoft.com/en-us/windows/apps-for-windows?icid=DSM_Footer_WhatsNew_Windows11apps" data-m='{"cN":"Footer_WhatsNew_Windows_11_apps_nav","id":"n7c1c1c1m1r1a2","sN":7,"aN":"c1c1c1m1r1a2"}'>Windows 11 apps</a>
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+                    <div class="c-uhff-nav-group" data-m='{"cN":"footerNavColumn2_cont","cT":"Container","id":"c2c1c1m1r1a2","sN":2,"aN":"c1c1m1r1a2"}'>
+                        <div class="c-heading-4" role="heading" aria-level="2">Microsoft Store</div>
+                        <ul class="c-list f-bare">
+                            <li>
+                                <a aria-label="Account profile Microsoft Store" class="c-uhff-link" href="https://account.microsoft.com/" data-m='{"cN":"Footer_StoreandSupport_AccountProfile_nav","id":"n1c2c1c1m1r1a2","sN":1,"aN":"c2c1c1m1r1a2"}'>Account profile</a>
+                            </li>
+                            <li>
+                                <a aria-label="Download Center Microsoft Store" class="c-uhff-link" href="https://www.microsoft.com/en-us/download" data-m='{"cN":"Footer_StoreandSupport_DownloadCenter_nav","id":"n2c2c1c1m1r1a2","sN":2,"aN":"c2c1c1m1r1a2"}'>Download Center</a>
+                            </li>
+                            <li>
+                                <a aria-label="Microsoft Store support Microsoft Store" class="c-uhff-link" href="https://go.microsoft.com/fwlink/?linkid=2139749" data-m='{"cN":"Footer_StoreandSupport_SalesAndSupport_nav","id":"n3c2c1c1m1r1a2","sN":3,"aN":"c2c1c1m1r1a2"}'>Microsoft Store support</a>
+                            </li>
+                            <li>
+                                <a aria-label="Returns Microsoft Store" class="c-uhff-link" href="https://www.microsoft.com/en-us/store/b/returns" data-m='{"cN":"Footer_StoreandSupport_Returns_nav","id":"n4c2c1c1m1r1a2","sN":4,"aN":"c2c1c1m1r1a2"}'>Returns</a>
+                            </li>
+                            <li>
+                                <a aria-label="Order tracking Microsoft Store" class="c-uhff-link" href="https://www.microsoft.com/en-us/store/b/order-tracking" data-m='{"cN":"Footer_StoreandSupport_OrderTracking_nav","id":"n5c2c1c1m1r1a2","sN":5,"aN":"c2c1c1m1r1a2"}'>Order tracking</a>
+                            </li>
+                            <li>
+                                <a aria-label="Certified Refurbished Microsoft Store" class="c-uhff-link" href="https://www.microsoft.com/en-us/store/b/certified-refurbished-products" data-m='{"cN":"Footer_StoreandSupport_StoreLocations_nav","id":"n6c2c1c1m1r1a2","sN":6,"aN":"c2c1c1m1r1a2"}'>Certified Refurbished</a>
+                            </li>
+                            <li>
+                                <a aria-label="Why buy from Microsoft Store Microsoft Store" class="c-uhff-link" href="https://www.microsoft.com/en-us/store/b/why-microsoft-store?icid=footer_why-msft-store?icid=DSM_Footer_MicrosoftStore_WhyBuy" data-m='{"cN":"Why buy from Microsoft Store_nav","id":"n7c2c1c1m1r1a2","sN":7,"aN":"c2c1c1m1r1a2"}'>Why buy from Microsoft Store</a>
+                            </li>
+                            <li>
+                                <a aria-label="Flexible Payments Microsoft Store" class="c-uhff-link" href="https://www.microsoft.com/en-us/store/b/payment-financing-options?icid=footer_financing_vcc" data-m='{"cN":"Footer_StoreandSupport_Financing_nav","id":"n8c2c1c1m1r1a2","sN":8,"aN":"c2c1c1m1r1a2"}'>Flexible Payments</a>
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+                    <div class="c-uhff-nav-group" data-m='{"cN":"footerNavColumn3_cont","cT":"Container","id":"c3c1c1m1r1a2","sN":3,"aN":"c1c1m1r1a2"}'>
+                        <div class="c-heading-4" role="heading" aria-level="2">Education</div>
+                        <ul class="c-list f-bare">
+                            <li>
+                                <a aria-label="Microsoft in education Education" class="c-uhff-link" href="https://www.microsoft.com/en-us/education" data-m='{"cN":"Footer_Education_MicrosoftInEducation_nav","id":"n1c3c1c1m1r1a2","sN":1,"aN":"c3c1c1m1r1a2"}'>Microsoft in education</a>
+                            </li>
+                            <li>
+                                <a aria-label="Devices for education Education" class="c-uhff-link" href="https://www.microsoft.com/en-us/education/devices/overview" data-m='{"cN":"Footer_Education_DevicesforEducation_nav","id":"n2c3c1c1m1r1a2","sN":2,"aN":"c3c1c1m1r1a2"}'>Devices for education</a>
+                            </li>
+                            <li>
+                                <a aria-label="Microsoft Teams for Education Education" class="c-uhff-link" href="https://www.microsoft.com/en-us/education/products/teams" data-m='{"cN":"Footer_Education_MicrosoftTeamsforEducation_nav","id":"n3c3c1c1m1r1a2","sN":3,"aN":"c3c1c1m1r1a2"}'>Microsoft Teams for Education</a>
+                            </li>
+                            <li>
+                                <a aria-label="Microsoft 365 Education Education" class="c-uhff-link" href="https://www.microsoft.com/en-us/education/products/microsoft-365" data-m='{"cN":"Footer_Education_Microsoft365Education_nav","id":"n4c3c1c1m1r1a2","sN":4,"aN":"c3c1c1m1r1a2"}'>Microsoft 365 Education</a>
+                            </li>
+                            <li>
+                                <a aria-label="How to buy for your school Education" class="c-uhff-link" href="https://www.microsoft.com/education/how-to-buy" data-m='{"cN":"Footer_Howtobuyforyourschool_nav","id":"n5c3c1c1m1r1a2","sN":5,"aN":"c3c1c1m1r1a2"}'>How to buy for your school</a>
+                            </li>
+                            <li>
+                                <a aria-label="Educator training and development Education" class="c-uhff-link" href="https://education.microsoft.com/" data-m='{"cN":"Footer_Education_EducatorTrainingDevelopment_nav","id":"n6c3c1c1m1r1a2","sN":6,"aN":"c3c1c1m1r1a2"}'>Educator training and development</a>
+                            </li>
+                            <li>
+                                <a aria-label="Deals for students and parents Education" class="c-uhff-link" href="https://www.microsoft.com/en-us/store/b/education" data-m='{"cN":"Footer_Education_DealsForStudentsandParents_nav","id":"n7c3c1c1m1r1a2","sN":7,"aN":"c3c1c1m1r1a2"}'>Deals for students and parents</a>
+                            </li>
+                            <li>
+                                <a aria-label="AI for education Education" class="c-uhff-link" href="https://www.microsoft.com/en-us/education/ai-in-education" data-m='{"cN":"Footer_Education_Azureforstudents_nav","id":"n8c3c1c1m1r1a2","sN":8,"aN":"c3c1c1m1r1a2"}'>AI for education</a>
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+                </div>
+                <div class="c-uhff-nav-row">
+                    <div class="c-uhff-nav-group" data-m='{"cN":"footerNavColumn4_cont","cT":"Container","id":"c4c1c1m1r1a2","sN":4,"aN":"c1c1m1r1a2"}'>
+                        <div class="c-heading-4" role="heading" aria-level="2">Business</div>
+                        <ul class="c-list f-bare">
+                            <li>
+                                <a aria-label="Microsoft AI Business" class="c-uhff-link" href="https://www.microsoft.com/en-us/ai?icid=DSM_Footer_AI" data-m='{"cN":"Footer_Business_AI_nav","id":"n1c4c1c1m1r1a2","sN":1,"aN":"c4c1c1m1r1a2"}'>Microsoft AI</a>
+                            </li>
+                            <li>
+                                <a aria-label="Microsoft Security Business" class="c-uhff-link" href="https://www.microsoft.com/en-us/security" data-m='{"cN":"Footer_Business_Microsoft Security_nav","id":"n2c4c1c1m1r1a2","sN":2,"aN":"c4c1c1m1r1a2"}'>Microsoft Security</a>
+                            </li>
+                            <li>
+                                <a aria-label="Dynamics 365 Business" class="c-uhff-link" href="https://www.microsoft.com/en-us/dynamics-365" data-m='{"cN":"Footer_Business_MicrosoftDynamics365_nav","id":"n3c4c1c1m1r1a2","sN":3,"aN":"c4c1c1m1r1a2"}'>Dynamics 365</a>
+                            </li>
+                            <li>
+                                <a aria-label="Microsoft 365 Business" class="c-uhff-link" href="https://www.microsoft.com/en-us/microsoft-365/business" data-m='{"cN":"Footer_Business_M365_nav","id":"n4c4c1c1m1r1a2","sN":4,"aN":"c4c1c1m1r1a2"}'>Microsoft 365</a>
+                            </li>
+                            <li>
+                                <a aria-label="Microsoft Power Platform Business" class="c-uhff-link" href="https://www.microsoft.com/en-us/power-platform" data-m='{"cN":"Footer_DeveloperAndIT_Power Platform_nav","id":"n5c4c1c1m1r1a2","sN":5,"aN":"c4c1c1m1r1a2"}'>Microsoft Power Platform</a>
+                            </li>
+                            <li>
+                                <a aria-label="Microsoft Teams Business" class="c-uhff-link" href="https://www.microsoft.com/en-us/microsoft-teams/group-chat-software" data-m='{"cN":"Footer_Business_Microsoft365_nav","id":"n6c4c1c1m1r1a2","sN":6,"aN":"c4c1c1m1r1a2"}'>Microsoft Teams</a>
+                            </li>
+                            <li>
+                                <a aria-label="Microsoft Copilot Business" class="c-uhff-link" href="https://www.microsoft.com/en-us/copilot?icid=DSM_Footer_Business_Copilot" data-m='{"cN":"Footer_CopilotMicrosoft_nav","id":"n7c4c1c1m1r1a2","sN":7,"aN":"c4c1c1m1r1a2"}'>Microsoft Copilot</a>
+                            </li>
+                            <li>
+                                <a aria-label="Small Business Business" class="c-uhff-link" href="https://www.microsoft.com/en-us/store/b/business?icid=CNavBusinessStore" data-m='{"cN":"Footer_Business-SmallBusiness_nav","id":"n8c4c1c1m1r1a2","sN":8,"aN":"c4c1c1m1r1a2"}'>Small Business</a>
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+                    <div class="c-uhff-nav-group" data-m='{"cN":"footerNavColumn5_cont","cT":"Container","id":"c5c1c1m1r1a2","sN":5,"aN":"c1c1m1r1a2"}'>
+                        <div class="c-heading-4" role="heading" aria-level="2">Developer &amp; IT</div>
+                        <ul class="c-list f-bare">
+                            <li>
+                                <a aria-label="Azure Developer &amp; IT" class="c-uhff-link" href="https://azure.microsoft.com/en-us/" data-m='{"cN":"Footer_DeveloperAndIT_MicrosoftAzure_nav","id":"n1c5c1c1m1r1a2","sN":1,"aN":"c5c1c1m1r1a2"}'>Azure</a>
+                            </li>
+                            <li>
+                                <a aria-label="Microsoft Developer Developer &amp; IT" class="c-uhff-link" href="https://developer.microsoft.com/en-us/" data-m='{"cN":"Footer_DeveloperAndIT_MicrosoftDeveloper_nav","id":"n2c5c1c1m1r1a2","sN":2,"aN":"c5c1c1m1r1a2"}'>Microsoft Developer</a>
+                            </li>
+                            <li>
+                                <a aria-label="Microsoft Learn Developer &amp; IT" class="c-uhff-link" href="https://learn.microsoft.com/" data-m='{"cN":"Footer_DeveloperAndIT_MicrosoftLearn_nav","id":"n3c5c1c1m1r1a2","sN":3,"aN":"c5c1c1m1r1a2"}'>Microsoft Learn</a>
+                            </li>
+                            <li>
+                                <a aria-label="Support for AI marketplace apps Developer &amp; IT" class="c-uhff-link" href="https://www.microsoft.com/software-development-companies/offers-benefits/isv-success?icid=DSM_Footer_SupportAIMarketplace&amp;ocid=cmm3atxvn98" data-m='{"cN":"Footer_DeveloperAndIT_SupportForAIMarketplaceApps_nav","id":"n4c5c1c1m1r1a2","sN":4,"aN":"c5c1c1m1r1a2"}'>Support for AI marketplace apps</a>
+                            </li>
+                            <li>
+                                <a aria-label="Microsoft Tech Community Developer &amp; IT" class="c-uhff-link" href="https://techcommunity.microsoft.com/" data-m='{"cN":"Footer_DeveloperAndIT_MicrosoftTechCommunity_nav","id":"n5c5c1c1m1r1a2","sN":5,"aN":"c5c1c1m1r1a2"}'>Microsoft Tech Community</a>
+                            </li>
+                            <li>
+                                <a aria-label="Microsoft Marketplace Developer &amp; IT" class="c-uhff-link" href="https://marketplace.microsoft.com?icid=DSM_Footer_Marketplace&amp;ocid=cmm3atxvn98" data-m='{"cN":"Footer_DeveloperAndIT_Marketplace_nav","id":"n6c5c1c1m1r1a2","sN":6,"aN":"c5c1c1m1r1a2"}'>Microsoft Marketplace</a>
+                            </li>
+                            <li>
+                                <a aria-label="Software companies Developer &amp; IT" class="c-uhff-link" href="https://www.microsoft.com/software-development-companies?icid=DSM_Footer_SoftwareCompanies&amp;ocid=cmm3atxvn98" data-m='{"cN":"Software companies_nav","id":"n7c5c1c1m1r1a2","sN":7,"aN":"c5c1c1m1r1a2"}'>Software companies</a>
+                            </li>
+                            <li>
+                                <a aria-label="Visual Studio Developer &amp; IT" class="c-uhff-link" href="https://visualstudio.microsoft.com/" data-m='{"cN":"Footer_DeveloperAndIT_MicrosoftVisualStudio_nav","id":"n8c5c1c1m1r1a2","sN":8,"aN":"c5c1c1m1r1a2"}'>Visual Studio</a>
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+                    <div class="c-uhff-nav-group" data-m='{"cN":"footerNavColumn6_cont","cT":"Container","id":"c6c1c1m1r1a2","sN":6,"aN":"c1c1m1r1a2"}'>
+                        <div class="c-heading-4" role="heading" aria-level="2">Company</div>
+                        <ul class="c-list f-bare">
+                            <li>
+                                <a aria-label="Careers Company" class="c-uhff-link" href="https://careers.microsoft.com/" data-m='{"cN":"Footer_Company_Careers_nav","id":"n1c6c1c1m1r1a2","sN":1,"aN":"c6c1c1m1r1a2"}'>Careers</a>
+                            </li>
+                            <li>
+                                <a aria-label="About Microsoft Company" class="c-uhff-link" href="https://www.microsoft.com/about" data-m='{"cN":"Footer_Company_AboutMicrosoft_nav","id":"n2c6c1c1m1r1a2","sN":2,"aN":"c6c1c1m1r1a2"}'>About Microsoft</a>
+                            </li>
+                            <li>
+                                <a aria-label="Company news Company" class="c-uhff-link" href="https://news.microsoft.com/source/?icid=DSM_Footer_Company_CompanyNews" data-m='{"cN":"Footer_Company_CompanyNews_nav","id":"n3c6c1c1m1r1a2","sN":3,"aN":"c6c1c1m1r1a2"}'>Company news</a>
+                            </li>
+                            <li>
+                                <a aria-label="Privacy at Microsoft Company" class="c-uhff-link" href="https://www.microsoft.com/en-us/privacy?icid=DSM_Footer_Company_Privacy" data-m='{"cN":"Footer_Company_PrivacyAtMicrosoft_nav","id":"n4c6c1c1m1r1a2","sN":4,"aN":"c6c1c1m1r1a2"}'>Privacy at Microsoft</a>
+                            </li>
+                            <li>
+                                <a aria-label="Investors Company" class="c-uhff-link" href="https://www.microsoft.com/investor/default.aspx" data-m='{"cN":"Footer_Company_Investors_nav","id":"n5c6c1c1m1r1a2","sN":5,"aN":"c6c1c1m1r1a2"}'>Investors</a>
+                            </li>
+                            <li>
+                                <a aria-label="Diversity and inclusion Company" class="c-uhff-link" href="https://www.microsoft.com/en-us/diversity/default?icid=DSM_Footer_Company_Diversity" data-m='{"cN":"Footer_Company_DiversityAndInclusion_nav","id":"n6c6c1c1m1r1a2","sN":6,"aN":"c6c1c1m1r1a2"}'>Diversity and inclusion</a>
+                            </li>
+                            <li>
+                                <a aria-label="Accessibility Company" class="c-uhff-link" href="https://www.microsoft.com/en-us/accessibility" data-m='{"cN":"Footer_Company_Accessibility_nav","id":"n7c6c1c1m1r1a2","sN":7,"aN":"c6c1c1m1r1a2"}'>Accessibility</a>
+                            </li>
+                            <li>
+                                <a aria-label="Sustainability Company" class="c-uhff-link" href="https://www.microsoft.com/en-us/corporate-responsibility/sustainability?icid=DSM_Footer_Sustainability" data-m='{"cN":"Footer_Company_Sustainability_nav","id":"n8c6c1c1m1r1a2","sN":8,"aN":"c6c1c1m1r1a2"}'>Sustainability</a>
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+                </div>
+        </nav>
+    <div class="c-uhff-base">
+                <a id="locale-picker-link" aria-label="Content Language Selector. Currently set to English (United States)" class="c-uhff-link c-uhff-lang-selector c-glyph glyph-world" href="https://support.microsoft.com/en-us/worldwide" data-m='{"cN":"locale_picker(US)_nav","id":"n7c1c1m1r1a2","sN":7,"aN":"c1c1m1r1a2"}'>English (United States)</a>
+
+            <a data-m='{"id":"n8c1c1m1r1a2","sN":8,"aN":"c1c1m1r1a2"}' href="https://aka.ms/yourcaliforniaprivacychoices" class='c-uhff-link c-uhff-ccpa'>
+        <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 14" xml:space="preserve" height="16" width="43">
+            <title>Your Privacy Choices Opt-Out Icon</title>
+            <path d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z" style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"/>
+            <path d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z" style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"/>
+            <path d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z" style="fill:#fff"/>
+            <path d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z" style="fill:#06f"/>
+        </svg>
+        <span>Your Privacy Choices</span>
+    </a>
+
+        <noscript>
+                <a data-m='{"id":"n9c1c1m1r1a2","sN":9,"aN":"c1c1m1r1a2"}' href="https://aka.ms/yourcaliforniaprivacychoices" class='c-uhff-link c-uhff-ccpa'>
+        <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 14" xml:space="preserve" height="16" width="43">
+            <title>Your Privacy Choices Opt-Out Icon</title>
+            <path d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z" style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"/>
+            <path d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z" style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"/>
+            <path d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z" style="fill:#fff"/>
+            <path d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z" style="fill:#06f"/>
+        </svg>
+        <span>Your Privacy Choices</span>
+    </a>
+
+        </noscript>
+            <a data-m='{"id":"n10c1c1m1r1a2","sN":10,"aN":"c1c1m1r1a2"}' href="https://go.microsoft.com/fwlink/?linkid=2259814" class="c-uhff-link c-uhff-consumer">
+        <span>Consumer Health Privacy</span>
+    </a>
+
+        <nav aria-label="Microsoft corporate links">
+            <ul class="c-list f-bare" data-m='{"cN":"Corp links_cont","cT":"Container","id":"c11c1c1m1r1a2","sN":11,"aN":"c1c1m1r1a2"}'>
+                                <li  id="c-uhff-footer_sitemap">
+                    <a class="c-uhff-link" href="https://www.microsoft.com/en-us/sitemap1.aspx" data-mscc-ic="false" data-m='{"cN":"Footer_Sitemap_nav","id":"n1c11c1c1m1r1a2","sN":1,"aN":"c11c1c1m1r1a2"}'>Sitemap</a>
+                </li>
+                <li  id="c-uhff-footer_contactus">
+                    <a class="c-uhff-link" href="https://support.microsoft.com/contactus" data-mscc-ic="false" data-m='{"cN":"Footer_ContactUs_nav","id":"n2c11c1c1m1r1a2","sN":2,"aN":"c11c1c1m1r1a2"}'>Contact Microsoft</a>
+                </li>
+                <li  id="c-uhff-footer_privacyandcookies">
+                    <a class="c-uhff-link" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-mscc-ic="false" data-m='{"cN":"Footer_PrivacyandCookies_nav","id":"n3c11c1c1m1r1a2","sN":3,"aN":"c11c1c1m1r1a2"}'>Privacy </a>
+                </li>
+                <li class=" x-hidden" id="c-uhff-footer_managecookies">
+                    <a class="c-uhff-link" href="#" data-mscc-ic="false" data-m='{"cN":"Footer_ManageCookies_nav","id":"n4c11c1c1m1r1a2","sN":4,"aN":"c11c1c1m1r1a2"}'>Manage cookies</a>
+                </li>
+                <li  id="c-uhff-footer_termsofuse">
+                    <a class="c-uhff-link" href="https://go.microsoft.com/fwlink/?LinkID=206977" data-mscc-ic="false" data-m='{"cN":"Footer_TermsOfUse_nav","id":"n5c11c1c1m1r1a2","sN":5,"aN":"c11c1c1m1r1a2"}'>Terms of use</a>
+                </li>
+                <li  id="c-uhff-footer_trademarks">
+                    <a class="c-uhff-link" href="https://go.microsoft.com/fwlink/?linkid=2196228" data-mscc-ic="false" data-m='{"cN":"Footer_Trademarks_nav","id":"n6c11c1c1m1r1a2","sN":6,"aN":"c11c1c1m1r1a2"}'>Trademarks</a>
+                </li>
+                <li  id="c-uhff-footer_safetyandeco">
+                    <a class="c-uhff-link" href="https://go.microsoft.com/fwlink/?linkid=2196227" data-mscc-ic="false" data-m='{"cN":"Footer_SafetyAndEco_nav","id":"n7c11c1c1m1r1a2","sN":7,"aN":"c11c1c1m1r1a2"}'>Safety &amp; eco</a>
+                </li>
+                <li  id="c-uhff-recycling">
+                    <a class="c-uhff-link" href="https://www.microsoft.com/en-us/legal/compliance/recycling" data-mscc-ic="false" data-m='{"cN":"Recycling_nav","id":"n8c11c1c1m1r1a2","sN":8,"aN":"c11c1c1m1r1a2"}'>Recycling</a>
+                </li>
+                <li  id="c-uhff-footer_aboutourads">
+                    <a class="c-uhff-link" href="https://choice.microsoft.com" data-mscc-ic="false" data-m='{"cN":"Footer_AboutourAds_nav","id":"n9c11c1c1m1r1a2","sN":9,"aN":"c11c1c1m1r1a2"}'>About our ads</a>
+                </li>
+
+                <li>&#169; Microsoft 2026</li>
+                
+            </ul>
+        </nav>
+        
+    </div>
+    
+</footer>
+
+<script id="uhf-footer-ccpa">
+    const globalPrivacyControlEnabled = navigator.globalPrivacyControl;
+
+    const GPC_DataSharingOptIn = (globalPrivacyControlEnabled) ? false : checkThirdPartyAdsOptOutCookie();
+
+    if(window.onGPCLoaded) {
+        window.onGPCLoaded();
+    }
+    
+    function checkThirdPartyAdsOptOutCookie() {
+        try {
+            const ThirdPartyAdsOptOutCookieName = '3PAdsOptOut';
+            var cookieValue = getCookie(ThirdPartyAdsOptOutCookieName);
+            return cookieValue != 1;
+        } catch {
+            return true;
+        }
+    }
+
+    function getCookie(cookieName) {
+        var cookieValue = document.cookie.match('(^|;)\\s*' + cookieName + '\\s*=\\s*([^;]+)');
+        return (cookieValue) ? cookieValue[2] : '';
+    }
+</script>
+
+
+
+
+
+
+
+    </div>
+        </div>
+
+    </div>
+
+    	</div>
+
 	
-	</li><li>
-		
-		<a
-			data-mscc-ic="false"
-			href="https://learn.microsoft.com/en-us/previous-versions/"
-			data-bi-name="archivelink"
-			class=" external-link-indicator"
-			id=""
-			title=""
-			>Previous Versions</a
-		>
 	
-	</li> <li>
-		
-		<a
-			data-mscc-ic="false"
-			href="https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog"
-			data-bi-name="bloglink"
-			class=" external-link-indicator"
-			id=""
-			title=""
-			>Blog</a
-		>
+		<script src="/lib/jquery/dist/jquery.min.js?v=9_aliU8dGd2tb6OSsuzixeV4y_faTqgFtohetphbbj0" crossorigin="anonymous" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2">
+		</script>
+		<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js?v=5P1JGBOIxI7FBAvT_mb1fCnI5n_NhQKzNUuW7Hq0fMc" crossorigin="anonymous" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI">
+		</script>
+		<script src="/lib/oneds/dist/ms.analytics-web-4.0.2.min.js?v=O7wAAOKAVN2-OLLnoh3KjWb9pW6khEi85GWLxrUYqXA">
+		</script>
 	
-	</li> <li>
+
 		
-		<a
-			data-mscc-ic="false"
-			href="https://learn.microsoft.com/en-us/contribute"
-			data-bi-name="contributorGuide"
-			class=" external-link-indicator"
-			id=""
-			title=""
-			>Contribute</a
-		>
+
+
+	<script src="/lib/uhf/dist/uhfbundle.js?v=of4Bk4iHW2lu2zc7UaUcCo47rVLNSJYX0ELAcivbHkg"></script>
+
+	<script src="https://mem.gfx.ms/meversion?partner=SMCConvergence&market=en-us&uhf=1" defer></script>
+
 	
-	</li><li>
+
+
+
+<script type="text/javascript">
+	(function () {
+		function getCookie(name) {
+			var cookies = document.cookie.split('; ');
+			for (var i = 0; i < cookies.length; i++) {
+				var kvp = cookies[i].split('=');
+				if (kvp[0] === name) {
+					return decodeURIComponent(kvp[1]);
+				}
+			}
+			return null;
+		}
+
+		if (typeof window.oneDS === 'object') {
+			window.analytics = new window.oneDS.ApplicationInsights();
+			var config = {
+				instrumentationKey: "ac04587c8d6b439297eee84d88c95e8b-e1b6c3bf-fa11-485c-aebc-a825e1f68c8f-7432",
+				disableCookiesUsage: true,
+				cookieCfg: {
+					ignoreCookies: ["MicrosoftApplicationsTelemetryDeviceId", "MSFPC"]
+				},
+				channelConfiguration: {
+					eventsLimitInMem: 50
+				},
+				propertyConfiguration: {
+					gpcDataSharingOptIn: false,
+					callback: {
+						userConsentDetails: () => {
+							const consentDetails = {
+								Required: true,
+								Analytics: false,
+								Advertising: false,
+								SocialMedia: false
+							};
+
+							return consentDetails;
+						}
+					}
+				},
+				webAnalyticsConfiguration: {
+					autoCapture: {
+						pageView: true,
+						onLoad: true,
+						onUnload: true,
+						click: true,
+						scroll: true,
+						resize: true,
+						lineage: false,
+						jsError: true,
+						msTags: true
+					},
+					autoPopulateParentIdAndParentName: true,
+					isLoggedIn: false,
+					urlCollectHash: true,
+urlCollectQuery: true,
+					useDefaultContentName: true,
+					useShortNameForContentBlob: false
+				}
+			};
+
+			var isFirstTime = true;
+			var jsLocalId = null;
+
+
+			//Telemetry initializers are used to modify the contents of collected telemetry before being sent from the user's browser
+			window.analytics.addTelemetryInitializer(function (e) {
+				if (isFirstTime) {
+					var context = window.analytics.getPropertyManager().getPropertiesContext();
+					var ext = e.ext = e.ext || {};
+
+					if (jsLocalId) {
+						// Set the localId so it's set automatically for all future events
+						context.user.setLocalId(jsLocalId);
+
+						var userExt = ext.user = ext.user || {};
+						userExt.localId = jsLocalId;
+					}
+
+					isFirstTime = false;
+				}
+			});
+			window.analytics.initialize(config, []);
+		}
+	})();
+</script>
+
 		
-		<a
-			data-mscc-ic="false"
-			href="https://go.microsoft.com/fwlink/?LinkId=521839"
-			data-bi-name="privacy"
-			class=" external-link-indicator"
-			id=""
-			title=""
-			>Privacy</a
-		>
-	
-	</li><li>
+
+<script type="text/javascript">
+	$(function () {
+		var signInUrl = "/en-us/authentication/signin";
+		var signOutUrl = "/en-us/authentication/signout";
+		var switchAccountUrl = "/en-us/authentication/switchaccount";
+		var shellOptions = {
+			meControlOptions: {
+				apiGeneration: 'GEN2',
+				authProviderConfig: {
+					type: 'webAadWithMsaProxy',
+					appSignInUrl: signInUrl,
+					appSignInToUrl: signInUrl,
+					appSignOutUrl: signOutUrl,
+					appSwitchUrl: switchAccountUrl,
+					appSwitchToUrl: switchAccountUrl,
+					aad: {
+						signOutUrl: 'https://login.microsoftonline.com:443/uxlogout?appid=ee272b19-4411-433f-8f28-5c13cb6fd407\u0026wreply=https%3A%2F%2Fsupport.microsoft.com%2Fsignin-oidc\u0026shouldforgetuser=False',
+						signOutAndForgetUrl: 'https://login.microsoftonline.com:443/uxlogout?appid=ee272b19-4411-433f-8f28-5c13cb6fd407\u0026wreply=https%3A%2F%2Fsupport.microsoft.com%2Fsignin-oidc\u0026shouldforgetuser=True',
+						forgetUrl: 'https://login.microsoftonline.com:443/forgetuser',
+						rememberedAccountsUrl: 'https://login.microsoftonline.com:443/savedusers?appid=ee272b19-4411-433f-8f28-5c13cb6fd407\u0026wreply=https%3A%2F%2Fsupport.microsoft.com%2Fsignin-oidc',
+					},
+				},
+			}
+		};
+
+		window.smcMeControlOptions = shellOptions.meControlOptions;
+
+		if (window.msCommonShell) {
+			window.msCommonShell.load(shellOptions);
+		}
+		else {
+			window.onShellReadyToLoad = function () {
+				window.onShellReadyToLoad = null;
+				window.msCommonShell.load(shellOptions);
+			};
+		}
+	});
+</script>
+
+<script defer type="text/javascript" src="/js/SilentSignInManager.Main.min.js?v=W-uBeDDNKk_aA3RqToq6hTWnBnxtkwbSmhrynQmbHiI"></script>
+<script type="text/javascript">
+	$(async function () {
+		await window.manageSilentSignIn.handleAllSilentSignIn();
+	})
+</script>
 		
-		<a
-			data-mscc-ic="false"
-			href="https://go.microsoft.com/fwlink/?linkid=2259814"
-			data-bi-name="consumer-health-privacy"
-			class=" external-link-indicator"
-			id=""
-			title=""
-			>Consumer Health Privacy</a
-		>
+
+
+	<script>
+		if (window.UcsCreative === undefined) {
+			window.UcsCreative = {};
+		}
+	</script>
+	<script type="text/javascript">
+
+		window.silentSigninProgress = true;
+
+		var silentSigninStartLog = {
+			actionType: 'A',
+			content: {
+				contentId: 'silentSignInStarted'
+			}
+		};
+		window.analytics.captureContentUpdate(silentSigninStartLog);
+	</script>
+	<iframe id="iframeOP" width="1" height="1" name="iframeOP" class="d-none" sandbox="allow-same-origin allow-forms allow-scripts" src="/en-us/authentication/silentsignin?ru=%2Fen-us%2Fsilentsigninhandler" hidden></iframe>
+
+		<script src="/js/MeControlCallout.Main.min.js?v=s2eX1oJj9gyvpMrPbAR6xnTLsp7R2V3xzpT53qI4EUQ"></script>
+
 	
-	</li><li>
-		
-		<a
-			data-mscc-ic="false"
-			href="https://learn.microsoft.com/en-us/legal/termsofuse"
-			data-bi-name="termsofuse"
-			class=" external-link-indicator"
-			id=""
-			title=""
-			>Terms of Use</a
-		>
+	<script src="/js/Support.Main.min.js?v=3wLExXJ1c6Z_fNYNT1-0NpQXLFyj2Iby2IWJp9HGBAQ"></script>
+		<script defer src="/js/ExtendedFeedback.Main.min.js?v=OPWkWZCFKYRAR9cUwAdMCvxgFGtl9GIg_SEM-FteIxo"></script>
+		<script type="text/javascript">
+			if (occe && occe.Resources) {
+				occe.Resources.addLocalizedStrings({"L_Feedback_ThankYou":"L_Feedback_ThankYou"});
+			}
+		</script>
+
+	<script defer src="/js/TabControl.Main.min.js?v=oIYkWKetostewI3D9tAyAqP93pjeMbiXPuz0j-ER2oQ"></script>
 	
-	</li><li>
-		
-		<a
-			data-mscc-ic="false"
-			href="https://www.microsoft.com/legal/intellectualproperty/Trademarks/"
-			data-bi-name="trademarks"
-			class=" external-link-indicator"
-			id=""
-			title=""
-			>Trademarks</a
-		>
+	<script src="/js/LeftNavigation.Main.min.js?v=7xKXyNwn7X9rN66VAES5OF5UwbQUMBxRViBw-nNfMCU"></script>
+
 	
-	</li>
-				<li>&copy; Microsoft 2026</li>
-			</ul>
-		</footer>
-	</footer>
-			<noscript><img src="https://learn.microsoft.com/akam/13/pixel_3de0e95b?a=dD1kZThhNmU2ZTFhMDFmNDUyZDgwOWNlYjYzYzA1OTRhZjIzZjA1Y2RkJmpzPW9mZg==" style="visibility: hidden; position: absolute; left: -999px; top: -999px;" /></noscript></body>
-		</html>
+	
+
+
+</body>
+</html>
