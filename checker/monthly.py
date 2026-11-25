@@ -553,8 +553,12 @@ def _advice_box(a) -> str:
     if not a:
         return ""
     word, colour, why = a
+    tag = R._tag(word, colour)
+    m = re.match(r"Use KB(\d+)", word)
+    if m:  # clicking it opens the out-of-band update that replaces this one
+        tag = f'<a href="{kb_link(m.group(1))}" target="_blank" style="text-decoration:none">{tag}</a>'
     return (f'<div style="margin-top:6px;font-size:12px;color:{R.NAVY};line-height:1.45">'
-            f'<b>Recommendation:</b> {R._tag(word, colour)} &nbsp;{R._e(why)}</div>')
+            f'<b>Recommendation:</b> {tag} &nbsp;{R._e(why)}</div>')
 
 
 def _empty(msg: str) -> str:
@@ -599,25 +603,41 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                 "Month-end follow-up. ") + lead
 
     # Deployment advice: one line per update released this month
-    def _ki_tag(iss):
+    def _a(url: str, inner: str) -> str:
+        return (f'<a href="{R._e(url)}" target="_blank" style="text-decoration:none">{inner}</a>' if url else inner)
+
+    def _ki_tag(iss, notes):
+        """Known-issues tag. Clicking it opens the issue (Windows release health) or the update's release notes."""
         if iss is None:
-            return R._tag("Not checked", "silver")
-        return R._tag("None", "green") if not iss else R._tag(f"{len(iss)} issue{'s' if len(iss) != 1 else ''}", "yellow")
-    check = [(v, f"KB{u['kb']} &middot; {R._e(u['type'])}", u.get("issues", []), u.get("advice"))
+            return _a(notes, R._tag("Not checked", "silver"))
+        if not iss:
+            return _a(notes, R._tag("None", "green"))
+        first = iss[0]
+        url = first["link"] if isinstance(first, dict) else notes + "#known-issues-in-this-update"
+        return _a(url, R._tag(f"{len(iss)} issue{'s' if len(iss) != 1 else ''}", "yellow"))
+
+    def _advice_tag(a, notes):
+        """Recommendation tag. 'Use KB…' opens that out-of-band update; the others open this update's release notes."""
+        if not a:
+            return ""
+        m = re.match(r"Use KB(\d+)", a[0])
+        return _a(kb_link(m.group(1)) if m else notes, R._tag(a[0], a[1]))
+
+    check = [(v, f"KB{u['kb']} &middot; {R._e(u['type'])}", u.get("issues", []), u.get("advice"), u["notes"])
              for v in PLATFORMS for u in win.get(v, [])]
-    check += [(v, f"{R._e(r['label'])} &middot; KB{r['kb']}", r["issues"], r.get("advice")) for v, r in sql_new]
+    check += [(v, f"{R._e(r['label'])} &middot; KB{r['kb']}", r["issues"], r.get("advice"), r["notes"]) for v, r in sql_new]
     counts: dict[str, int] = {}
-    for *_, a in check:
+    for *_, a, _n in check:
         if a:
             counts[a[0] if not a[0].startswith("Use KB") else "Superseded"] = counts.get(a[0] if not a[0].startswith("Use KB") else "Superseded", 0) + 1
     cell = f'padding:7px 10px;border-bottom:1px solid {R.LINE};font-family:{R.TEXT_FONT};font-size:12px'
     ki_rows = (f'<tr><th {TH}>Product</th><th {TH}>Update</th><th {TH}>Known issues</th><th {TH}>Recommendation</th></tr>'
                + "".join(
         f'<tr><td style="{cell};font-weight:700;color:{R.NAVY};white-space:nowrap">{R._e(v)}</td>'
-        f'<td style="{cell};color:{R.TEXT_2}">{d}</td>'
-        f'<td style="{cell}">{_ki_tag(iss)}</td>'
-        f'<td style="{cell}">{R._tag(a[0], a[1]) if a else ""}</td></tr>'
-        for v, d, iss, a in check))
+        f'<td style="{cell}"><a href="{R._e(n)}" target="_blank" style="color:{R.TEXT_2};text-decoration:underline">{d}</a></td>'
+        f'<td style="{cell}">{_ki_tag(iss, n)}</td>'
+        f'<td style="{cell}">{_advice_tag(a, n)}</td></tr>'
+        for v, d, iss, a, n in check))
     oob = data.get("oob", {})
     rel = [v for v, (k, _) in oob.items() if k == "released" and win.get(v)]
     exp = [v for v, (k, _) in oob.items() if k == "expected" and win.get(v)]
