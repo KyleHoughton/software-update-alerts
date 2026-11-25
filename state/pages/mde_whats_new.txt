@@ -10,6 +10,10 @@ This article describes Microsoft Defender for Endpoint features that are in prev
 For recent releases of Microsoft Defender for Endpoint, including build numbers, improvements, and fixes, see Microsoft Defender for Endpoint release notes.
 Learn more about Preview features.
 Type Feature Preview/GA Description
+Domain filter in device inventory portal
+You can now filter devices by their Active Directory domain in the device inventory. This makes it easier to narrow the inventory to devices belonging to a specific domain for investigation and device management. For more information, see Device inventory field and filter reference.
+Server-side filtering for export assessment APIs
+The export assessment APIs now support the $filter query parameter to narrow records by device group and supported properties before retrieval, reducing the data you transfer and process.
 Preview features page
 Turn certain Defender for Endpoint public preview features on or off per feature. For more information, see Manage individual preview features in Microsoft Defender for Endpoint.
 Embedded offboarding with the Defender deployment tool for Windows
@@ -262,4 +266,4 @@ Was this page helpful?
 Need help with this topic?
 Want to try using Ask Learn to clarify or guide you through this topic?
 Additional resources
-Last updated on 2026-10-30
+Last updated on 2026-11-16
