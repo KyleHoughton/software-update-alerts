@@ -1,0 +1,54 @@
+name: Hourly update check
+
+on:
+  schedule:
+    - cron: "17 * * * *"   # every hour, at 17 minutes past (UTC)
+  workflow_dispatch:
+    inputs:
+      send_test_email:
+        description: "Send a test email even if nothing is new"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Check sources and email the group
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SEND_TEST_EMAIL: ${{ inputs.send_test_email }}
+        run: python checker/main.py
+
+      - name: Save what has been seen
+        run: |
+          git config user.name "update-alerts-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state
+          if git diff --cached --quiet; then echo "No state changes"; exit 0; fi
+          git commit -m "Update seen items [skip ci]"
+          git push

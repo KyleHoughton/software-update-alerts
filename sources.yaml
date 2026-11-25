@@ -1,0 +1,260 @@
+# Sources the hourly checker watches.
+#
+# type:
+#   rss            RSS or Atom feed. Optional "exclude_titles" / "include_titles" (lists of regex) filter items by title.
+#   github_release Latest releases of a GitHub repository ("repo: owner/name").
+#   cisa_kev       CISA Known Exploited Vulnerabilities (any software). Always urgent.
+#   nvd            New CVEs from the US National Vulnerability Database, matched to "vendors" below.
+#   page_watch     A web page with no feed. Alerts when new text appears on it.
+#
+# category: "security" or "update". Decides the email section.
+# To add a source, copy an entry and change it. The id must be unique.
+
+vulnerabilities:
+  cisa_kev:
+    name: CISA Known Exploited Vulnerabilities (all software)
+    type: cisa_kev
+    category: security
+    url: https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
+
+  nvd:
+    name: NVD new CVEs for watched vendors
+    type: nvd
+    category: security
+    url: https://services.nvd.nist.gov/rest/json/cves/2.0
+    urgent_cvss: 9.0   # CVEs at or above this score are marked urgent
+
+  msrc:
+    name: Microsoft Security Update Guide
+    type: rss
+    category: security
+    url: https://api.msrc.microsoft.com/update-guide/rss
+
+  fortinet_psirt:
+    name: Fortinet PSIRT advisories
+    type: rss
+    category: security
+    url: https://filestore.fortinet.com/fortiguard/rss/ir.xml
+
+# Vendors matched against new CVEs in NVD. "cpe" is the NVD vendor id, "keywords" are
+# matched (whole words, any case) in the CVE description. Microsoft is left out here
+# because the Microsoft Security Update Guide feed above already covers it.
+vendors:
+  - {name: Quest, cpe: [quest], keywords: ["Quest Software", "Quest KACE", "Change Auditor", "GPOADmin", "Recovery Manager for Active Directory", "On Demand Migration"]}
+  - {name: One Identity, cpe: [oneidentity], keywords: ["One Identity", "Safeguard for Privileged", "Active Roles", "Cloud PAM Essentials"]}
+  - {name: CrowdStrike, cpe: [crowdstrike], keywords: ["CrowdStrike", "Falcon sensor"]}
+  - {name: Delinea, cpe: [delinea, thycotic], keywords: ["Delinea", "Thycotic", "Secret Server", "Privilege Manager"]}
+  - {name: Netwrix, cpe: [netwrix], keywords: ["Netwrix", "PingCastle", "PolicyPak", "Password Policy Enforcer"]}
+  - {name: Semperis, cpe: [semperis], keywords: ["Semperis", "Purple Knight", "Directory Services Protector"]}
+  - {name: SpecterOps, cpe: [specterops], keywords: ["BloodHound", "SpecterOps"]}
+  - {name: Silverfort, cpe: [silverfort], keywords: ["Silverfort"]}
+  - {name: RSA, cpe: [rsa, dell], keywords: ["RSA SecurID", "RSA Governance", "RSA Authentication Manager", "RSA ID Plus"]}
+  - {name: Fortinet, cpe: [fortinet], keywords: ["Fortinet", "FortiOS", "FortiGate", "FortiPAM", "FortiMail", "FortiAuthenticator", "FortiSIEM", "FortiSOAR", "FortiNAC", "FortiEDR", "FortiProxy", "FortiWeb"]}
+  - {name: Fortra, cpe: [fortra, helpsystems], keywords: ["Fortra", "GoAnywhere", "Tripwire", "Cobalt Strike", "Digital Guardian", "Core Impact"]}
+  - {name: Proofpoint, cpe: [proofpoint], keywords: ["Proofpoint"]}
+  - {name: Mimecast, cpe: [mimecast], keywords: ["Mimecast", "Code42", "Incydr"]}
+  - {name: Coro, cpe: [coro], keywords: ["Coro Cyber"]}
+  - {name: Libraesva, cpe: [libraesva], keywords: ["Libraesva"]}
+  - {name: HYPR, cpe: [hypr], keywords: ["HYPR"]}
+  - {name: Yubico, cpe: [yubico], keywords: ["Yubico", "YubiKey", "YubiHSM"]}
+  - {name: BIO-key, cpe: [bio-key], keywords: ["BIO-key", "PortalGuard"]}
+  - {name: Commvault, cpe: [commvault], keywords: ["Commvault"]}
+  - {name: Veeam, cpe: [veeam], keywords: ["Veeam"]}
+  - {name: BitTitan, cpe: [bittitan], keywords: ["BitTitan", "MigrationWiz"]}
+  - {name: ShareGate, cpe: [sharegate], keywords: ["ShareGate"]}
+  - {name: Cequence, cpe: [cequence], keywords: ["Cequence"]}
+  - {name: Deep Instinct, cpe: [deepinstinct], keywords: ["Deep Instinct"]}
+  - {name: Progress Kemp, cpe: [kemptechnologies, progress], keywords: ["LoadMaster", "Flowmon", "Progress Kemp"]}
+  - {name: Ground Labs, cpe: [groundlabs], keywords: ["Ground Labs", "Enterprise Recon"]}
+  - {name: Patch My PC, cpe: [patchmypc], keywords: ["Patch My PC"]}
+  - {name: PaperCut, cpe: [papercut], keywords: ["PaperCut"]}
+  - {name: SonicWall, cpe: [sonicwall], keywords: ["SonicWall", "SonicOS", "SMA100", "SMA 100"]}
+  - {name: Anthropic, cpe: [anthropic], keywords: ["Anthropic", "Claude Code"]}
+
+updates:
+  # ---------- Microsoft ----------
+  azure_updates:
+    name: Azure Updates
+    type: rss
+    category: update
+    url: https://www.microsoft.com/releasecommunications/api/v2/azure/rss
+  m365_roadmap:
+    name: Microsoft 365 Roadmap (Teams, Entra, Defender, Intune, Purview, Copilot)
+    type: rss
+    category: update
+    url: https://www.microsoft.com/releasecommunications/api/v1/m365/rss
+  azure_status:
+    name: Azure Status (incidents)
+    type: rss
+    category: update
+    url: https://rssfeed.azure.status.microsoft/en-us/status/feed/
+  windows_server:
+    name: Windows Server release information
+    type: page_watch
+    category: update
+    url: https://learn.microsoft.com/en-us/windows/release-health/windows-server-release-info
+  sql_server:
+    name: SQL Server latest updates
+    type: page_watch
+    category: update
+    url: https://learn.microsoft.com/en-us/troubleshoot/sql/releases/download-and-install-latest-updates
+  exchange_builds:
+    name: Exchange Server build numbers
+    type: page_watch
+    category: update
+    url: https://learn.microsoft.com/en-us/exchange/new-features/build-numbers-and-release-dates
+  entra_whats_new:
+    name: Microsoft Entra what's new
+    type: page_watch
+    category: update
+    url: https://learn.microsoft.com/en-us/entra/fundamentals/whats-new
+  intune_whats_new:
+    name: Microsoft Intune what's new
+    type: page_watch
+    category: update
+    url: https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/whats-new
+  mde_whats_new:
+    name: Defender for Endpoint what's new
+    type: page_watch
+    category: update
+    url: https://learn.microsoft.com/en-us/defender-endpoint/whats-new-in-microsoft-defender-endpoint
+  mdi_whats_new:
+    name: Defender for Identity what's new
+    type: page_watch
+    category: update
+    url: https://learn.microsoft.com/en-us/defender-for-identity/whats-new
+  sentinel_whats_new:
+    name: Microsoft Sentinel what's new
+    type: page_watch
+    category: update
+    url: https://learn.microsoft.com/en-us/azure/sentinel/whats-new
+
+  # ---------- Quest (per-product support feeds; knowledge base articles are filtered out) ----------
+  quest_change_auditor:
+    name: Quest Change Auditor
+    type: rss
+    category: update
+    url: https://support.quest.com/change-auditor/rss
+    exclude_titles: ["^Knowledge Base"]
+  quest_gpoadmin:
+    name: Quest GPOADmin
+    type: rss
+    category: update
+    url: https://support.quest.com/gpoadmin/rss
+    exclude_titles: ["^Knowledge Base"]
+  quest_rmad:
+    name: Quest Recovery Manager for AD
+    type: rss
+    category: update
+    url: https://support.quest.com/recovery-manager-for-ad/rss
+    exclude_titles: ["^Knowledge Base"]
+  quest_rmad_dre:
+    name: Quest Recovery Manager for AD Disaster Recovery Edition
+    type: rss
+    category: update
+    url: https://support.quest.com/recovery-manager-for-ad-disaster-recovery-edition/rss
+    exclude_titles: ["^Knowledge Base"]
+  quest_rmad_fe:
+    name: Quest Recovery Manager for AD Forest Edition
+    type: rss
+    category: update
+    url: https://support.quest.com/recovery-manager-for-ad-forest-edition/rss
+    exclude_titles: ["^Knowledge Base"]
+  quest_odm:
+    name: Quest On Demand Migration
+    type: rss
+    category: update
+    url: https://support.quest.com/on-demand-migration/rss
+    exclude_titles: ["^Knowledge Base"]
+  quest_migrator_pro_ad:
+    name: Quest Migrator Pro for Active Directory
+    type: rss
+    category: update
+    url: https://support.quest.com/binary-tree-migrator-pro-for-active-directory/rss
+    exclude_titles: ["^Knowledge Base"]
+  quest_odr:
+    name: Quest On Demand Recovery (Identity Recovery)
+    type: rss
+    category: update
+    url: https://support.quest.com/on-demand-recovery/rss
+    exclude_titles: ["^Knowledge Base"]
+
+  # ---------- One Identity (same portal as Quest; feeds to be confirmed on first run) ----------
+  oi_active_roles:
+    name: One Identity Active Roles
+    type: rss
+    category: update
+    url: https://support.oneidentity.com/active-roles/rss
+    exclude_titles: ["^Knowledge Base"]
+  oi_spp:
+    name: One Identity Safeguard for Privileged Passwords
+    type: rss
+    category: update
+    url: https://support.oneidentity.com/one-identity-safeguard-for-privileged-passwords/rss
+    exclude_titles: ["^Knowledge Base"]
+  oi_sps:
+    name: One Identity Safeguard for Privileged Sessions
+    type: rss
+    category: update
+    url: https://support.oneidentity.com/one-identity-safeguard-for-privileged-sessions/rss
+    exclude_titles: ["^Knowledge Base"]
+  oi_defender:
+    name: One Identity Defender
+    type: rss
+    category: update
+    url: https://support.oneidentity.com/defender/rss
+    exclude_titles: ["^Knowledge Base"]
+
+  # ---------- Other vendors ----------
+  bloodhound:
+    name: SpecterOps BloodHound CE
+    type: github_release
+    category: update
+    repo: SpecterOps/BloodHound
+  pingcastle:
+    name: Netwrix PingCastle
+    type: github_release
+    category: update
+    repo: netwrix/pingcastle
+  veeam_vbr_builds:
+    name: Veeam Backup & Replication build numbers
+    type: page_watch
+    category: update
+    url: https://www.veeam.com/kb2680
+
+  # ---------- Vendor security advisory pages (no feed) ----------
+  crowdstrike_advisories:
+    name: CrowdStrike security advisories
+    type: page_watch
+    category: security
+    url: https://www.crowdstrike.com/en-us/security-advisories/
+  netwrix_advisories:
+    name: Netwrix security advisories
+    type: page_watch
+    category: security
+    url: https://security.netwrix.com/Advisories
+  fortra_advisories:
+    name: Fortra security advisories
+    type: page_watch
+    category: security
+    url: https://www.fortra.com/security/advisories
+  proofpoint_advisories:
+    name: Proofpoint security advisories
+    type: page_watch
+    category: security
+    url: https://www.proofpoint.com/us/security/security-advisories
+  yubico_advisories:
+    name: Yubico security advisories
+    type: page_watch
+    category: security
+    url: https://www.yubico.com/support/security-advisories/
+  commvault_advisories:
+    name: Commvault security advisories
+    type: page_watch
+    category: security
+    url: https://documentation.commvault.com/securityadvisories/
+  sonicwall_advisories:
+    name: SonicWall PSIRT
+    type: page_watch
+    category: security
+    url: https://psirt.global.sonicwall.com/vuln-list
