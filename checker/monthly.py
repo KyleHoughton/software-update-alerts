@@ -55,6 +55,9 @@ WINDOWS = {
 SQL_VERSIONS = ["SQL Server 2025", "SQL Server 2022", "SQL Server 2019", "SQL Server 2017", "SQL Server 2016"]
 TITLE = "Symbiosys Windows Server &amp; SQL Server Monthly Patch Report"
 
+# SQL Server icon (same glass style). Added here only, so the hourly alert emails don't carry it.
+R.INLINE_IMAGES["icon-sql"] = R.ASSETS / "icons" / "database.png"
+
 now = dt.datetime.now(dt.timezone.utc)
 
 
@@ -351,6 +354,20 @@ def _change(x: dict) -> str:
             f'text-transform:uppercase">{R._e(x["change"])}</span>' if x.get("change") else "")
 
 
+def _kpi(icon_cid: str, value: int, label: str, img) -> str:
+    """KPI tile with a fixed height, so all four boxes are the same size."""
+    return (f'<td width="25%" valign="top" style="padding:0 6px">'
+            f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
+            f'style="background:{R.WHITE};border:1px solid {R.WHITE};border-radius:8px;box-shadow:0 3px 12px rgba(7,19,32,.12)">'
+            f'<tr><td height="88" style="padding:0 10px 0 12px;height:88px" valign="middle" width="44">'
+            f'<img src="{img(icon_cid)}" width="40" height="40" alt="" style="display:block;width:40px;height:40px;border:0"></td>'
+            f'<td height="88" style="padding:0 10px 0 2px;height:88px" valign="middle">'
+            f'<div style="font-family:{R.HEAD_FONT};font-size:30px;font-weight:700;color:{R.NAVY};line-height:1">{value}</div>'
+            f'<div style="font-family:{R.TEXT_FONT};font-size:10px;letter-spacing:2px;text-transform:uppercase;color:{R.NAVY};'
+            f'margin-top:5px;line-height:1.35;white-space:nowrap">{label}</div>'
+            f'</td></tr></table></td>')
+
+
 def _head(n: int, label: str, headline: str, intro: str, icon: str, img) -> str:
     return (f'<tr><td style="padding:34px 40px 14px">'
             f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>'
@@ -492,7 +509,7 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                 known = (f'<div style="margin-top:6px;padding:6px 8px;background:{R.OFFWHITE};border-left:3px solid {R.ORANGE};'
                          f'font-size:12px;color:{R.NAVY};line-height:1.45"><b>Known issues:</b> '
                          + "; ".join(R._e(x) for x in r["issues"]) + "</div>")
-            tag = R._tag("New this month", "blue") if r["new"] else R._tag("Current", "silver")
+            tag = R._tag("New this month", "blue") if r["new"] else R._tag("Current", "green")
             srows.append(
                 f'<tr><td {TD};font-size:14px"><b>{R._e(r["label"])}</b>{_change(r)}'
                 f'<div style="font-size:12px;color:{R.TEXT_2};margin-top:3px">KB{r["kb"]} &middot; build {R._e(r["build"])}</div></td>'
@@ -532,7 +549,7 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                 "icon-warning", img) + "".join(irows)
         + _head(4, "SQL Server", f"SQL Server <span style=\"color:{B}\">updates</span>",
                 "The latest security update (GDR) and cumulative update for each supported version. Updates released this month are marked.",
-                "icon-globe", img) + "".join(srows)
+                "icon-sql", img) + "".join(srows)
         + _head(5, "Security Update Guide", f"Notable <span style=\"color:{B}\">vulnerabilities</span>",
                 "Exploited, publicly disclosed and critical vulnerabilities fixed this month in Windows Server or SQL Server.",
                 "icon-cyber", img) + "".join(vrows))
@@ -576,10 +593,10 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
   </td></tr>
   <tr><td style="padding:18px 34px 4px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-      {R._kpi("icon-update", n_win, "Windows updates", img)}
-      {R._kpi("icon-globe", len(sql_new), "SQL updates", img)}
-      {R._kpi("icon-warning", len(open_issues), "Open issues", img)}
-      {R._kpi("icon-cyber", cves["critical"], "Critical CVEs", img)}
+      {_kpi("icon-update", n_win, "Windows<br>updates", img)}
+      {_kpi("icon-sql", len(sql_new), "SQL<br>updates", img)}
+      {_kpi("icon-warning", len(open_issues), "Open<br>issues", img)}
+      {_kpi("icon-cyber", cves["critical"], "Critical<br>CVEs", img)}
     </tr></table>
   </td></tr>
   {sections}
