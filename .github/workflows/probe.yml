@@ -6,12 +6,8 @@ jobs:
     steps:
       - run: |
           UA="Mozilla/5.0 (compatible; software-update-alerts/1.0)"
-          for h in support.quest.com support.oneidentity.com; do
-          for s in active-roles one-identity-safeguard-for-privileged-passwords safeguard-for-privileged-passwords one-identity-safeguard-for-privileged-sessions safeguard-for-privileged-sessions defender one-identity-defender identity-manager cloud-pam-essentials security-guardian identity-defense on-demand-recovery recovery-manager-for-active-directory migrator-pro-for-active-directory; do
-            u="https://$h/$s/rss"
+          for u in https://support.oneidentity.com/feed https://support.oneidentity.com/comments/feed https://support.oneidentity.com/product-notification/feed https://www.oneidentity.com/feed/ https://support.oneidentity.com/wp-json/wp/v2/types https://support.oneidentity.com/sitemap.xml https://support.oneidentity.com/wp-sitemap.xml; do
             r=$(curl -sL -A "$UA" -o f.xml -w '%{http_code} %{content_type} %{url_effective}' "$u")
-            t=$(grep -oE '<title>[^<]{0,80}' f.xml | sed -n 2p)
-            echo "RES $u -> $r | $t"
-          done; done
-          curl -sL -A "$UA" -c c.txt -b c.txt https://support.oneidentity.com/ -o home.html; grep -oiE 'support.oneidentity.com/[a-z0-9-]+' home.html | sort -u | head -40 | sed 's/^/LINK /'
-          grep -oiE '"/[a-z0-9-]+/(rss|technical-documents)[^"]*"' home.html | sort -u | head | sed 's/^/LINK /'
+            echo "RES $u -> $r"; grep -oE '<(title|loc)>[^<]{0,120}' f.xml | head -12 | sed 's/^/  ITEM /'; head -c 300 f.xml | tr '\n' ' ' | sed 's/^/  HEAD /'; echo
+          done
+          curl -sL -A "$UA" https://support.oneidentity.com/ -o home.html; grep -oE 'href="[^"]+"' home.html | sort -u | head -100 | sed 's/^/LINK /'
