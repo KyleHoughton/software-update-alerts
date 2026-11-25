@@ -517,7 +517,7 @@ TABLE = (f'<tr><td style="padding:0 40px"><table role="presentation" width="100%
 
 
 def _group(name: str, extra: str = "") -> str:
-    return (f'<tr><td colspan="4" style="padding:8px 12px;background:{R.OFFWHITE};border-top:2px solid {R.NAVY};font-family:{R.TEXT_FONT};'
+    return (f'<tr><td colspan="4" style="padding:8px 12px;background:{R.PANEL_BG};border-top:2px solid {R.NAVY};font-family:{R.TEXT_FONT};'
             f'font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:{R.NAVY}">'
             f'<span style="color:{R.ORANGE}">&#9632;</span>&nbsp; {R._e(name)}'
             f'<span style="font-weight:400;color:{R.TEXT_2}">{extra}</span></td></tr>')
@@ -534,7 +534,7 @@ def _issue_box(issues, fixes=()) -> str:
     fixed = (f'<div style="margin-top:4px;font-size:12px;color:{R.TEXT_2}">Fixes: ' + "; ".join(R._e(x) for x in fixes) + "</div>"
              if fixes else "")
     if issues is None:
-        return (f'<div style="margin-top:6px;padding:6px 8px;background:{R.OFFWHITE};border-left:3px solid {R.SILVER};'
+        return (f'<div style="margin-top:6px;padding:6px 8px;background:{R.PANEL_BG};border-left:3px solid {R.SILVER};'
                 f'font-size:12px;color:{R.NAVY};line-height:1.45"><b>Known issues:</b> could not be checked. '
                 f'See the release notes before deploying.</div>{fixed}')
     if not issues:
@@ -545,7 +545,7 @@ def _issue_box(issues, fixes=()) -> str:
         (f'<a href="{R._e(x["link"])}" style="color:{R.NAVY};text-decoration:underline">{R._e(x["title"])}</a>'
          + (f' ({R._e(x["status"].lower())})' if x.get("status") else "")) if isinstance(x, dict) else R._e(x)
         for x in issues)
-    return (f'<div style="margin-top:6px;padding:6px 8px;background:#fdf1e6;border-left:3px solid {R.ORANGE};'
+    return (f'<div style="margin-top:6px;padding:6px 8px;background:{R.PANEL_BG};border-left:3px solid {R.ORANGE};'
             f'font-size:12px;color:{R.NAVY};line-height:1.45"><b>&#9888; {len(issues)} known issue{"s" if len(issues) != 1 else ""}:</b> '
             f'{items}</div>{fixed}')
 
@@ -705,7 +705,7 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
         irows.append(_empty("Microsoft lists no open known issues for these Windows versions, and none were resolved this month."))
     for i in issues:
         detail = R._clip(i["detail"] or i["summary"], 320)
-        wk = (f'<div style="margin-top:6px;padding:6px 8px;background:{R.OFFWHITE};border-left:3px solid {R.ORANGE};'
+        wk = (f'<div style="margin-top:6px;padding:6px 8px;background:{R.PANEL_BG};border-left:3px solid {R.ORANGE};'
               f'font-size:12px;color:{R.NAVY};line-height:1.45">{R._e(R._clip(i["workaround"], 260))}</div>'
               if i["workaround"] and i["status"].lower() != "resolved" else "")
         fkbs = list(dict.fromkeys(v["fixed_kb"] for v in i["versions"] if v.get("fixed_kb")))
@@ -796,9 +796,9 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
     body = f'''<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="x-apple-disable-message-reformatting">{R.DARK_MODE_HEAD}<title>{TITLE}</title></head>
-<body style="margin:0;padding:0;background:#dcd9d0">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#dcd9d0"><tr><td align="center" style="padding:24px 10px">
-<table role="presentation" width="820" cellpadding="0" cellspacing="0" style="max-width:820px;width:100%;background:{R.OFFWHITE}">
+<body style="margin:0;padding:0;background:{R.PAGE_BG}">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{R.PAGE_BG}"><tr><td align="center" style="padding:24px 10px">
+<table role="presentation" width="820" cellpadding="0" cellspacing="0" style="max-width:820px;width:100%;background:{R.REPORT_BG}">
   <tr><td style="background:{R.NAVY};padding:0;font-size:0;line-height:0">
     <img src="{img("header-monthly")}" width="820" alt="SYMBIOSYS | OPERATING SYSTEM &amp; SQL SERVER PATCH VERIFICATION REPORT" style="display:block;width:100%;max-width:820px;height:auto;border:0;background:{R.NAVY};color:{R.OFFWHITE};font-family:{R.HEAD_FONT};font-size:24px;line-height:1.4;text-align:left">
   </td></tr>
