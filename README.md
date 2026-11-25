@@ -24,7 +24,13 @@ Everything is listed in [`sources.yaml`](sources.yaml):
 
 1. Entra admin center → **App registrations → New registration**, name it "Update alerts".
 2. **API permissions → Add → Microsoft Graph → Application permissions → Mail.Send**, then **Grant admin consent**.
-3. **Certificates & secrets → New client secret**, copy the value. Note the expiry date and renew it before then.
+3. **Certificates & secrets → Federated credentials → Add credential**:
+   - Scenario: **GitHub Actions deploying Azure resources**
+   - Organization: `KyleHoughton`, Repository: `software-update-alerts`
+   - Entity type: **Branch**, Branch: `main`
+   - Name: `github-main`
+   
+   No client secret is needed, and nothing expires. (A client secret also works if you prefer: add it as `GRAPH_CLIENT_SECRET`.)
 4. Recommended: limit the app to the shared mailbox only. In Exchange Online PowerShell:
    ```powershell
    Connect-ExchangeOnline
@@ -38,7 +44,6 @@ Everything is listed in [`sources.yaml`](sources.yaml):
 |---|---|
 | `GRAPH_TENANT_ID` | Directory (tenant) ID from the app's Overview page |
 | `GRAPH_CLIENT_ID` | Application (client) ID from the app's Overview page |
-| `GRAPH_CLIENT_SECRET` | the client secret value |
 | `MAIL_FROM` | the shared mailbox address |
 | `MAIL_TO` | the group address (several can be separated by commas) |
 

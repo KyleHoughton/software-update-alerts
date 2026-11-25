@@ -336,13 +336,23 @@ def build_email(new: list[tuple[dict, dict]], broken: list[tuple[str, dict, str]
 def send_graph(subject: str, body_html: str, to: list[str]) -> None:
     """Send through Microsoft Graph as MAIL_FROM (works for shared mailboxes, no mailbox password)."""
     tenant = os.environ["GRAPH_TENANT_ID"]
-    token = requests.post(
-        f"https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token",
-        data={"client_id": os.environ["GRAPH_CLIENT_ID"],
-              "client_secret": os.environ["GRAPH_CLIENT_SECRET"],
-              "scope": "https://graph.microsoft.com/.default",
-              "grant_type": "client_credentials"},
-        timeout=30)
+    data = {"client_id": os.environ["GRAPH_CLIENT_ID"],
+            "scope": "https://graph.microsoft.com/.default",
+            "grant_type": "client_credentials"}
+    if os.environ.get("GRAPH_CLIENT_SECRET"):
+        data["client_secret"] = os.environ["GRAPH_CLIENT_SECRET"]
+    else:
+        # No secret: sign in with GitHub's own identity token (Entra federated credential).
+        req_url = os.environ.get("ACTIONS_ID_TOKEN_REQUEST_URL")
+        if not req_url:
+            raise RuntimeError("No GRAPH_CLIENT_SECRET and no GitHub identity token (needs 'id-token: write').")
+        gh = requests.get(req_url + "&audience=api://AzureADTokenExchange",
+                          headers={"Authorization": f"bearer {os.environ['ACTIONS_ID_TOKEN_REQUEST_TOKEN']}"},
+                          timeout=30)
+        gh.raise_for_status()
+        data["client_assertion_type"] = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+        data["client_assertion"] = gh.json()["value"]
+    token = requests.post(f"https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token", data=data, timeout=30)
     if token.status_code != 200:
         raise RuntimeError(f"Graph sign-in failed: {token.status_code} {token.text[:300]}")
     sender = os.environ["MAIL_FROM"]
