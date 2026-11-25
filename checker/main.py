@@ -317,6 +317,16 @@ def build_email(new, broken, sample=False):
     return build_report(new, broken, SOURCES_CHECKED, now, sample=sample)
 
 
+def _inline_logo_graph() -> list[dict]:
+    from report import LOGO_CID, LOGO_FILE
+    if not LOGO_FILE.exists():
+        return []
+    import base64
+    return [{"@odata.type": "#microsoft.graph.fileAttachment", "name": "symbiosys-logo.png",
+             "contentType": "image/png", "contentId": LOGO_CID, "isInline": True,
+             "contentBytes": base64.b64encode(LOGO_FILE.read_bytes()).decode()}]
+
+
 def send_graph(subject: str, body_html: str, to: list[str]) -> None:
     """Send through Microsoft Graph as MAIL_FROM (works for shared mailboxes, no mailbox password)."""
     tenant = os.environ["GRAPH_TENANT_ID"]
@@ -348,7 +358,8 @@ def send_graph(subject: str, body_html: str, to: list[str]) -> None:
         headers={"Authorization": f"Bearer {token.json()['access_token']}"},
         json={"message": {"subject": subject,
                           "body": {"contentType": "HTML", "content": body_html},
-                          "toRecipients": [{"emailAddress": {"address": a}} for a in to]},
+                          "toRecipients": [{"emailAddress": {"address": a}} for a in to],
+                          "attachments": _inline_logo_graph()},
               "saveToSentItems": True},
         timeout=60)
     if r.status_code != 202:
@@ -378,6 +389,9 @@ def send_email(subject: str, body_html: str, body_text: str) -> None:
     msg["To"] = ", ".join(to)
     msg.set_content(body_text)
     msg.add_alternative(body_html, subtype="html")
+    from report import LOGO_CID, LOGO_FILE
+    if LOGO_FILE.exists():
+        msg.get_payload()[1].add_related(LOGO_FILE.read_bytes(), maintype="image", subtype="png", cid=f"<{LOGO_CID}>")
     port = int(os.environ.get("SMTP_PORT") or 587)
     if port == 465:
         server = smtplib.SMTP_SSL(host, port, timeout=60)
