@@ -1,4 +1,4 @@
-"""Monthly Windows Server and SQL Server patch report.
+"""Monthly Operating System & SQL Server Patch Verification Report.
 
 Runs in two modes:
   patch     the day after Patch Tuesday (second Wednesday of the month). Lists this
@@ -68,7 +68,7 @@ WORKSTATIONS = {
 }
 PLATFORMS = {**WINDOWS, **WORKSTATIONS}
 SQL_VERSIONS = ["SQL Server 2025", "SQL Server 2022", "SQL Server 2019", "SQL Server 2017", "SQL Server 2016"]
-TITLE = "Symbiosys Windows &amp; SQL Server Monthly Patch Report"
+TITLE = "Symbiosys Operating System &amp; SQL Server Patch Verification Report"
 
 # SQL Server icon (same glass style). Added here only, so the hourly alert emails don't carry it.
 R.INLINE_IMAGES["icon-sql"] = R.ASSETS / "icons" / "database.png"
@@ -768,7 +768,7 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                 "icon-cyber", img) + "".join(vrows))
 
     subject = (("[PREVIEW] " if sample else "[URGENT] " if exploited else "")
-               + f"Symbiosys Windows & SQL Server Patch Report | {month}"
+               + f"Symbiosys Operating System & SQL Server Patch Verification Report | {month}"
                + (" | Month-end follow-up" if followup else "")
                + f" | {n_win} Windows, {len(sql_new)} SQL, {len(open_issues)} open issue{'s' if len(open_issues) != 1 else ''}")
 
@@ -785,7 +785,7 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
     </tr>
     <tr><td colspan="2" style="padding-top:18px">
       <div style="font-family:{R.HEAD_FONT};font-size:34px;font-weight:700;color:{R.OFFWHITE};text-transform:uppercase;line-height:1.05">
-        Windows &amp; <span style="color:{R.ORANGE}">SQL Server</span><br>patch report</div>
+        Operating system &amp; <span style="color:{R.ORANGE}">SQL Server</span><br>patch verification report</div>
       <div style="font-family:{R.TEXT_FONT};font-size:14px;color:{R.OFFWHITE};margin-top:10px">{month}: server and workstation updates, known issues, deployment advice and download links.</div>
     </td></tr></table>
   </td></tr>
@@ -824,7 +824,7 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
   </td></tr>
   <tr><td style="padding:22px 40px 26px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-      <td style="font-family:{R.TEXT_FONT};font-size:10px;letter-spacing:3px;text-transform:uppercase;color:{R.NAVY}">Windows &amp; SQL Server patch report {local.year}</td>
+      <td style="font-family:{R.TEXT_FONT};font-size:10px;letter-spacing:3px;text-transform:uppercase;color:{R.NAVY}">Operating system &amp; SQL Server patch verification report {local.year}</td>
       <td align="right" style="font-family:{R.TEXT_FONT};font-size:10px;letter-spacing:3px;text-transform:uppercase;color:{R.NAVY}">Internal use</td>
     </tr></table>
   </td></tr>

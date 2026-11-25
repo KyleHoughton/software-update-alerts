@@ -1,4 +1,4 @@
-name: Monthly Windows Server & SQL report
+name: Monthly Operating System & SQL Server Patch Verification Report
 
 on:
   schedule:
