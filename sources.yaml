@@ -88,6 +88,7 @@ updates:
     type: rss
     category: update
     url: https://rssfeed.azure.status.microsoft/en-us/status/feed/
+    allow_empty: true   # the feed is empty when there are no incidents
   windows_server:
     name: Windows Server release information
     type: page_watch
@@ -166,18 +167,6 @@ updates:
     category: update
     url: https://support.quest.com/on-demand-migration/rss
     exclude_titles: ["^Knowledge Base"]
-  quest_migrator_pro_ad:
-    name: Quest Migrator Pro for Active Directory
-    type: rss
-    category: update
-    url: https://support.quest.com/binary-tree-migrator-pro-for-active-directory/rss
-    exclude_titles: ["^Knowledge Base"]
-  quest_odr:
-    name: Quest On Demand Recovery (Identity Recovery)
-    type: rss
-    category: update
-    url: https://support.quest.com/on-demand-recovery/rss
-    exclude_titles: ["^Knowledge Base"]
 
   # ---------- One Identity (same portal as Quest; feeds to be confirmed on first run) ----------
   oi_active_roles:
@@ -223,21 +212,20 @@ updates:
     url: https://www.veeam.com/kb2680
 
   # ---------- Vendor security advisory pages (no feed) ----------
+  # Not watched because the pages block automated readers or need JavaScript:
+  # Fortra and SonicWall advisories. Their vulnerabilities are still caught through NVD and CISA.
+  # Quest Migrator Pro for AD and On Demand Recovery have no public feed.
   crowdstrike_advisories:
     name: CrowdStrike security advisories
     type: page_watch
     category: security
     url: https://www.crowdstrike.com/en-us/security-advisories/
+    only_lines: "CVE-|advisor|vulnerab"   # ignore marketing banners on this page
   netwrix_advisories:
     name: Netwrix security advisories
     type: page_watch
     category: security
     url: https://security.netwrix.com/Advisories
-  fortra_advisories:
-    name: Fortra security advisories
-    type: page_watch
-    category: security
-    url: https://www.fortra.com/security/advisories
   proofpoint_advisories:
     name: Proofpoint security advisories
     type: page_watch
@@ -253,8 +241,3 @@ updates:
     type: page_watch
     category: security
     url: https://documentation.commvault.com/securityadvisories/
-  sonicwall_advisories:
-    name: SonicWall PSIRT
-    type: page_watch
-    category: security
-    url: https://psirt.global.sonicwall.com/vuln-list

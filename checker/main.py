@@ -79,9 +79,22 @@ def short(s: str, n: int = 400) -> str:
 
 # --------------------------------------------------------------------------- fetchers
 
+def fix_entities(text: str) -> str:
+    """Some vendor feeds use HTML entities such as &nbsp; that strict XML parsers reject."""
+    from html.entities import name2codepoint
+    xml_ok = {"amp", "lt", "gt", "quot", "apos"}
+
+    def repl(m):
+        name = m.group(1)
+        if name in xml_ok or name not in name2codepoint:
+            return m.group(0)
+        return f"&#{name2codepoint[name]};"
+    text = re.sub(r"&([A-Za-z][A-Za-z0-9]*);", repl, text)
+    return re.sub(r"^\s*<\?xml[^>]*\?>", "", text)  # encoding already handled by requests
+
 def fetch_rss(src: dict) -> list[dict]:
     r = get(src["url"])
-    root = ET.fromstring(r.content)
+    root = ET.fromstring(fix_entities(r.text))
     out = []
     excl = [re.compile(p, re.I) for p in src.get("exclude_titles", [])]
     incl = [re.compile(p, re.I) for p in src.get("include_titles", [])]
@@ -106,7 +119,7 @@ def fetch_rss(src: dict) -> list[dict]:
         summary = t("description") or t("summary") or t("content")
         date = t("pubDate") or t("updated") or t("published")
         out.append(item(guid, title, link, short(summary), date))
-    if not entries:
+    if not entries and not src.get("allow_empty"):
         raise ValueError("feed returned no items (may not be an RSS/Atom feed)")
     return out
 
@@ -249,6 +262,9 @@ def fetch_page_watch(sid: str, src: dict, first: bool) -> list[dict]:
         return []
     old_set = set(old)
     added = [x for x in lines if x not in old_set]
+    if src.get("only_lines"):
+        keep = re.compile(src["only_lines"], re.I)
+        added = [x for x in added if keep.search(x)]
     if not added:
         return []
     digest = hashlib.sha1("\n".join(added).encode()).hexdigest()[:12]
