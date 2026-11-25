@@ -94,7 +94,11 @@ def fix_entities(text: str) -> str:
 
 def fetch_rss(src: dict) -> list[dict]:
     r = get(src["url"])
-    root = ET.fromstring(fix_entities(r.text))
+    try:
+        root = ET.fromstring(fix_entities(r.text))
+    except ET.ParseError as e:
+        head = re.sub(r"\s+", " ", r.text[:300])
+        raise ValueError(f"not a valid feed ({e}); got {r.headers.get('content-type')} from {r.url}: {head}") from None
     out = []
     excl = [re.compile(p, re.I) for p in src.get("exclude_titles", [])]
     incl = [re.compile(p, re.I) for p in src.get("include_titles", [])]
