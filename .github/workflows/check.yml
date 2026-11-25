@@ -53,6 +53,13 @@ jobs:
           SEND_SAMPLE_EMAIL: ${{ inputs.send_sample_email }}
         run: python checker/main.py
 
+      - name: Keep the sample report as a download
+        if: ${{ inputs.send_sample_email == true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-report
+          path: sample-report.html
+
       - name: Save what has been seen
         if: ${{ inputs.send_sample_email != true }}
         run: |

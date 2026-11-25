@@ -506,6 +506,14 @@ def main() -> int:
     if sample_mode:
         # Preview: the latest real items from each source, without changing what has been seen.
         subject, body_html, body_text = build_email(sample, [], sample=True)
+        # Also save a self-contained copy (images embedded) for previewing outside email.
+        import base64
+        from report import INLINE_IMAGES
+        preview = body_html
+        for cid, path in INLINE_IMAGES.items():
+            if path.exists():
+                preview = preview.replace(f"cid:{cid}", "data:image/png;base64," + base64.b64encode(path.read_bytes()).decode())
+        (ROOT / "sample-report.html").write_text(preview, encoding="utf-8")
         send_email(subject, body_html, body_text)
         return 0
 
