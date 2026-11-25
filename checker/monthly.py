@@ -1,4 +1,4 @@
-"""Monthly Windows Server and SQL Server patch report.
+"""Monthly Operating System & SQL Server Patch Verification Report.
 
 Runs in two modes:
   patch     the day after Patch Tuesday (second Wednesday of the month). Lists this
@@ -45,15 +45,30 @@ SQL_LATEST = f"{LEARN}/troubleshoot/sql/releases/download-and-install-latest-upd
 MSRC_UPDATES = "https://api.msrc.microsoft.com/cvrf/v3.0/updates"
 MSRC_GUIDE = "https://msrc.microsoft.com/update-guide"
 
-# Windows Server versions in the report, with their release health page.
+RH = f"{LEARN}/windows/release-health"
+W11_INFO = f"{RH}/windows11-release-information"
+W10_INFO = f"{RH}/release-information"
+
+# Windows versions in the report: release information page, the heading of the version's table on
+# that page, its release health (known issues) page, and its product name in the Security Update Guide.
 WINDOWS = {
-    "Windows Server 2025": f"{LEARN}/windows/release-health/status-windows-server-2025",
-    "Windows Server 2022": f"{LEARN}/windows/release-health/status-windows-server-2022",
-    "Windows Server 2019": f"{LEARN}/windows/release-health/status-windows-10-1809-and-windows-server-2019",
-    "Windows Server 2016": f"{LEARN}/windows/release-health/status-windows-10-1607-and-windows-server-2016",
+    "Windows Server 2025": (RELEASE_INFO, "Windows Server 2025", f"{RH}/status-windows-server-2025", r"^Windows Server 2025\b"),
+    "Windows Server 2022": (RELEASE_INFO, "Windows Server 2022", f"{RH}/status-windows-server-2022", r"^Windows Server 2022\b"),
+    "Windows Server 2019": (RELEASE_INFO, "Windows Server 2019", f"{RH}/status-windows-10-1809-and-windows-server-2019", r"^Windows Server 2019\b"),
+    "Windows Server 2016": (RELEASE_INFO, "Windows Server 2016", f"{RH}/status-windows-10-1607-and-windows-server-2016", r"^Windows Server 2016\b"),
 }
+WORKSTATIONS = {
+    "Windows 11 26H2": (W11_INFO, "Version 26H2", f"{RH}/status-windows-11-26h2", r"^Windows 11 [Vv]ersion 26H2\b"),
+    "Windows 11 26H1": (W11_INFO, "Version 26H1", f"{RH}/status-windows-11-26h1", r"^Windows 11 [Vv]ersion 26H1\b"),
+    "Windows 11 25H2": (W11_INFO, "Version 25H2", f"{RH}/status-windows-11-25h2", r"^Windows 11 [Vv]ersion 25H2\b"),
+    "Windows 11 24H2": (W11_INFO, "Version 24H2", f"{RH}/status-windows-11-24h2", r"^Windows 11 [Vv]ersion 24H2\b"),
+    "Windows 11 23H2": (W11_INFO, "Version 23H2", f"{RH}/status-windows-11-23h2", r"^Windows 11 [Vv]ersion 23H2\b"),
+    "Windows 10 22H2": (W10_INFO, "Version 22H2", f"{RH}/status-windows-10-22h2", r"^Windows 10 [Vv]ersion 22H2\b"),
+    "Windows 10 LTSC 2021": (W10_INFO, "Version 21H2", f"{RH}/status-windows-10-21h2", r"^Windows 10 [Vv]ersion 21H2\b"),
+}
+PLATFORMS = {**WINDOWS, **WORKSTATIONS}
 SQL_VERSIONS = ["SQL Server 2025", "SQL Server 2022", "SQL Server 2019", "SQL Server 2017", "SQL Server 2016"]
-TITLE = "Symbiosys Windows Server &amp; SQL Server Monthly Patch Report"
+TITLE = "Symbiosys Operating System &amp; SQL Server Patch Verification Report"
 
 # SQL Server icon (same glass style). Added here only, so the hourly alert emails don't carry it.
 R.INLINE_IMAGES["icon-sql"] = R.ASSETS / "icons" / "database.png"
@@ -96,15 +111,23 @@ def month_name(ym: str) -> str:
 # --------------------------------------------------------------------------- Windows Server
 
 def windows_updates(ym: str) -> dict[str, list[dict]]:
-    """Every update released in month ym, per Windows Server version."""
-    h = get(RELEASE_INFO).text
+    """Every update released in month ym, per Windows version (servers and workstations)."""
+    pages: dict[str, str] = {}
     out: dict[str, list[dict]] = {}
-    for m in re.finditer(r'id="historyTable_\d+">(.*?)</table>', h, re.S):
-        head = re.findall(r"<strong>(Windows Server \d{4}) \(OS build (\d+)\)</strong>", h[max(0, m.start() - 400):m.start()])
-        if not head:
-            continue
-        name = head[-1][0]
-        if name not in WINDOWS or name in out:
+    for url in dict.fromkeys(p[0] for p in PLATFORMS.values()):
+        try:
+            pages[url] = get(url).text
+        except Exception as e:  # noqa: BLE001
+            print(f"[WARN] release information {url}: {e}")
+    for name, (url, heading, _, _) in PLATFORMS.items():
+        h = pages.get(url, "")
+        m = None
+        for t in re.finditer(r'id="historyTable_\d+">(.*?)</table>', h, re.S):
+            head = re.findall(r"<strong>([^<]*?) \(OS build \d+\)</strong>", h[max(0, t.start() - 400):t.start()])
+            if head and head[-1].strip() == heading:
+                m = t
+                break
+        if not m:
             continue
         rows = []
         for r in re.findall(r"<tr>(.*?)</tr>", m.group(1), re.S):
@@ -119,7 +142,7 @@ def windows_updates(ym: str) -> dict[str, list[dict]]:
             rows.append({"kb": kb, "type": kind, "code": utype, "date": date, "build": build,
                          "notes": kb_link(kb), "download": catalog_link(kb)})
         out[name] = sorted(rows, key=lambda r: r["date"])
-    missing = [v for v in WINDOWS if v not in out]
+    missing = [v for v in PLATFORMS if v not in out]
     if missing:
         print(f"[WARN] no update table found for {', '.join(missing)}")
     return out
@@ -129,9 +152,10 @@ def known_issues(ym: str) -> list[dict]:
     """Known issues from release health, merged across versions. Keeps open issues and
     issues resolved or updated during month ym."""
     issues: dict[str, dict] = {}
-    for version, url in WINDOWS.items():
+    cache: dict[str, str] = {}
+    for version, (_, _, url, _) in PLATFORMS.items():
         try:
-            h = get(url).text
+            h = cache[url] if url in cache else cache.setdefault(url, get(url).text)
         except Exception as e:  # noqa: BLE001
             print(f"[WARN] release health for {version}: {e}")
             continue
@@ -153,8 +177,11 @@ def known_issues(ym: str) -> list[dict]:
             it = issues.setdefault(iid, {
                 "id": iid, "title": title, "summary": blurb, "status": status_word, "fixed_kb": fixed_kb,
                 "updated": updated, "link": f"{url}#{iid}msgdesc", "versions": [], "workaround": "",
-                "detail": ""})
-            it["versions"].append({"version": version, "kb": orig_kb, "date": orig_date})
+                "detail": "", "next_steps": "", "hold": False})
+            it["versions"].append({"version": version, "kb": orig_kb, "date": orig_date,
+                                   "fixed_kb": fixed_kb, "status": status_word})
+            if it["status"].lower() == "resolved" and status_word.lower() != "resolved":
+                it["status"] = status_word  # still open on at least one version
             if updated > it["updated"]:
                 it["updated"] = updated
             if not it["detail"]:
@@ -165,6 +192,10 @@ def known_issues(ym: str) -> list[dict]:
                                                                                   "Affected platforms"))), "")
                     w = next((p for p in paras if p.startswith(("Workaround", "Resolution", "Next steps"))), "")
                     it["workaround"] = w
+                    it["next_steps"] = " ".join(p for p in paras if p.startswith(("Next steps", "Resolution")))
+                    body = text(d.group(1))
+                    it["hold"] = bool(re.search(r"safeguard hold|do not (install|deploy)|recommend(s|ed)? (that )?(you )?"
+                                                r"(pause|avoid|uninstall|not install)", body, re.I))
     keep = []
     for it in issues.values():
         if it["status"].lower() == "resolved" and not it["updated"].startswith(ym):
@@ -228,14 +259,87 @@ def link_issues(data: dict) -> None:
                 orig = next((v for v in i["versions"] if v["version"] == version), None)
                 if not orig:
                     continue
-                if i["fixed_kb"] == u["kb"]:
+                if orig["fixed_kb"] == u["kb"]:
                     u["fixes"].append(i["title"])
                     continue
                 started = not orig["date"] or orig["date"] <= u["date"]
-                fixed_date = dates.get(i["fixed_kb"], "") if i["fixed_kb"] else ""
-                open_then = i["status"].lower() != "resolved" or (fixed_date and fixed_date > u["date"])
+                fixed_date = dates.get(orig["fixed_kb"], "") if orig["fixed_kb"] else ""
+                open_then = orig["status"].lower() != "resolved" or (fixed_date and fixed_date > u["date"])
                 if started and open_then:
                     u["issues"].append(i)
+
+
+def _oob_word(i: dict) -> str:
+    """What Microsoft says about the fix for an open issue."""
+    t = (i.get("next_steps") or "") + " " + (i.get("workaround") or "")
+    if re.search(r"out[- ]of[- ]band|OOB", t, re.I):
+        return "oob"
+    if re.search(r"future (Windows )?update|upcoming (Windows )?update|working on a (resolution|fix)", t, re.I):
+        return "future"
+    return "unknown"
+
+
+def advise(data: dict) -> None:
+    """Deployment advice for every update this month, and the out-of-band status for each Windows version.
+
+    Windows: preview (D) updates are optional; a security update replaced later in the month by an
+    out-of-band update points to that update; an update with an issue Microsoft says to hold for is
+    held; open known issues mean test first; otherwise deploy. Exploited fixes raise the priority."""
+    for version, rows in data["windows"].items():
+        oobs = [u for u in rows if u["type"] == "Out-of-band"]
+        for u in rows:
+            iss = u.get("issues", [])
+            later_oob = next((o for o in oobs if o["date"] > u["date"]), None)
+            expl = (u.get("cves") or {}).get("exploited", 0)
+            if u["type"].startswith("Preview"):
+                u["advice"] = ("Optional", "silver", "Non-security preview. Install on test or pilot devices only; "
+                                                     "these fixes are included in next month's security update.")
+            elif later_oob:
+                fixes = f", which also fixes {'; '.join(later_oob['fixes'])}" if later_oob.get("fixes") else ""
+                u["advice"] = ("Use KB" + later_oob["kb"], "blue",
+                               f"Superseded by the out-of-band update KB{later_oob['kb']} released "
+                               f"{R._fmt_date(later_oob['date'])}{fixes}. Deploy that update instead if you haven't rolled this one out yet.")
+            elif any(i.get("hold") for i in iss):
+                u["advice"] = ("Hold", "red", "Microsoft advises against installing this update on affected devices until "
+                                               "the known issue is fixed. See the known issue below.")
+            elif iss:
+                lead = (f"Fixes {expl} actively exploited vulnerabilit{'ies' if expl != 1 else 'y'}, so deploy as soon as testing allows. "
+                        if expl else "")
+                u["advice"] = ("Test first", "yellow",
+                               f"{lead}Has {len(iss)} open known issue{'s' if len(iss) != 1 else ''}. Check whether "
+                               f"{'they affect' if len(iss) != 1 else 'it affects'} your estate, test on a pilot group, then deploy.")
+            else:
+                u["advice"] = ("Deploy", "green",
+                               (f"Fixes {expl} actively exploited vulnerabilit{'ies' if expl != 1 else 'y'}. Deploy as a priority. "
+                                if expl else "") + "No known issues listed by Microsoft. Safe to deploy through your normal rings.")
+        # Out-of-band status for the version
+        latest = rows[-1] if rows else None
+        if oobs:
+            o = oobs[-1]
+            data.setdefault("oob", {})[version] = ("released", f"released KB{o['kb']} ({R._fmt_date(o['date'])[:6]})")
+        else:
+            open_iss = latest.get("issues", []) if latest else []
+            words = {_oob_word(i) for i in open_iss}
+            if "oob" in words:
+                msg = ("expected", "expected (announced by Microsoft)")
+            elif open_iss:
+                msg = ("future", "none announced")
+            else:
+                msg = ("none", "none expected")
+            data.setdefault("oob", {})[version] = msg
+    for v in data["sql"]:
+        for r in v["releases"]:
+            if not r["new"]:
+                continue
+            branch = ("For servers on the GDR (security-only) branch." if r["kind"] == "GDR" else
+                      "For servers on the cumulative update branch.")
+            if r["issues"] is None:
+                r["advice"] = ("Check notes", "silver", f"Known issues could not be checked. Read the release notes first. {branch}")
+            elif r["issues"]:
+                r["advice"] = ("Test first", "yellow", f"Has {len(r['issues'])} known issue{'s' if len(r['issues']) != 1 else ''}. "
+                                                       f"Check the release notes and test before deploying. {branch}")
+            else:
+                r["advice"] = ("Deploy", "green", f"No known issues listed by Microsoft. {branch}")
 
 
 # --------------------------------------------------------------------------- SQL Server
@@ -445,6 +549,14 @@ def _issue_box(issues, fixes=()) -> str:
             f'{items}</div>{fixed}')
 
 
+def _advice_box(a) -> str:
+    if not a:
+        return ""
+    word, colour, why = a
+    return (f'<div style="margin-top:6px;font-size:12px;color:{R.NAVY};line-height:1.45">'
+            f'<b>Recommendation:</b> {R._tag(word, colour)} &nbsp;{R._e(why)}</div>')
+
+
 def _empty(msg: str) -> str:
     return (f'<tr><td colspan="4" style="padding:14px 12px;font-family:{R.TEXT_FONT};font-size:13px;color:{R.TEXT_2}">'
             f'{msg}</td></tr>')
@@ -470,12 +582,14 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                 f"{'are' if len(exploited) != 1 else 'is'} being actively exploited. Deploy the {month} updates as a priority.")
     elif open_issues:
         status = R._tag("Review advised", "yellow")
-        lead = (f"No actively exploited vulnerabilities affect Windows Server or SQL Server this month, but "
+        lead = (f"No actively exploited vulnerabilities affect Windows or SQL Server this month, but "
                 f"{len(open_issues)} known issue{'s are' if len(open_issues) != 1 else ' is'} still open. Review them before deploying.")
     else:
         status = R._tag("All OK", "green")
-        lead = "No actively exploited vulnerabilities or open known issues affect Windows Server or SQL Server this month."
-    lead += (f" Microsoft released {n_win} Windows Server update{'s' if n_win != 1 else ''} and "
+        lead = "No actively exploited vulnerabilities or open known issues affect Windows or SQL Server this month."
+    n_srv = sum(len(win.get(v, [])) for v in WINDOWS)
+    lead += (f" Microsoft released {n_srv} Windows Server update{'s' if n_srv != 1 else ''}, {n_win - n_srv} workstation "
+             f"update{'s' if n_win - n_srv != 1 else ''} and "
              f"{len(sql_new)} SQL Server update{'s' if len(sql_new) != 1 else ''} in {month}, fixing "
              f"{cves['total']} CVE{'s' if cves['total'] != 1 else ''} ({cves['critical']} critical).")
     if followup:
@@ -484,25 +598,44 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                  f"Patch Tuesday report on {since} and {'are' if changes != 1 else 'is'} marked below. ") if snap else
                 "Month-end follow-up. ") + lead
 
-    # Known-issues check: one line per update released this month
+    # Deployment advice: one line per update released this month
     def _ki_tag(iss):
         if iss is None:
             return R._tag("Not checked", "silver")
-        return R._tag("No known issues", "green") if not iss else R._tag(f"{len(iss)} known issue{'s' if len(iss) != 1 else ''}", "yellow")
-    check = [(v, f"KB{u['kb']} &middot; {R._e(u['type'])}", u.get("issues", []))
-             for v in WINDOWS for u in win.get(v, [])]
-    check += [(v, f"{R._e(r['label'])} &middot; KB{r['kb']}", r["issues"]) for v, r in sql_new]
-    clear = sum(1 for *_, iss in check if iss == [])
-    ki_rows = "".join(
-        f'<tr><td style="padding:7px 12px;border-bottom:1px solid {R.LINE};font-family:{R.TEXT_FONT};font-size:13px;'
-        f'font-weight:700;color:{R.NAVY};white-space:nowrap">{R._e(v)}</td>'
-        f'<td style="padding:7px 12px;border-bottom:1px solid {R.LINE};font-family:{R.TEXT_FONT};font-size:13px;color:{R.TEXT_2}">{d}</td>'
-        f'<td align="right" style="padding:7px 12px;border-bottom:1px solid {R.LINE}">{_ki_tag(iss)}</td></tr>'
-        for v, d, iss in check)
-    ki_check = (f'<div style="margin-top:18px">{R._label("Known issues check before deploying")}</div>'
-                f'<div style="font-family:{R.TEXT_FONT};font-size:13px;color:{R.TEXT_2};margin-top:4px">'
-                f'{clear} of {len(check)} update{"s" if len(check) != 1 else ""} released in {month} '
-                f'{"have" if clear != 1 else "has"} no known issues listed by Microsoft. Details are in the sections below.</div>'
+        return R._tag("None", "green") if not iss else R._tag(f"{len(iss)} issue{'s' if len(iss) != 1 else ''}", "yellow")
+    check = [(v, f"KB{u['kb']} &middot; {R._e(u['type'])}", u.get("issues", []), u.get("advice"))
+             for v in PLATFORMS for u in win.get(v, [])]
+    check += [(v, f"{R._e(r['label'])} &middot; KB{r['kb']}", r["issues"], r.get("advice")) for v, r in sql_new]
+    counts: dict[str, int] = {}
+    for *_, a in check:
+        if a:
+            counts[a[0] if not a[0].startswith("Use KB") else "Superseded"] = counts.get(a[0] if not a[0].startswith("Use KB") else "Superseded", 0) + 1
+    cell = f'padding:7px 10px;border-bottom:1px solid {R.LINE};font-family:{R.TEXT_FONT};font-size:12px'
+    ki_rows = (f'<tr><th {TH}>Product</th><th {TH}>Update</th><th {TH}>Known issues</th><th {TH}>Recommendation</th></tr>'
+               + "".join(
+        f'<tr><td style="{cell};font-weight:700;color:{R.NAVY};white-space:nowrap">{R._e(v)}</td>'
+        f'<td style="{cell};color:{R.TEXT_2}">{d}</td>'
+        f'<td style="{cell}">{_ki_tag(iss)}</td>'
+        f'<td style="{cell}">{R._tag(a[0], a[1]) if a else ""}</td></tr>'
+        for v, d, iss, a in check))
+    oob = data.get("oob", {})
+    rel = [v for v, (k, _) in oob.items() if k == "released" and win.get(v)]
+    exp = [v for v, (k, _) in oob.items() if k == "expected" and win.get(v)]
+    oob_line = ("Out-of-band: " + (f"Microsoft released out-of-band updates this month for {', '.join(rel)}. " if rel else
+                                   "no out-of-band update has been released this month. ")
+                + (f"Microsoft says an out-of-band update is planned for {', '.join(exp)}." if exp else
+                   ("No further out-of-band update has been announced" if rel else "None has been announced")
+                   + "; Microsoft plans to fix the open issues in a future monthly update."
+                   if any(k == "future" for k, _ in oob.values()) else "None is expected."))
+    summary_bits = ", ".join(f"{n} {w.lower()}" for w, n in sorted(counts.items(), key=lambda x: -x[1]))
+    ki_check = (f'<div style="margin-top:18px">{R._label("Deployment advice")}</div>'
+                f'<div style="font-family:{R.TEXT_FONT};font-size:13px;color:{R.NAVY};margin-top:4px;line-height:1.5">'
+                f'{len(check)} update{"s" if len(check) != 1 else ""} released in {month}: {R._e(summary_bits)}. '
+                f'<b>Deploy</b> means no known issues; <b>Test first</b> means Microsoft lists an open known issue, so pilot it; '
+                f'<b>Hold</b> means Microsoft advises against installing; <b>Use KB…</b> means a newer out-of-band update replaces it.</div>'
+                f'<div style="font-family:{R.TEXT_FONT};font-size:13px;color:{R.NAVY};margin-top:6px;padding:6px 8px;'
+                f'background:{R.WHITE};border-left:3px solid {R.ORANGE};line-height:1.5"><b>{R._e(oob_line.split(":")[0])}:</b>'
+                f'{R._e(oob_line.split(":", 1)[1])}</div>'
                 f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;'
                 f'border-collapse:collapse;background:{R.WHITE};border:1px solid {R.LINE}">{ki_rows}</table>') if check else ""
 
@@ -512,14 +645,18 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                      f'Built from live Microsoft data to preview the format. Not sent by email.</td></tr></table></td></tr>'
                      if sample else "")
 
-    # 02 Windows Server updates
-    wrows = [TABLE, f'<tr><th {TH} width="24%">Update</th><th {TH}>Details</th><th {TH} width="18%">CVEs fixed</th>'
-                    f'<th {TH} width="12%">Released</th></tr>']
-    for version in WINDOWS:
+    # 02 Windows Server and 03 workstation updates
+    def win_table(platforms) -> list[str]:
+      wrows = [TABLE, f'<tr><th {TH} width="24%">Update</th><th {TH}>Details</th><th {TH} width="18%">CVEs fixed</th>'
+                      f'<th {TH} width="12%">Released</th></tr>']
+      for version in platforms:
         rows = win.get(version, [])
-        wrows.append(_group(version, f" &nbsp;&middot;&nbsp; {len(rows)} update{'s' if len(rows) != 1 else ''}"))
+        oob = data.get("oob", {}).get(version)
+        oob_txt = (f" &nbsp;&middot;&nbsp; <span style=\"color:{R.ORANGE if oob[0] in ('released', 'expected') else R.SILVER}\">"
+                   f"Out-of-band: {R._e(oob[1])}</span>") if oob and rows else ""
+        wrows.append(_group(version, f" &nbsp;&middot;&nbsp; {len(rows)} update{'s' if len(rows) != 1 else ''}{oob_txt}"))
         if not rows:
-            wrows.append(_empty("No update released this month."))
+            wrows.append(_empty("No update released this month (the version may be out of support)."))
         for u in rows:
             st = u.get("cves") or {}
             cv = (f'<div style="font-family:{R.HEAD_FONT};font-size:20px;font-weight:700;line-height:1">{st["total"]}</div>'
@@ -531,29 +668,37 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
                 f'<div style="font-size:12px;color:{R.TEXT_2};margin-top:3px">OS build {R._e(u["build"])}</div></td>'
                 f'<td {TD};font-size:13px;line-height:1.45"><b>{R._e(u["type"])}</b>'
                 f'<span style="color:{R.TEXT_2}"> &nbsp;({R._e(u["code"])})</span>'
-                f'{_issue_box(u.get("issues", []), u.get("fixes", []))}'
+                f'{_issue_box(u.get("issues", []), u.get("fixes", []))}{_advice_box(u.get("advice"))}'
                 f'{_links(("Release notes", u["notes"]), ("Download", u["download"]))}</td>'
                 f'<td {TD}">{cv}</td>'
                 f'<td {TD};font-size:12px;color:{R.TEXT_2};white-space:nowrap">{R._fmt_date(u["date"])}</td></tr>')
-    wrows.append("</table></td></tr>")
+      wrows.append("</table></td></tr>")
+      return wrows
+    wrows = win_table(WINDOWS)
+    krows = win_table(WORKSTATIONS)
 
     # 03 Known issues
     irows = [TABLE, f'<tr><th {TH}>Issue</th><th {TH} width="24%">Affects</th><th {TH} width="14%">Status</th>'
                     f'<th {TH} width="12%">Updated</th></tr>']
     if not issues:
-        irows.append(_empty("Microsoft lists no open known issues for Windows Server, and none were resolved this month."))
+        irows.append(_empty("Microsoft lists no open known issues for these Windows versions, and none were resolved this month."))
     for i in issues:
         detail = R._clip(i["detail"] or i["summary"], 320)
         wk = (f'<div style="margin-top:6px;padding:6px 8px;background:{R.OFFWHITE};border-left:3px solid {R.ORANGE};'
               f'font-size:12px;color:{R.NAVY};line-height:1.45">{R._e(R._clip(i["workaround"], 260))}</div>'
               if i["workaround"] and i["status"].lower() != "resolved" else "")
-        fixed = (f'<div style="font-size:11px;color:{R.TEXT_2};margin-top:4px">Fixed in KB{i["fixed_kb"]}</div>'
-                 if i["fixed_kb"] else "")
-        affects = "".join(
-            f'<div style="margin-bottom:3px"><b>{R._e(v["version"].replace("Windows Server ", "WS "))}</b>'
-            f'<span style="color:{R.TEXT_2}"> since KB{v["kb"]}</span></div>' if v["kb"] else
-            f'<div style="margin-bottom:3px"><b>{R._e(v["version"].replace("Windows Server ", "WS "))}</b></div>'
-            for v in i["versions"])
+        fkbs = list(dict.fromkeys(v["fixed_kb"] for v in i["versions"] if v.get("fixed_kb")))
+        fixed = (f'<div style="font-size:11px;color:{R.TEXT_2};margin-top:4px">Fixed in '
+                 + ", ".join(f"KB{k}" for k in fkbs[:4]) + (" and others" if len(fkbs) > 4 else "") + "</div>"
+                 if fkbs else "")
+        fams: dict[str, list[str]] = {}
+        for v in i["versions"]:
+            fam, _, ver = v["version"].rpartition(" ")
+            if fam == "Windows 10 LTSC":
+                fam, ver = "Windows 10", "LTSC " + ver
+            fams.setdefault(fam, []).append(ver)
+        affects = "".join(f'<div style="margin-bottom:4px"><b>{R._e(f)}</b><br>'
+                          f'<span style="color:{R.TEXT_2}">{R._e(", ".join(vs))}</span></div>' for f, vs in fams.items())
         irows.append(
             f'<tr><td {TD};font-size:14px;line-height:1.4"><a href="{R._e(i["link"])}" style="color:{R.NAVY};'
             f'text-decoration:none;font-weight:700">{R._e(i["title"])}</a>{_change(i)}'
@@ -573,7 +718,7 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
         for r in v["releases"]:
             kind = {"GDR": "Security update (GDR)", "CU": "Cumulative update",
                     "CU + security": "Cumulative update with security fixes"}[r["kind"]]
-            known = _issue_box(r["issues"]) if r["new"] else ""
+            known = (_issue_box(r["issues"]) + _advice_box(r.get("advice"))) if r["new"] else ""
             tag = R._tag("New this month", "blue") if r["new"] else R._tag("Current", "green")
             srows.append(
                 f'<tr><td {TD};font-size:14px"><b>{R._e(r["label"])}</b>{_change(r)}'
@@ -606,21 +751,24 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
 
     B = R.BLUE
     sections = (
-        _head(2, "Windows Server", f"{month.split()[0]} <span style=\"color:{B}\">updates</span>",
+        _head(2, "Windows Server", f"Server <span style=\"color:{B}\">updates</span>",
               "Every update Microsoft released this month for each supported version, with the number of security fixes it contains.",
               "icon-update", img) + "".join(wrows)
-        + _head(3, "Windows release health", f"Known <span style=\"color:{B}\">issues</span>",
+        + _head(3, "Windows 11 &amp; Windows 10", f"Workstation <span style=\"color:{B}\">updates</span>",
+                "This month's updates for supported Windows 11 versions, Windows 10 22H2 (Extended Security Updates) and Windows 10 Enterprise LTSC 2021.",
+                "icon-update", img) + "".join(krows)
+        + _head(4, "Windows release health", f"Known <span style=\"color:{B}\">issues</span>",
                 "Open issues reported by Microsoft, plus issues resolved this month. Check these before you deploy.",
                 "icon-warning", img) + "".join(irows)
-        + _head(4, "SQL Server", f"SQL Server <span style=\"color:{B}\">updates</span>",
+        + _head(5, "SQL Server", f"SQL Server <span style=\"color:{B}\">updates</span>",
                 "The latest security update (GDR) and cumulative update for each supported version. Updates released this month are marked.",
                 "icon-sql", img) + "".join(srows)
-        + _head(5, "Security Update Guide", f"Notable <span style=\"color:{B}\">vulnerabilities</span>",
-                "Exploited, publicly disclosed and critical vulnerabilities fixed this month in Windows Server or SQL Server.",
+        + _head(6, "Security Update Guide", f"Notable <span style=\"color:{B}\">vulnerabilities</span>",
+                "Exploited, publicly disclosed and critical vulnerabilities fixed this month in Windows or SQL Server.",
                 "icon-cyber", img) + "".join(vrows))
 
     subject = (("[PREVIEW] " if sample else "[URGENT] " if exploited else "")
-               + f"Symbiosys Windows Server & SQL Server Patch Report | {month}"
+               + f"Symbiosys Operating System & SQL Server Patch Verification Report | {month}"
                + (" | Month-end follow-up" if followup else "")
                + f" | {n_win} Windows, {len(sql_new)} SQL, {len(open_issues)} open issue{'s' if len(open_issues) != 1 else ''}")
 
@@ -637,8 +785,8 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
     </tr>
     <tr><td colspan="2" style="padding-top:18px">
       <div style="font-family:{R.HEAD_FONT};font-size:34px;font-weight:700;color:{R.OFFWHITE};text-transform:uppercase;line-height:1.05">
-        Windows Server &amp; <span style="color:{R.ORANGE}">SQL Server</span><br>patch report</div>
-      <div style="font-family:{R.TEXT_FONT};font-size:14px;color:{R.OFFWHITE};margin-top:10px">{month}: updates, known issues and download links for the Microsoft server platforms Symbiosys supports.</div>
+        Operating system &amp; <span style="color:{R.ORANGE}">SQL Server</span><br>patch verification report</div>
+      <div style="font-family:{R.TEXT_FONT};font-size:14px;color:{R.OFFWHITE};margin-top:10px">{month}: server and workstation updates, known issues, deployment advice and download links.</div>
     </td></tr></table>
   </td></tr>
   <tr><td style="background:{R.NAVY};padding:0 40px 16px">
@@ -670,13 +818,13 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid {R.LINE}"><tr>
       <td style="padding-top:14px;font-family:{R.TEXT_FONT};font-size:12px;color:{R.TEXT_2};line-height:1.6">
         <b style="color:{R.NAVY}">About this report.</b> Issued the day after Microsoft's Patch Tuesday, with a follow-up on the
-        1st of the next month. Sources: Windows Server release information, Windows release health, the Microsoft Security
-        Update Guide and the SQL Server update history. Confirm applicability against Microsoft guidance before deploying.
+        1st of the next month. Sources: Windows Server, Windows 11 and Windows 10 release information, Windows release health, the Microsoft Security
+        Update Guide and the SQL Server update history. Recommendations are generated from Microsoft's published known issues; confirm they apply to your estate before deploying.
       </td></tr></table>
   </td></tr>
   <tr><td style="padding:22px 40px 26px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-      <td style="font-family:{R.TEXT_FONT};font-size:10px;letter-spacing:3px;text-transform:uppercase;color:{R.NAVY}">Windows Server &amp; SQL Server patch report {local.year}</td>
+      <td style="font-family:{R.TEXT_FONT};font-size:10px;letter-spacing:3px;text-transform:uppercase;color:{R.NAVY}">Operating system &amp; SQL Server patch verification report {local.year}</td>
       <td align="right" style="font-family:{R.TEXT_FONT};font-size:10px;letter-spacing:3px;text-transform:uppercase;color:{R.NAVY}">Internal use</td>
     </tr></table>
   </td></tr>
@@ -684,12 +832,13 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
 </body></html>'''
 
     lines = [TITLE.replace("&amp;", "&"), f"{month}   Ref: {ref}", "", lead, ""]
-    for version in WINDOWS:
+    for version in PLATFORMS:
         lines.append(f"== {version} ==")
         for u in win.get(version, []):
             ki = u.get("issues", [])
             lines.append(f"- KB{u['kb']} {u['type']} ({u['date']}), build {u['build']}: {u['notes']}"
-                         f"  [{'No known issues' if not ki else str(len(ki)) + ' known issue(s)'}]")
+                         f"  [{'No known issues' if not ki else str(len(ki)) + ' known issue(s)'}; "
+                         f"advice: {u.get('advice', ('',))[0]}]")
     lines += ["", "== Known issues =="] + [f"- [{i['status']}] {i['title']}: {i['link']}" for i in issues]
     lines += ["", "== SQL Server =="] + [f"- {v} {r['label']} KB{r['kb']} ({r['month']}): {r['notes']}" for v, r in sql_new]
     return subject, body, "\n".join(lines)
@@ -729,10 +878,12 @@ def main() -> int:
     cvrf = msrc_month(ym)
     for version, rows in win.items():
         for u in rows:
-            u["cves"] = cve_stats(cvrf, rf"^{re.escape(version)}\b", {u["kb"]})
-    cves = cve_stats(cvrf, r"^Windows Server (2016|2019|2022|2025)\b|^Microsoft SQL Server (2016|2017|2019|2022|2025)\b")
+            u["cves"] = cve_stats(cvrf, PLATFORMS[version][3], {u["kb"]})
+    cves = cve_stats(cvrf, "|".join(p[3] for p in PLATFORMS.values())
+                     + r"|^Microsoft SQL Server (2016|2017|2019|2022|2025)\b")
     data = {"windows": win, "issues": known_issues(ym), "sql": sql_updates(ym), "cves": cves}
     link_issues(data)
+    advise(data)
 
     snap_file = SNAP_DIR / f"{ym}.json"
     snap = json.loads(snap_file.read_text(encoding="utf-8")) if snap_file.exists() else None
