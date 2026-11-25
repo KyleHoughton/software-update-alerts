@@ -15,7 +15,8 @@ jobs:
       - run: pip install -r requirements.txt
       - run: |
           mkdir -p devfetch
-          curl -sSL -A "Mozilla/5.0" -o devfetch/sql-cu28.html https://learn.microsoft.com/en-us/troubleshoot/sql/releases/sql-server-2022/cumulative-update/kb5125472-cu28
+          curl -sSL -A "Mozilla/5.0" -o devfetch/sql-cu28.html https://support.microsoft.com/en-us/servicing/sql/sql-server-2022/cumulative-update/kb5125472-cu28
+          curl -sSL -A "Mozilla/5.0" -o devfetch/sql-cu11.html https://support.microsoft.com/en-us/servicing/sql/sql-server-2025/cumulative-update/kb5129223-cu11
           REPORT_MODE=patch PREVIEW_ONLY=true python checker/monthly.py 2>&1 | tee devfetch/run-log.txt
           mv monthly-report.html devfetch/preview-patch.html
           python - <<'PY' | tee devfetch/link-check.txt
