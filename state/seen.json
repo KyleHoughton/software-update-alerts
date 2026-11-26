@@ -1,17 +1,17 @@
 {
- "last_report_slot": "2026-11-26 morning",
- "last_run": "2026-11-26T06:32:19.166816+00:00",
+ "last_report_slot": "2026-11-26 evening",
+ "last_run": "2026-11-26T15:45:17.096315+00:00",
  "sources": {
   "azure_status": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "azure_updates": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "577515",
     "575111",
@@ -220,7 +220,7 @@
   "bloodhound": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "451919506",
     "450573170",
@@ -237,7 +237,7 @@
   "cisa_kev": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "CVE-2026-103406",
     "CVE-2026-133469",
@@ -2049,7 +2049,7 @@
   "commvault_advisories": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "commvault_advisories:8b8d43615f95"
    ]
@@ -2057,25 +2057,25 @@
   "crowdstrike_advisories": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "entra_whats_new": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "exchange_builds": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "fortinet_psirt": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "https://fortiguard.fortinet.com/psirt/FG-IR-26-279",
     "https://fortiguard.fortinet.com/psirt/FG-IR-26-247",
@@ -2137,7 +2137,7 @@
   "intune_whats_new": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "kemp_all_release_notes": {
@@ -2149,7 +2149,7 @@
   "kemp_release_notes": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-63-3/page/Introduction.html",
     "https://docs.progress.com/bundle/release-notes_loadmaster-7-2-63-2/page/Introduction.html",
@@ -2209,7 +2209,7 @@
   "kemp_vulnerabilities": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "https://community.progress.com/s/article/LoadMaster-Critical-Security-Bulletin-July-2026-CVE-2026-59686-CVE-2026-59687-CVE-2026-59688-CVE-2026-59689-CVE-2026-59690",
     "https://community.progress.com/s/article/LoadMaster-Critical-Security-Bulletin-June-2026-CVE-2026-8037-CVE-2026-33691",
@@ -2230,7 +2230,7 @@
   "m365_roadmap": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "581895",
     "581794",
@@ -4657,7 +4657,7 @@
   "mde_whats_new": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "mde_whats_new:301b4e98104c"
    ]
@@ -4665,7 +4665,7 @@
   "mdi_whats_new": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "mdi_whats_new:6b0a9864ecda"
    ]
@@ -4673,7 +4673,7 @@
   "msrc": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "CVE-2026-112732",
     "CVE-2026-69291",
@@ -10456,13 +10456,13 @@
   "netwrix_advisories": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "nvd": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "CVE-2026-133448"
    ]
@@ -10475,7 +10475,7 @@
   "oi_cloud_status": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "https://status.cloud.oneidentity.com/incidents/bcdfq2ftrkmt",
     "https://status.cloud.oneidentity.com/incidents/5wxvqc6hq3py",
@@ -10522,7 +10522,7 @@
   "pingcastle": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "435041773",
     "428202904",
@@ -10539,25 +10539,25 @@
   "proofpoint_advisories": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "quest_change_auditor": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "quest_gpoadmin": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "quest_identity_defense": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "https://support.quest.com/product-notification/noti-00001560",
     "https://support.quest.com/download/downloads?id=6145119",
@@ -10578,13 +10578,13 @@
   "quest_migrator_pro_ad": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "quest_odm": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "https://support.quest.com/product-notification/noti-00001759",
     "https://support.quest.com/download/downloads?id=6145116",
@@ -10620,7 +10620,7 @@
   "quest_rmad": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "https://support.quest.com/download-install-detail/6128047",
     "https://support.quest.com/download-install-detail/6137648",
@@ -10631,7 +10631,7 @@
   "quest_rmad_dre": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "https://support.quest.com/download-install-detail/6128045",
     "https://support.quest.com/download-install-detail/6148785",
@@ -10647,7 +10647,7 @@
   "quest_rmad_fe": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "https://support.quest.com/download-install-detail/6148786",
     "https://support.quest.com/download-install-detail/6148789",
@@ -10663,7 +10663,7 @@
   "sentinel_whats_new": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "sonicwall_advisories": {
@@ -10674,7 +10674,7 @@
   "sql_server": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": [
     "sql_server:cda99787d2dd"
    ]
@@ -10682,19 +10682,19 @@
   "veeam_vbr_builds": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "windows_server": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   },
   "yubico_advisories": {
    "fails": 0,
    "initialised": true,
-   "last_ok": "2026-11-26T06:32:19.166816+00:00",
+   "last_ok": "2026-11-26T15:45:17.096315+00:00",
    "seen": []
   }
  }
