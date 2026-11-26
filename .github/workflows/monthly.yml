@@ -2,9 +2,10 @@ name: Monthly Operating System & SQL Server Patch Verification Report
 
 on:
   schedule:
-    # 06:00 UTC (08:00 SAST). Runs on the 1st and on days 9-15; the script only sends
-    # on the 1st (month-end follow-up) and on the Wednesday after Patch Tuesday.
-    - cron: "23 6,8,11 1,2,9-16 * *"
+       # Tries from 05:07 SAST; the first run sends, later ones skip. Only the 1st and
+    # the Wednesday after Patch Tuesday are report days (2nd/Thursday catch late runs).
+    - cron: "7,27,47 3,4 1,2,9-16 * *"   # 05:07-06:47 SAST
+    - cron: "7 7,10 1,2,9-16 * *"        # 09:07, 12:07 SAST backup if every early try was skipped
   workflow_dispatch:
     inputs:
       mode:
