@@ -861,6 +861,11 @@ def build(data: dict, ym: str, mode: str, changes: int, snap: dict | None, sampl
 
 def decide_mode() -> tuple[str | None, str]:
     mode = (os.environ.get("REPORT_MODE") or "auto").strip().lower()
+    if (os.environ.get("REPORT_MONTH") or "").strip().lower() == "auto":
+        # External backup trigger (cron-job.org): a manual run with month "auto" behaves
+        # exactly like a scheduled run, so it only sends on a report day and only once.
+        mode = "auto"
+        os.environ["REPORT_MONTH"] = ""
     today = now.astimezone(R.REPORT_TZ).date()
     if mode == "auto":
         # GitHub can delay or drop scheduled runs, so the workflow fires several times on
