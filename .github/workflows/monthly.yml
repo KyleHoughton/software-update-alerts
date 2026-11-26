@@ -4,7 +4,7 @@ on:
   schedule:
     # 06:00 UTC (08:00 SAST). Runs on the 1st and on days 9-15; the script only sends
     # on the 1st (month-end follow-up) and on the Wednesday after Patch Tuesday.
-    - cron: "0 6 1,9-15 * *"
+    - cron: "23 6,8,11 1,2,9-16 * *"
   workflow_dispatch:
     inputs:
       mode:
