@@ -464,7 +464,9 @@ def main() -> int:
     # times in each report window. Only the first run in a window (morning or evening,
     # Johannesburg time) sends; the others stop here without touching the state.
     slot = report_slot(dt.datetime.now(dt.timezone.utc))
-    if os.environ.get("GITHUB_EVENT_NAME") == "schedule" and state.get("last_report_slot") == slot:
+    # "send_report" runs (used by the external backup timer and for missed runs) follow the same rule.
+    timed = os.environ.get("GITHUB_EVENT_NAME") == "schedule" or os.environ.get("SEND_REPORT") == "true"
+    if timed and state.get("last_report_slot") == slot:
         print(f"The {slot} report has already been sent. Nothing to do.")
         return 0
 
@@ -531,7 +533,7 @@ def main() -> int:
 
     if not sample_mode and os.environ.get("SEND_ALL_OK_SAMPLE") != "true":
         state["last_run"] = now.isoformat()
-        if os.environ.get("GITHUB_EVENT_NAME") == "schedule" or os.environ.get("SEND_REPORT") == "true":
+        if timed:
             state["last_report_slot"] = slot
         STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
         STATE_FILE.write_text(json.dumps(state, indent=1, sort_keys=True), encoding="utf-8")
