@@ -429,6 +429,16 @@ def send_image_test() -> None:
 
 # --------------------------------------------------------------------------- main
 
+def report_slot(now_utc) -> str:
+    """Which report a run belongs to: '<date> morning' (05:00-16:59 SAST) or '<date> evening'
+    (17:00-04:59, dated by the evening it started on)."""
+    from report import REPORT_TZ
+    local = now_utc.astimezone(REPORT_TZ)
+    if 5 <= local.hour < 17:
+        return f"{local:%Y-%m-%d} morning"
+    return f"{(local - dt.timedelta(hours=5)):%Y-%m-%d} evening"
+
+
 def main() -> int:
     cfg = yaml.safe_load((ROOT / "sources.yaml").read_text(encoding="utf-8"))
     sources: dict[str, dict] = {}
@@ -449,6 +459,14 @@ def main() -> int:
     if os.environ.get("SEND_IMAGE_TEST") == "true":
         send_image_test()
         return
+
+    # GitHub starts scheduled runs late or skips them, so the workflow is scheduled several
+    # times in each report window. Only the first run in a window (morning or evening,
+    # Johannesburg time) sends; the others stop here without touching the state.
+    slot = report_slot(dt.datetime.now(dt.timezone.utc))
+    if os.environ.get("GITHUB_EVENT_NAME") == "schedule" and state.get("last_report_slot") == slot:
+        print(f"The {slot} report has already been sent. Nothing to do.")
+        return 0
 
     new: list[tuple[dict, dict]] = []
     broken: list[tuple[str, dict, str]] = []
@@ -513,6 +531,8 @@ def main() -> int:
 
     if not sample_mode and os.environ.get("SEND_ALL_OK_SAMPLE") != "true":
         state["last_run"] = now.isoformat()
+        if os.environ.get("GITHUB_EVENT_NAME") == "schedule" or os.environ.get("SEND_REPORT") == "true":
+            state["last_report_slot"] = slot
         STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
         STATE_FILE.write_text(json.dumps(state, indent=1, sort_keys=True), encoding="utf-8")
 
@@ -550,7 +570,8 @@ def main() -> int:
         send_email(subject, body_html, body_text)
         return 0
 
-    scheduled = os.environ.get("GITHUB_EVENT_NAME") == "schedule"
+    # A manual "send report" run behaves exactly like a scheduled one (always emails).
+    scheduled = os.environ.get("GITHUB_EVENT_NAME") == "schedule" or os.environ.get("SEND_REPORT") == "true"
     if new or broken or test_email or scheduled:
         subject, body_html, body_text = build_email(new, broken)
         if test_email and not new and not broken and not scheduled:
