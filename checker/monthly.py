@@ -863,12 +863,18 @@ def decide_mode() -> tuple[str | None, str]:
     mode = (os.environ.get("REPORT_MODE") or "auto").strip().lower()
     today = now.astimezone(R.REPORT_TZ).date()
     if mode == "auto":
-        if today.day == 1:
+        # GitHub can delay or drop scheduled runs, so the workflow fires several times on
+        # each report day. Accept the report day itself or the day after (a late run that
+        # slipped past midnight); main() skips the send once that report has gone out.
+        pt_next = patch_tuesday(today.year, today.month) + dt.timedelta(days=1)
+        if today.day in (1, 2):
             mode = "followup"
-        elif today == patch_tuesday(today.year, today.month) + dt.timedelta(days=1):
+            today = today.replace(day=1)
+        elif today in (pt_next, pt_next + dt.timedelta(days=1)):
             mode = "patch"
         else:
             return None, ""
+        os.environ["REPORT_AUTO"] = "1"
     ym = (os.environ.get("REPORT_MONTH") or "").strip()
     if not ym:
         if mode == "followup":
@@ -886,6 +892,10 @@ def main() -> int:
         return 0
     preview = os.environ.get("PREVIEW_ONLY") == "true"
     print(f"Mode: {mode}, month: {ym}, preview only: {preview}")
+    sent_file = SNAP_DIR / f"sent-{ym}-{mode}.txt"
+    if os.environ.get("REPORT_AUTO") and sent_file.exists() and not preview:
+        print(f"The {mode} report for {ym} was already sent ({sent_file.read_text().strip()}). Nothing to do.")
+        return 0
 
     win = windows_updates(ym)
     cvrf = msrc_month(ym)
@@ -915,8 +925,10 @@ def main() -> int:
         return 0
 
     send_email(subject, body_html, body_text)
+    SNAP_DIR.mkdir(parents=True, exist_ok=True)
+    if os.environ.get("REPORT_AUTO"):  # manual test sends don't block the scheduled one
+        sent_file.write_text(dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds") + "\n", encoding="utf-8")
     if mode == "patch":
-        SNAP_DIR.mkdir(parents=True, exist_ok=True)
         snap_file.write_text(json.dumps(snapshot(data), indent=1, sort_keys=True), encoding="utf-8")
     return 0
 
